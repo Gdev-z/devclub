@@ -22,13 +22,13 @@ export default function Hero() {
       {/* Canvas 3D full-screen atrás do conteúdo (pointer-events:none) */}
       <HeroScene />
 
-      {/* Conteúdo — SEMPRE à direita da tela, por cima do canvas */}
+      {/* Conteúdo — SEMPRE à esquerda da tela, por cima do canvas */}
       <div className="mx-auto flex min-h-screen max-w-7xl items-center">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="ml-auto flex w-full max-w-xl flex-col items-start text-left lg:w-1/2"
+          className="mr-auto flex w-full max-w-xl flex-col items-start text-left lg:w-1/2"
         >
           {/* BADGE de prova social */}
           <motion.span
