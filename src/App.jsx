@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion'
 import LoadingScreen from './components/LoadingScreen.jsx'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
+import LogosCarousel from './components/LogosCarousel.jsx'
 import FormacoesSection from './components/FormacoesSection.jsx'
 import EcosystemSection from './components/EcosystemSection.jsx'
 
@@ -21,6 +22,9 @@ export default function App() {
 
       {/* Hero — sempre montada e renderizada por baixo do loader (sem FOUC) */}
       <Hero />
+
+      {/* Mini seção — carrossel infinito de logos de empresas */}
+      <LogosCarousel />
 
       {/* Dobra 2 — Trilhas de Formação (scroll horizontal no desktop / carrossel no mobile) */}
       <FormacoesSection />

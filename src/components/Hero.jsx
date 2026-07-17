@@ -2,8 +2,6 @@ import { motion } from 'framer-motion'
 import HeroScene from './HeroScene.jsx'
 import MagneticButton from './MagneticButton.jsx'
 
-const COMPANIES = ['Nubank', 'iFood', 'XP Inc', 'Unimed']
-
 // container com stagger dos filhos
 const container = {
   hidden: {},
@@ -57,23 +55,6 @@ export default function Hero() {
             empresas e conquiste sua primeira vaga em tecnologia com projetos
             reais, mentoria e comunidade ativa.
           </motion.p>
-
-          {/* Prova de mercado — logos simulados */}
-          <motion.div variants={item} className="mt-6 opacity-60">
-            <p className="mb-3 text-xs uppercase tracking-wide text-white/50">
-              Nossos alunos são contratados por:
-            </p>
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-              {COMPANIES.map((c) => (
-                <span
-                  key={c}
-                  className="text-sm font-semibold tracking-tight text-neutral-400 grayscale"
-                >
-                  {c}
-                </span>
-              ))}
-            </div>
-          </motion.div>
 
           {/* CTA principal */}
           <motion.div variants={item} className="mt-10">
