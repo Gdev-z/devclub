@@ -4,6 +4,8 @@ import { Float, ContactShadows, Environment } from '@react-three/drei';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as THREE from 'three';
 
+import bgVideo from '../assets/video.mp4';
+
 const SWITCH_MS = 60000; // alterna a cada 1 minuto
 
 /* ============================================================
@@ -179,6 +181,18 @@ export default function Hero3DStage() {
 
   return (
     <div className="r3f-bg-canvas">
+      {/* Vídeo de fundo (atrás do canvas 3D) */}
+      <video
+        className="absolute inset-0 h-full w-full object-cover pointer-events-none -z-10"
+        src={bgVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="none"
+        loading="lazy"
+      />
+
       {/* ambas as cenas ficam sobrepostas; o crossfade controla a opacidade */}
       <div className="absolute inset-0">
         <AnimatePresence>

@@ -21,7 +21,9 @@ body,
   color: #fafafa;
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* clip (não hidden) evita criar contexto de scroll que quebra o
+     pin do ScrollTrigger na Dobra 2 (scroll horizontal). */
+  overflow-x: clip;
 }
 
 /* Esconde scroll durante o loading para manter foco no loader */

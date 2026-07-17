@@ -18,7 +18,7 @@ const item = {
 
 export default function Hero() {
   return (
-    <section className="hero-section relative min-h-screen w-full bg-transparent px-6 pt-24 md:px-12">
+    <section className="hero-section relative min-h-screen w-full overflow-hidden bg-transparent px-6 pt-24 md:px-12">
       {/* Canvas 3D full-screen atrás do conteúdo (pointer-events:none) */}
       <HeroScene />
 
@@ -42,7 +42,7 @@ export default function Hero() {
           {/* HEADLINE */}
           <motion.h1
             variants={item}
-            className="mt-6 bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-4xl font-extrabold leading-tight tracking-tight text-transparent md:text-6xl"
+            className="mt-6 bg-gradient-to-r from-white to-neutral-400 bg-clip-text font-display text-4xl font-semibold leading-tight tracking-tight text-transparent md:text-6xl"
           >
             Aprenda as tecnologias mais demandadas do mercado e transforme sua
             carreira.
