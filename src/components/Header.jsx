@@ -23,7 +23,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
         {/* Esquerda — logo */}
         <a href="#" className="flex items-center gap-2">
-          <span className="h-3 w-3 rotate-45 rounded-sm bg-[#39D353] shadow-[0_0_12px_rgba(57,211,83,0.7)]" />
+          <img src="/src/assets/logo.png" alt="DevClub" className="h-7 w-auto" />
           <span className="text-lg font-extrabold tracking-tight text-white">
             Dev<span className="text-[#39D353]">Club</span>
           </span>

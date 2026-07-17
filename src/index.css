@@ -32,14 +32,14 @@ body.loading-active {
 /* Canvas 3D full-screen como fundo. fixed + z-0 no contexto raiz;
    pointer-events:none para o conteúdo da Hero continuar clicável. */
 .r3f-bg-canvas {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    margin-left: 0;
+    pointer-events: none;
 }
-
 /* A Hero cria seu próprio contexto de empilhamento e sobe ACIMA do
    canvas fixo (z-0): section z-10 + isolation garantem que o texto
    fique sempre na frente do canvas em qualquer navegador. */
