@@ -1,0 +1,86 @@
+import { motion } from 'framer-motion'
+import HeroScene from './HeroScene.jsx'
+import MagneticButton from './MagneticButton.jsx'
+
+const COMPANIES = ['Nubank', 'iFood', 'XP Inc', 'Unimed']
+
+// container com stagger dos filhos
+const container = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+}
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+}
+
+export default function Hero() {
+  return (
+    <section className="hero-section relative min-h-screen w-full bg-transparent px-6 pt-24 md:px-12">
+      {/* Canvas 3D full-screen atrás do conteúdo (pointer-events:none) */}
+      <HeroScene />
+
+      {/* Conteúdo — SEMPRE à direita da tela, por cima do canvas */}
+      <div className="mx-auto flex min-h-screen max-w-7xl items-center">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="ml-auto flex w-full max-w-xl flex-col items-start text-left lg:w-1/2"
+        >
+          {/* BADGE de prova social */}
+          <motion.span
+            variants={item}
+            className="flex w-fit items-center gap-2 rounded-full border border-white/10 bg-[#18181B] px-4 py-1.5 text-sm text-white/80"
+          >
+            <span className="inline-block animate-pulse text-[#39D353]">⭐️</span>
+            +25 mil alunos já passaram por aqui
+          </motion.span>
+
+          {/* HEADLINE */}
+          <motion.h1
+            variants={item}
+            className="mt-6 bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-4xl font-extrabold leading-tight tracking-tight text-transparent md:text-6xl"
+          >
+            Aprenda as tecnologias mais demandadas do mercado e transforme sua
+            carreira.
+          </motion.h1>
+
+          {/* SUBTÍTULO */}
+          <motion.p
+            variants={item}
+            className="mt-6 text-base text-neutral-300/90 sm:text-lg"
+          >
+            Formação prática e acelerada: domine as stacks mais pedidas pelas
+            empresas e conquiste sua primeira vaga em tecnologia com projetos
+            reais, mentoria e comunidade ativa.
+          </motion.p>
+
+          {/* Prova de mercado — logos simulados */}
+          <motion.div variants={item} className="mt-6 opacity-60">
+            <p className="mb-3 text-xs uppercase tracking-wide text-white/50">
+              Nossos alunos são contratados por:
+            </p>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              {COMPANIES.map((c) => (
+                <span
+                  key={c}
+                  className="text-sm font-semibold tracking-tight text-neutral-400 grayscale"
+                >
+                  {c}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* CTA principal */}
+          <motion.div variants={item} className="mt-10">
+            <MagneticButton label="MATRICULE-SE AGORA ➔" />
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
