@@ -229,3 +229,4 @@ export default function Hero3DStage() {
     </div>
   );
 }
+

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import logo from '../assets/logo.png'
 
 /**
  * Tela de Loading (pré-carregador):
@@ -21,7 +22,7 @@ export default function LoadingScreen({ onComplete }) {
       const elapsed = now - start
       const t = Math.min(elapsed / duration, 1)
       const eased = 1 - Math.pow(1 - t, 3) // desacelera perto do fim
-      current = Math.round(eased * 100)
+      current = Math.max(0, Math.round(eased * 100))
       setProgress(current)
 
       if (t < 1) {
@@ -46,17 +47,16 @@ export default function LoadingScreen({ onComplete }) {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(57,211,83,0.08),transparent_55%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(133,50,242,0.10),transparent_50%)]" />
 
-      {/* Logo/marca */}
-      <div className="mb-10 flex items-center gap-2">
-        <span className="h-3 w-3 rotate-45 rounded-sm bg-[#39D353] shadow-[0_0_12px_rgba(57,211,83,0.7)]" />
-        <span className="text-xl font-extrabold tracking-tight text-white">
-          Dev<span className="text-[#39D353]">Club</span>
-        </span>
-      </div>
+      {/* Logo real (assets/logo.png) */}
+      <img
+        src={logo}
+        alt="DevClub"
+        className="mb-10 h-12 w-auto"
+      />
 
       {/* contador */}
       <div className="mb-4 font-mono text-5xl font-bold tabular-nums text-white">
-        {progress}
+        {Math.max(0, progress)}
         <span className="text-[#39D353]">%</span>
       </div>
 

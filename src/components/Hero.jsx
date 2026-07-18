@@ -2,61 +2,103 @@ import { motion } from 'framer-motion'
 import HeroScene from './HeroScene.jsx'
 import MagneticButton from './MagneticButton.jsx'
 
-// container com stagger dos filhos
+// ============================================================
+// CONTROLE DO REVEAL DA HERO
+// STAGGER = intervalo entre cada elemento
+// DELAY   = tempo antes da animação começar
+// ============================================================
+const STAGGER = 0.6
+const DELAY = 0.5
+
+// Container controla apenas a sequência dos filhos
 const container = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+    transition: {
+      delayChildren: DELAY,
+      staggerChildren: STAGGER,
+    },
   },
 }
+
+// Animação individual de cada elemento
 const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  hidden: {
+    opacity: 0,
+    x: 50,
+  },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1.2,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
 }
 
-export default function Hero() {
-  return (
-    <section className="hero-section relative min-h-screen w-full overflow-hidden bg-transparent px-6 pt-24 md:px-12">
-      {/* Canvas 3D full-screen atrás do conteúdo (pointer-events:none) */}
-      <HeroScene />
+const badge = {
+  hidden: {
+    opacity: 0,
+    x: 50,
+    filter: 'blur(8px)',
+  },
+  show: {
+    opacity: 1,
+    x: 0,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 1.2,
+      ease: [0.22, 1, 0.36, 1],
+      delay: STAGGER * 6, // aparece depois de todos
+    },
+  },
+}
 
-      {/* Conteúdo — SEMPRE à esquerda da tela, por cima do canvas */}
-      <div className="mx-auto flex min-h-screen max-w-7xl items-center">
+export default function Hero({ loading = false }) {
+  return (
+    <section className="hero-section relative flex min-h-screen w-full flex-col items-center justify-start overflow-hidden bg-transparent lg:flex-row lg:items-center">
+      {/* Canvas 3D */}
+
+      {/* Conteúdo */}
+      <div className="relative z-10 flex w-full max-w-7xl items-center bg-[#09090B] px-6 py-24 md:px-12 md:py-32 lg:px-24">
         <motion.div
           variants={container}
           initial="hidden"
-          animate="show"
-          className="mr-auto flex w-full max-w-xl flex-col items-start text-left lg:w-1/2"
+          animate={loading ? 'hidden' : 'show'}
+          className="mr-auto flex w-full max-w-full flex-col items-start text-left lg:max-w-2xl"
         >
-          {/* BADGE de prova social */}
+          {/* Badge */}
           <motion.span
-            variants={item}
-            className="flex w-fit items-center gap-2 rounded-full border border-white/10 bg-[#18181B] px-4 py-1.5 text-sm text-white/80"
+            variants={badge}
+            className="flex w-fit max-w-full items-center gap-2 rounded-full border border-white/10 bg-[#18181B] px-4 py-1.5 text-sm text-white/80"
           >
-            <span className="inline-block animate-pulse text-[#39D353]">⭐️</span>
+            <span className="inline-block animate-pulse text-[#39D353]">
+              ⭐️
+            </span>
             +25 mil alunos já passaram por aqui
           </motion.span>
 
-          {/* HEADLINE */}
+          {/* Headline */}
           <motion.h1
             variants={item}
-            className="mt-6 bg-gradient-to-r from-white to-neutral-400 bg-clip-text font-display text-4xl font-semibold leading-tight tracking-tight text-transparent md:text-6xl"
+            className="mt-6 max-w-full break-words bg-gradient-to-r from-white to-neutral-400 bg-clip-text font-jakarta text-3xl font-semibold leading-tight tracking-tight text-transparent sm:text-4xl md:text-5xl lg:text-6xl"
           >
             Aprenda as tecnologias mais demandadas do mercado e transforme sua
             carreira.
           </motion.h1>
 
-          {/* SUBTÍTULO */}
+          {/* Subtítulo */}
           <motion.p
             variants={item}
-            className="mt-6 text-base text-neutral-300/90 sm:text-lg"
+            className="mt-6 max-w-prose break-words text-base text-neutral-300/90 sm:text-lg"
           >
             Formação prática e acelerada: domine as stacks mais pedidas pelas
             empresas e conquiste sua primeira vaga em tecnologia com projetos
             reais, mentoria e comunidade ativa.
           </motion.p>
 
-          {/* CTA principal */}
+          {/* CTA */}
           <motion.div variants={item} className="mt-10">
             <MagneticButton label="MATRICULE-SE AGORA ➔" />
           </motion.div>
