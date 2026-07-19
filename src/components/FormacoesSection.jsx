@@ -2,6 +2,11 @@ import { useRef, useLayoutEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
+import imgIA from '../assets/cards_imgs/Inteligencia_artificial.png'
+import imgAutomacao from '../assets/cards_imgs/Automação.png'
+import imgFront from '../assets/cards_imgs/Front_end.png'
+import imgBack from '../assets/cards_imgs/Back_end.png'
+
 gsap.registerPlugin(ScrollTrigger)
 
 const TRILHAS = [
@@ -11,6 +16,7 @@ const TRILHAS = [
     techs: ['React', 'Node.js', 'TypeScript', 'IA'],
     topics: ['Fundamentos de UI e APIs REST', 'Banco de dados e autenticação', 'Integração de agentes de IA', 'Projeto full stack completo'],
     badge: '🚀 Mais Procurada',
+    img: imgIA,
   },
   {
     title: 'Automação & Integrações com n8n',
@@ -18,6 +24,7 @@ const TRILHAS = [
     techs: ['n8n', 'Webhooks', 'APIs', 'Python'],
     topics: ['Lógica de fluxos e webhooks', 'Integração de APIs externas', 'Automação com Python', 'Sistemas autônomos de ponta a ponta'],
     badge: '⚡ Em Alta',
+    img: imgAutomacao,
   },
   {
     title: 'Front-End de Alta Performance',
@@ -25,6 +32,7 @@ const TRILHAS = [
     techs: ['React', 'Next.js', 'Tailwind', 'GSAP'],
     topics: ['Componentização com React/Next', 'Estilização com Tailwind', 'Animações com GSAP', 'Otimização e Core Web Vitals'],
     badge: '🎯 Foco em Conversão',
+    img: imgFront,
   },
   {
     title: 'Back-End & Arquitetura Limpa',
@@ -32,6 +40,7 @@ const TRILHAS = [
     techs: ['Node.js', 'SQL', 'NoSQL', 'Docker'],
     topics: ['APIs REST e GraphQL', 'Modelagem SQL e NoSQL', 'Padrões de arquitetura limpa', 'Containers e deploy com Docker'],
     badge: '🏗️ Escalável',
+    img: imgBack,
   },
 ]
 
@@ -134,11 +143,14 @@ export default function FormacoesSection() {
             key={t.title}
             className="group flex w-[350px] shrink-0 snap-center flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#18181B] transition-all duration-300 hover:-translate-y-1.5 hover:scale-[1.02] hover:border-[#39D353]/50 hover:shadow-[0_18px_40px_-12px_rgba(57,211,83,0.25)] md:w-[560px] md:flex-row"
           >
-            {/* Lado esquerdo — placeholder de imagem (~45%) */}
-            <div className="relative h-44 w-full shrink-0 rounded-t-3xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] ring-1 ring-inset ring-white/5 md:h-auto md:w-[45%] md:rounded-none md:rounded-l-3xl">
-              <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-medium uppercase tracking-widest text-white/25">
-                Imagem
-              </span>
+            {/* Lado esquerdo — imagem da trilha (~45% no desktop) */}
+            <div className="relative h-48 w-full shrink-0 overflow-hidden md:h-auto md:w-[45%]">
+              <img
+                src={t.img}
+                alt={t.title}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full rounded-t-3xl object-cover object-center transition-transform duration-500 group-hover:scale-105 md:rounded-none md:rounded-l-3xl"
+              />
             </div>
 
             {/* Lado direito — conteúdo */}
