@@ -66,43 +66,108 @@ function ArrowRight({ className = '' }) {
 
 export default function FormacoesSection() {
   const sectionRef = useRef(null)
-  const trackRef = useRef(null)
+  const cardsRef = useRef([])
+  cardsRef.current = []
+
+  const addCard = (el) => {
+    if (el && !cardsRef.current.includes(el)) cardsRef.current.push(el)
+  }
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia()
 
-      // DESKTOP (>= 1024px): scroll horizontal com pinning
-      mm.add('(min-width: 1024px)', () => {
-        const track = trackRef.current
-        const distance = () => track.scrollWidth - window.innerWidth
-
-        const tween = gsap.to(track, {
-          x: () => -distance(),
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top top',
-            end: () => '+=' + distance(),
-            pin: true,
-            scrub: 1,
-            invalidateOnRefresh: true,
-            anticipatePin: 1,
-          },
+      // DESKTOP / TABLET (>= 768px): stack cards com sticky + sobreposição.
+      // Cada card gruda no topo; o próximo sobe por cima. O card anterior
+      // recua progressivamente (scale/brightness/saturate/blur/overlay),
+      // 100% sincronizado com o scroll (scrub) — sem saltos.
+      mm.add('(min-width: 768px)', () => {
+        const cards = cardsRef.current
+        cards.forEach((card, i) => {
+          const inner = card.querySelector('.card-inner')
+          // entrada do card: scale 0.985 -> 1 + sobe levemente.
+          // Acompanha quase toda a subida (base da viewport -> topo).
+          gsap.fromTo(
+            inner,
+            { scale: 0.985, yPercent: 4 },
+            {
+              scale: 1,
+              yPercent: 0,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top bottom',
+                end: 'top top',
+                scrub: true,
+              },
+            }
+          )
+          // o card anterior perde protagonismo de forma extremamente suave,
+          // exatamente enquanto este sobe (mesmo trigger/range).
+          // fromTo explícito + immediateRender:false => começa CLARO no
+          // mount e só escurece ao rolar (evita aparecer já escuro).
+          if (i > 0) {
+            const prevInner = cards[i - 1].querySelector('.card-inner')
+            const prevOverlay = cards[i - 1].querySelector('.card-overlay')
+            gsap.fromTo(
+              prevInner,
+              { scale: 1, filter: 'brightness(1) blur(0px)' },
+              {
+                scale: 0.985,
+                filter: 'brightness(0.9) blur(0.5px)',
+                ease: 'none',
+                immediateRender: false,
+                scrollTrigger: {
+                  trigger: card,
+                  start: 'top bottom',
+                  end: 'top top',
+                  scrub: true,
+                },
+              }
+            )
+            // overlay quase imperceptível (máx 0.15)
+            gsap.fromTo(
+              prevOverlay,
+              { opacity: 0 },
+              {
+                opacity: 0.9,
+                ease: 'none',
+                immediateRender: false,
+                scrollTrigger: {
+                  trigger: card,
+                  start: 'top bottom',
+                  end: 'top top',
+                  scrub: true,
+                },
+              }
+            )
+          }
         })
+      })
 
-        return () => tween.kill()
+      // MOBILE (< 768px): animação simples — fade + translateY, sem sticky.
+      mm.add('(max-width: 767px)', () => {
+        const cards = cardsRef.current
+        cards.forEach((card) => {
+          gsap.fromTo(
+            card.querySelector('.card-inner'),
+            { autoAlpha: 0, y: 48 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.7,
+              ease: 'power3.out',
+              scrollTrigger: { trigger: card, start: 'top 88%' },
+            }
+          )
+        })
       })
     }, sectionRef)
 
-    // O ScrollTrigger é criado antes do LoadingScreen sair e antes das
-    // fontes/vídeo estabilizarem o layout. Recalcula a distância do pin
-    // quando a página está pronta para evitar pin "travado" ou distância 0.
     const refresh = () => ScrollTrigger.refresh()
     window.addEventListener('load', refresh)
     window.addEventListener('devclub:loaded', refresh)
 
-    // Cleanup total — evita memory leaks ao desmontar
     return () => {
       window.removeEventListener('load', refresh)
       window.removeEventListener('devclub:loaded', refresh)
@@ -114,11 +179,11 @@ export default function FormacoesSection() {
     <section
       ref={sectionRef}
       id="formacoes"
-      className="relative w-full overflow-hidden bg-[#09090B] py-24 md:py-32"
+      className="relative w-full bg-[#09090B] py-28 md:py-40"
     >
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         {/* Cabeçalho da seção */}
-        <header className="mb-12 max-w-2xl text-left">
+        <header className="mb-16 max-w-2xl text-left">
           <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-[#18181B] px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-white/70">
             🎯 Carreiras Tech & Mercado
           </span>
@@ -133,77 +198,80 @@ export default function FormacoesSection() {
         </header>
       </div>
 
-      {/* Track de cards */}
-      <div
-        ref={trackRef}
-        className="flex gap-6 overflow-x-auto px-6 pb-8 snap-x snap-mandatory no-scrollbar md:gap-8 lg:overflow-visible lg:px-12"
-      >
-        {TRILHAS.map((t) => (
-          <article
+      {/* Pilha de cards */}
+      <div className="mx-auto flex w-full max-w-[1700px] flex-col gap-8 px-4 sm:px-6 lg:gap-[15vh]">
+        {TRILHAS.map((t, i) => (
+          <div
             key={t.title}
-            className="group flex w-[350px] shrink-0 snap-center flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#18181B] transition-all duration-300 hover:-translate-y-1.5 hover:scale-[1.02] hover:border-[#39D353]/50 hover:shadow-[0_18px_40px_-12px_rgba(57,211,83,0.25)] md:w-[560px] md:flex-row"
+            ref={addCard}
+            className="stack-card relative"
           >
-            {/* Lado esquerdo — imagem da trilha (~45% no desktop) */}
-            <div className="relative h-48 w-full shrink-0 overflow-hidden md:h-auto md:w-[45%]">
-              <img
-                src={t.img}
-                alt={t.title}
-                loading="lazy"
-                className="absolute inset-0 h-full w-full rounded-t-3xl object-cover object-center transition-transform duration-500 group-hover:scale-105 md:rounded-none md:rounded-l-3xl"
-              />
-            </div>
+            <article className="card-inner group relative flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#18181B] shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)] transition-colors duration-500 hover:border-[#39D353]/40 hover:shadow-[0_30px_90px_-30px_rgba(57,211,83,0.18)] md:h-[72vh] md:flex-row">
+              {/* COLUNA ESQUERDA — imagem (52%, arte 100% visível, escala maior) */}
+              <div className="relative w-full shrink-0 overflow-hidden md:w-[65%]">
+                <img
+                  src={t.img}
+                  alt={t.title}
+                  loading="lazy"
+                  className="max-h-full max-w-full scale-110 object-contain object-center transition-transform duration-[900ms] ease-out"
+                />
+              </div>
 
-            {/* Lado direito — conteúdo */}
-            <div className="flex flex-1 flex-col p-7 md:p-8">
-              {t.badge && (
-                <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-white/10 bg-black/30 px-3 py-1 text-xs font-medium text-white/80">
-                  {t.badge}
-                </span>
-              )}
+              {/* COLUNA DIREITA — conteúdo (~55%) */}
+              <div className="flex flex-1 flex-col p-7 md:justify-center md:p-12">
+                {t.badge && (
+                  <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-white/80">
+                    {t.badge}
+                  </span>
+                )}
 
-              <h3 className="mt-4 text-2xl font-bold leading-tight tracking-tight text-white">
-                {t.title}
-              </h3>
+                <h3 className="mt-4 text-2xl font-bold leading-tight tracking-tight text-white md:text-4xl">
+                  {t.title}
+                </h3>
 
-              <p className="mt-3 max-w-prose text-sm leading-relaxed text-neutral-400">
-                {t.desc}
-              </p>
+                <p className="mt-3 max-w-prose text-sm leading-relaxed text-neutral-400 md:text-base">
+                  {t.desc}
+                </p>
 
-              {/* Tópicos do módulo */}
-              <ul className="mt-6 space-y-2.5">
-                {t.topics.map((topic) => (
-                  <li
-                    key={topic}
-                    className="flex items-start gap-2.5 text-sm text-neutral-300"
-                  >
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 rounded-[1px] bg-[#39D353]" />
-                    <span>{topic}</span>
-                  </li>
-                ))}
-              </ul>
+                {/* Módulos — discretos */}
+                <ul className="mt-6 hidden space-y-2 sm:block">
+                  {t.topics.map((topic) => (
+                    <li
+                      key={topic}
+                      className="flex items-start gap-2.5 text-[13px] text-neutral-400"
+                    >
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 rounded-[1px] bg-[#39D353]/80" />
+                      <span>{topic}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              {/* Techs */}
-              <ul className="mt-6 flex flex-wrap gap-2">
-                {t.techs.map((tech) => (
-                  <li
-                    key={tech}
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-neutral-300"
-                  >
-                    {tech}
-                  </li>
-                ))}
-              </ul>
+                {/* Techs — chips minimalistas */}
+                <ul className="mt-6 flex flex-wrap gap-2">
+                  {t.techs.map((tech) => (
+                    <li
+                      key={tech}
+                      className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] font-medium text-neutral-300"
+                    >
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
 
-              {/* Rodapé / ação */}
-              <a
-                href="#"
-                className="mt-auto inline-flex items-center gap-1.5 pt-6 text-sm font-semibold text-[#39D353] transition-colors hover:text-[#39D353]/80"
-              >
-                Ver ementa completa
-                <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
-            </div>
-          </article>
+                {/* CTA */}
+                <a
+                  href="#"
+                  className="mt-7 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[#39D353] transition-colors hover:text-[#39D353]/80"
+                >
+                  Ver ementa completa
+                  <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
+              </div>
+
+              {/* overlay de escurecimento progressivo (animado via GSAP) */}
+              <div className="card-overlay pointer-events-none absolute inset-0 z-20 rounded-[28px] bg-black opacity-0" />
+            </article>
+          </div>
         ))}
       </div>
     </section>

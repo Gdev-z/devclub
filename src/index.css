@@ -52,6 +52,13 @@ body.loading-active {
   isolation: isolate;
 }
 
+/* Dobra 2 — Stack Cards: cada card gruda no topo e o próximo sobe por
+   cima, criando a pilha. O card anterior recua (scale/opacity) via GSAP. */
+.stack-card {
+  position: sticky;
+  top: 14vh;
+}
+
 /* Ticker infinito de logos (Dobra 1.5) — espelha o LogoTicker de referência */
 .ticker-section {
   padding: 80px 0 120px;
