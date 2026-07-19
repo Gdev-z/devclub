@@ -110,3 +110,10 @@ body.loading-active {
     height: 36px;
   }
 }
+
+/* Dobra 3 — Bento Grid: o tilt (rotateX/Y) usa transformPerspective
+   aplicada pelo GSAP direto no .card-tilt, igual ao animations-lab. */
+.card-tilt {
+  transform-style: preserve-3d;
+  will-change: transform;
+}

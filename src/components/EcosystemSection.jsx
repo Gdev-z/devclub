@@ -1,5 +1,6 @@
-import { useRef } from 'react'
+import { useRef, useLayoutEffect } from 'react'
 import { motion } from 'framer-motion'
+import gsap from 'gsap'
 
 /* ---------- Ícones (SVG inline, sem dependência externa) ---------- */
 function HeartIcon({ className = '' }) {
@@ -38,10 +39,11 @@ const containerVariants = {
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 32 },
+  // reveal apenas com opacity (sem translateY) para não conflitar com
+  // o transform do tilt 3D, que roda no mesmo elemento (card colorido).
+  hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    y: 0,
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
 }
@@ -55,7 +57,7 @@ function handleMouseMove(e) {
 }
 
 const baseCard =
-  'bg-[#18181B] border border-white/10 rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden group hover:border-white/20 transition-all duration-500'
+  'h-full bg-[#18181B] border border-white/10 rounded-3xl p-8 relative overflow-hidden group hover:border-white/20 transition-all duration-500'
 
 /* Spotlight layer (segue o cursor) */
 function Spotlight() {
@@ -71,11 +73,50 @@ function Spotlight() {
 }
 
 export default function EcosystemSection() {
-  const ref = useRef(null)
+  const gridRef = useRef(null)
+
+  // Tilt 3D nos cards — mesma lógica do animations-lab (initTilt):
+  // px/py em -0.5..0.5, rotateY = px*max*2, rotateX = -py*max*2,
+  // com transformPerspective aplicada no próprio card (não precisa de
+  // perspective no pai). Range máx 14°. Retorno com elastic ease.
+  useLayoutEffect(() => {
+    const grid = gridRef.current
+    if (!grid) return
+
+    const cards = grid.querySelectorAll('.card-tilt')
+    const max = 14
+    const cleanups = []
+
+    cards.forEach((card) => {
+      const onMove = (e) => {
+        const r = card.getBoundingClientRect()
+        const px = (e.clientX - r.left) / r.width - 0.5
+        const py = (e.clientY - r.top) / r.height - 0.5
+        gsap.to(card, {
+          rotateY: px * max * 2,
+          rotateX: -py * max * 2,
+          transformPerspective: 800,
+          duration: 0.3,
+          ease: 'power2.out',
+        })
+      }
+      const onLeave = () => {
+        gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.7, ease: 'elastic.out(1,0.4)' })
+      }
+
+      card.addEventListener('mousemove', onMove)
+      card.addEventListener('mouseleave', onLeave)
+      cleanups.push(() => {
+        card.removeEventListener('mousemove', onMove)
+        card.removeEventListener('mouseleave', onLeave)
+      })
+    })
+
+    return () => cleanups.forEach((fn) => fn())
+  }, [])
 
   return (
     <section
-      ref={ref}
       id="ecossistema"
       className="max-w-7xl mx-auto px-6 md:px-12 py-24 bg-[#09090B] text-white"
     >
@@ -99,116 +140,149 @@ export default function EcosystemSection() {
         </p>
       </motion.div>
 
-      {/* Bento Grid */}
+      {/* Bento Grid — recebe a perspective para o tilt 3D dos cards */}
       <motion.div
+        ref={gridRef}
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: '-60px' }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px] md:auto-rows-[320px]"
+        className="ecosystem-grid grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px] md:auto-rows-[320px]"
       >
         {/* CARD 1 — Recrutadora (span 2) */}
-        <motion.article
-          variants={cardVariants}
-          onMouseMove={handleMouseMove}
-          className={`${baseCard} md:col-span-2 group-hover:shadow-[0_0_40px_rgba(57,211,83,0.12)] group-hover:border-[#39D353]/50`}
-        >
-          <Spotlight />
-          <div className="relative z-10">
-            <h3 className="text-2xl font-bold text-white">
-              Acompanhamento direto com Recrutadora Tech
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-neutral-400 max-w-xl">
-              Nossa especialista analisa seu perfil do LinkedIn, refatoramos seu
-              currículo e treinamos você com simulações reais de entrevistas
-              técnicas e comportamentais.
-            </p>
-          </div>
-          {/* Card de aprovação / checklist LinkedIn verificado */}
-          <div className="relative z-10 mt-6 flex items-center gap-3 self-end rounded-2xl border border-[#39D353]/30 bg-[#39D353]/5 px-4 py-3 text-[#39D353]">
-            <CheckBadgeIcon />
-            <div className="text-left">
-              <p className="text-xs font-semibold text-white">LinkedIn Verificado</p>
-              <p className="text-xs">Perfil aprovado pela recrutadora</p>
+        <div className="md:col-span-2">
+          <motion.article
+            variants={cardVariants}
+            className="h-full"
+          >
+            <div
+            onMouseMove={handleMouseMove}
+            className={`card-tilt ${baseCard} group-hover:shadow-[0_0_40px_rgba(57,211,83,0.12)] group-hover:border-[#39D353]/50`}
+          >
+            <div className="flex h-full flex-col justify-between">
+              <Spotlight />
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-white">
+                  Acompanhamento direto com Recrutadora Tech
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-neutral-400 max-w-xl">
+                  Nossa especialista analisa seu perfil do LinkedIn, refatoramos seu
+                  currículo e treinamos você com simulações reais de entrevistas
+                  técnicas e comportamentais.
+                </p>
+              </div>
+              {/* Card de aprovação / checklist LinkedIn verificado */}
+              <div className="relative z-10 mt-6 flex items-center gap-3 self-end rounded-2xl border border-[#39D353]/30 bg-[#39D353]/5 px-4 py-3 text-[#39D353]">
+                <CheckBadgeIcon />
+                <div className="text-left">
+                  <p className="text-xs font-semibold text-white">LinkedIn Verificado</p>
+                  <p className="text-xs">Perfil aprovado pela recrutadora</p>
+                </div>
+              </div>
             </div>
           </div>
-        </motion.article>
+          </motion.article>
+          </div>
 
         {/* CARD 2 — Agentes IA 24/7 (span 1) */}
-        <motion.article
-          variants={cardVariants}
-          onMouseMove={handleMouseMove}
-          className={`${baseCard} md:col-span-1 group-hover:shadow-[0_0_40px_rgba(133,50,242,0.15)] group-hover:border-[#8532F2]/50`}
-        >
-          <Spotlight />
-          <div className="relative z-10 flex items-start justify-between">
-            <BotIcon className="text-[#8532F2]" />
-            <span className="rounded-full bg-[#8532F2]/10 px-2.5 py-1 text-xs font-medium text-[#8532F2]">
-              24/7
-            </span>
+        <div className="md:col-span-1">
+          <motion.article
+            variants={cardVariants}
+            className="h-full"
+          >
+            <div
+            onMouseMove={handleMouseMove}
+            className={`card-tilt ${baseCard} group-hover:shadow-[0_0_40px_rgba(133,50,242,0.15)] group-hover:border-[#8532F2]/50`}
+          >
+            <div className="flex h-full flex-col justify-between">
+              <Spotlight />
+              <div className="relative z-10 flex items-start justify-between">
+                <BotIcon className="text-[#8532F2]" />
+                <span className="rounded-full bg-[#8532F2]/10 px-2.5 py-1 text-xs font-medium text-[#8532F2]">
+                  24/7
+                </span>
+              </div>
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold text-white">
+                  Agentes IA &amp; Plantão 24/7
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-neutral-400">
+                  Travou em um erro às 2h da manhã? Nossa inteligência artificial e
+                  nossa comunidade tiram suas dúvidas de código instantaneamente.
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="relative z-10">
-            <h3 className="text-xl font-bold text-white">
-              Agentes IA &amp; Plantão 24/7
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-neutral-400">
-              Travou em um erro às 2h da manhã? Nossa inteligência artificial e
-              nossa comunidade tiram suas dúvidas de código instantaneamente.
-            </p>
+          </motion.article>
           </div>
-        </motion.article>
 
         {/* CARD 3 — Apoio Psicológico (span 1) */}
-        <motion.article
-          variants={cardVariants}
-          onMouseMove={handleMouseMove}
-          className={`${baseCard} md:col-span-1 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.08)] group-hover:border-white/30`}
-        >
-          <Spotlight />
-          <HeartIcon className="relative z-10 text-neutral-300" />
-          <div className="relative z-10">
-            <h3 className="text-xl font-bold text-white">
-              Apoio Psicológico e Emocional
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-neutral-400">
-              A transição de carreira exige força mental. Conte com nossa
-              terapeuta parceira para vencer a síndrome do impostor e gerenciar
-              a ansiedade.
-            </p>
+        <div className="md:col-span-1">
+          <motion.article
+            variants={cardVariants}
+            className="h-full"
+          >
+            <div
+            onMouseMove={handleMouseMove}
+            className={`card-tilt ${baseCard} group-hover:shadow-[0_0_40px_rgba(255,255,255,0.08)] group-hover:border-white/30`}
+          >
+            <div className="flex h-full flex-col justify-between">
+              <Spotlight />
+              <HeartIcon className="relative z-10 text-neutral-300" />
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold text-white">
+                  Apoio Psicológico e Emocional
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-neutral-400">
+                  A transição de carreira exige força mental. Conte com nossa
+                  terapeuta parceira para vencer a síndrome do impostor e gerenciar
+                  a ansiedade.
+                </p>
+              </div>
+            </div>
           </div>
-        </motion.article>
+          </motion.article>
+          </div>
 
         {/* CARD 4 — Mentorias com Sêniores (span 2) */}
-        <motion.article
-          variants={cardVariants}
-          onMouseMove={handleMouseMove}
-          className={`${baseCard} md:col-span-2 group-hover:shadow-[0_0_40px_rgba(57,211,83,0.12)] group-hover:border-[#39D353]/50`}
-        >
-          <Spotlight />
-          <div className="relative z-10">
-            <h3 className="text-2xl font-bold text-white">
-              Mentorias ao Vivo &amp; Code Reviews
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-neutral-400 max-w-xl">
-              Encontros semanais com programadores Sêniores que atuam nas maiores
-              empresas do mercado para revisar seu código, tirar dúvidas de
-              arquitetura e guiar seus projetos.
-            </p>
+        <div className="md:col-span-2">
+          <motion.article
+            variants={cardVariants}
+            className="h-full"
+          >
+            <div
+            onMouseMove={handleMouseMove}
+            className={`card-tilt ${baseCard} group-hover:shadow-[0_0_40px_rgba(57,211,83,0.12)] group-hover:border-[#39D353]/50`}
+          >
+            <div className="flex h-full flex-col justify-between">
+              <Spotlight />
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-white">
+                  Mentorias ao Vivo &amp; Code Reviews
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-neutral-400 max-w-xl">
+                  Encontros semanais com programadores Sêniores que atuam nas maiores
+                  empresas do mercado para revisar seu código, tirar dúvidas de
+                  arquitetura e guiar seus projetos.
+                </p>
+              </div>
+              {/* Avatares sobrepostos simulando devs em chamada */}
+              <div className="relative z-10 mt-6 flex -space-x-2 overflow-hidden">
+                {['#39D353', '#8532F2', '#fafafa', '#39D353', '#8532F2'].map((c, i) => (
+                  <span
+                    key={i}
+                    className="h-9 w-9 rounded-full border-2 border-[#18181B]"
+                    style={{ backgroundColor: c, opacity: 0.9 }}
+                  />
+                ))}
+                <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#18181B] bg-white/10 text-xs font-semibold text-white">
+                  +12
+                </span>
+              </div>
+            </div>
           </div>
-          {/* Avatares sobrepostos simulando devs em chamada */}
-          <div className="relative z-10 mt-6 flex -space-x-2 overflow-hidden">
-            {['#39D353', '#8532F2', '#fafafa', '#39D353', '#8532F2'].map((c, i) => (
-              <span
-                key={i}
-                className="h-9 w-9 rounded-full border-2 border-[#18181B]"
-                style={{ backgroundColor: c, opacity: 0.9 }}
-              />
-            ))}
-            <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#18181B] bg-white/10 text-xs font-semibold text-white">
-              +12
-            </span>
+          </motion.article>
           </div>
-        </motion.article>
       </motion.div>
     </section>
   )

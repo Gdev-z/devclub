@@ -8,7 +8,7 @@ import MagneticButton from './MagneticButton.jsx'
 // DELAY   = tempo antes da animação começar
 // ============================================================
 const STAGGER = 0.6
-const DELAY = 0.5
+const DELAY = 0.1
 
 // Container controla apenas a sequência dos filhos
 const container = {
