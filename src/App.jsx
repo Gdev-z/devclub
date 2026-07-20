@@ -7,6 +7,7 @@ import HeroScene from './components/HeroScene.jsx'
 import LogosCarousel from './components/LogosCarousel.jsx'
 import FormacoesSection from './components/FormacoesSection.jsx'
 import EcosystemSection from './components/EcosystemSection.jsx'
+import PlatformEcosystemSection from './components/PlatformEcosystemSection.jsx'
 import TechStackSection from './components/TechStackSection.jsx'
 
 export default function App() {
@@ -40,6 +41,9 @@ export default function App() {
 
       {/* Dobra 5 — Tecnologias e Stack do Mercado */}
       <TechStackSection />
+
+      {/* Dobra 4 — Plataforma e Ecossistema (Feature Showcase) */}
+      <PlatformEcosystemSection />
 
       {/* Loading por cima (z-50) até 100%; AnimatePresence aplica o exit */}
       <AnimatePresence>
