@@ -100,7 +100,7 @@ export default function Hero({ loading = false }) {
 
           {/* CTA */}
           <motion.div variants={item} className="mt-10">
-            <MagneticButton label="MATRICULE-SE AGORA ➔" />
+            <MagneticButton label="MATRICULE-SE AGORA" />
           </motion.div>
         </motion.div>
       </div>
