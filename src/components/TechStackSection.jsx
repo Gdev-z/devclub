@@ -55,6 +55,7 @@ const PILLS = [
 export default function TechStackSection() {
   const sectionRef = useRef(null)
   const bgRef = useRef(null)
+  const dockRef = useRef(null)
 
   // Reveal circular do fundo da seção, controlado pelo scroll (scrub),
   // igual ao demo 8 do animations-lab (clip-path expandindo de 0% a 150%).
@@ -78,6 +79,28 @@ export default function TechStackSection() {
           },
         },
       )
+
+      // Fade-in do dock de tecnologias ao dar scroll (stagger por ícone).
+      const icons = dockRef.current?.children
+      if (icons && icons.length) {
+        gsap.fromTo(
+          icons,
+          { opacity: 0, y: 16, scale: 0.9 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.5,
+            ease: 'power2.out',
+            stagger: 0.07,
+            scrollTrigger: {
+              trigger: dockRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          },
+        )
+      }
     }, section)
 
     return () => ctx.revert()
@@ -131,7 +154,7 @@ export default function TechStackSection() {
         </h3>
 
         {/* Dock de tecnologias */}
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 mb-12 relative z-10">
+        <div ref={dockRef} className="flex flex-wrap justify-center items-center gap-4 md:gap-6 mb-12 relative z-10">
           {DOCK.map((t) => (
             <div
               key={t.key}
