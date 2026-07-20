@@ -7,6 +7,7 @@ import HeroScene from './components/HeroScene.jsx'
 import LogosCarousel from './components/LogosCarousel.jsx'
 import FormacoesSection from './components/FormacoesSection.jsx'
 import EcosystemSection from './components/EcosystemSection.jsx'
+import TechStackSection from './components/TechStackSection.jsx'
 
 export default function App() {
   const [loading, setLoading] = useState(true)
@@ -36,6 +37,9 @@ export default function App() {
 
       {/* Dobra 3 — Ecossistema DevClub (Bento Grid) */}
       <EcosystemSection />
+
+      {/* Dobra 5 — Tecnologias e Stack do Mercado */}
+      <TechStackSection />
 
       {/* Loading por cima (z-50) até 100%; AnimatePresence aplica o exit */}
       <AnimatePresence>
