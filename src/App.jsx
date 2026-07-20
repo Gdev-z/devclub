@@ -9,12 +9,17 @@ import FormacoesSection from './components/FormacoesSection.jsx'
 import EcosystemSection from './components/EcosystemSection.jsx'
 import PlatformEcosystemSection from './components/PlatformEcosystemSection.jsx'
 import TechStackSection from './components/TechStackSection.jsx'
+import useSmoothScroll from './hooks/useSmoothScroll'
 
 export default function App() {
   const [loading, setLoading] = useState(true)
   // Só libera o reveal da Hero APÓS o loader terminar de sair (exit ~0.8s),
   // senão a animação acontece por trás da tela de loading e não é vista.
   const [revealHero, setRevealHero] = useState(false)
+
+  // Smooth scroll só após o loading (o App trava o scroll do body no loader,
+  // e o Lenis assume o controle do scroll — iniciar antes conflitaria).
+  useSmoothScroll(loading)
 
   // Trava o scroll durante o loading
   if (typeof document !== 'undefined') {
