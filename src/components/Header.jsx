@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import logo from '../assets/logo.png'
 
 const NAV_LINKS = ['Formações', 'Faculdade', 'Área do Aluno']
 
@@ -23,7 +24,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
         {/* Esquerda — logo */}
         <a href="#" className="flex items-center gap-2">
-          <img src="/src/assets/logo.png" alt="DevClub" className="h-7 w-auto" />
+          <img src={logo} alt="DevClub" className="h-7 w-auto" />
           <span className="text-lg font-extrabold tracking-tight text-white">
             Dev<span className="text-[#39D353]">Club</span>
           </span>
