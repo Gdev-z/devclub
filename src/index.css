@@ -151,3 +151,12 @@ body.loading-active {
   0%, 100% { box-shadow: 0 0 28px rgba(57, 211, 83, 0.32); }
   50% { box-shadow: 0 0 52px rgba(57, 211, 83, 0.6); }
 }
+
+/* Fade-in do conteúdo expandido do accordion (PlatformEcosystemSection) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out both;
+}

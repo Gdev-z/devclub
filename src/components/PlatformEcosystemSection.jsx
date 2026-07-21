@@ -1,114 +1,164 @@
+import React, { useState } from 'react';
 import {
   GraduationCap,
-  Route,
+  Map,
   Users,
   Bot,
   Code2,
   Trophy,
-} from 'lucide-react'
+  ChevronDown
+} from 'lucide-react';
 
-/* ============================================================
-   Os 6 pilares do ecossistema (textos persuasivos, foco em benefício)
-   ============================================================ */
-const PILARS = [
+const ecosystemItems = [
   {
     icon: GraduationCap,
-    title: 'Plataforma de Ensino Proprietária',
-    text: 'Ambiente de aprendizado moderno, sem distrações, com player otimizado, marcação de progresso e resumos práticos para você focar no que importa.',
+    title: "Plataforma Proprietária",
+    description: "Ambiente de aprendizado moderno, sem distrações, com player otimizado, marcação de progresso e resumos práticos para você focar no que importa."
   },
   {
-    icon: Route,
-    title: 'Trilhas e Formações do Zero ao Pro',
-    text: 'Chega de se sentir perdido. Siga um plano de estudos estruturado em rotas claras que guiam você até o nível Full Stack de verdade.',
+    icon: Map,
+    title: "Trilhas Zero ao Pro",
+    description: "Chega de se sentir perdido. Siga um plano de estudos estruturado em rotas claras que guiam você até o nível Full Stack de verdade."
   },
   {
     icon: Users,
-    title: 'Comunidade VIP de Alunos',
-    text: "O nosso 'Discord exclusivo'. Faça networking, compartilhe seus repositórios, comemore conquistas e nunca mais estude sozinho.",
+    title: "Comunidade VIP",
+    description: "O nosso 'Discord exclusivo'. Faça networking, compartilhe seus repositórios, comemore conquistas e nunca mais estude sozinho."
   },
   {
     icon: Bot,
-    title: 'Club Agents (Sua IA 24/7)',
-    text: 'Travou em um bug de madrugada? Nossa Inteligência Artificial exclusiva analisa seu código e ensina a solução em segundos.',
+    title: "Club Agents (IA 24/7)",
+    description: "Travou em um bug de madrugada? Nossa Inteligência Artificial exclusiva analisa seu código e ensina a solução em segundos."
   },
   {
     icon: Code2,
-    title: 'Playground de Treinamento',
-    text: 'Onde a teoria vira código rodando. Pratique em ambientes reais, resolva desafios técnicos e teste APIs diretamente no navegador.',
+    title: "Playground Prático",
+    description: "Onde a teoria vira código rodando. Pratique em ambientes reais, resolva desafios técnicos e teste APIs diretamente no navegador."
   },
   {
     icon: Trophy,
-    title: 'Mural da Fama e Vagas',
-    text: 'Sua vitrine profissional no ecossistema. Alunos destaque ganham visibilidade direta perante recrutadores e empresas parceiras.',
-  },
-]
+    title: "Mural da Fama e Vagas",
+    description: "Sua vitrine profissional no ecossistema. Alunos destaque ganham visibilidade direta perante recrutadores e empresas parceiras."
+  }
+];
 
-/* ============================================================
-   SEÇÃO — Editorial Premium (Split 60/40, zero blur)
-   ============================================================ */
 export default function PlatformEcosystemSection() {
+  // Deixamos o primeiro item aberto por padrão para a página já carregar com conteúdo
+  const [openIndex, setOpenIndex] = useState(0);
+
+  const toggleItem = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
-    <section className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-24 bg-[#09090B] text-white">
-      {/* Cabeçalho */}
-      <span className="mb-6 flex w-fit items-center gap-2 rounded-full border border-white/10 bg-[#121215] px-4 py-1.5 text-xs font-semibold tracking-wide text-[#39D353] md:text-sm">
-        ECOSSISTEMA COMPLETO DE ACELERAÇÃO
-      </span>
-      <h2 className="mb-6 max-w-4xl text-left text-3xl font-extrabold leading-tight tracking-tight md:text-center md:text-5xl mx-auto">
-        Muito mais que aulas gravadas: você terá acesso ao{' '}
-        <span className="text-[#39D353]">ecossistema definitivo</span> para virar um
-        programador desejado pelo mercado.
-      </h2>
-      <p className="mb-20 max-w-3xl text-left text-base font-light text-neutral-400 md:text-center md:text-xl mx-auto">
-        Plataforma própria, suporte diário com professores, networking ativo e
-        Inteligência Artificial trabalhando 24/7 para acelerar a sua evolução.
-      </p>
+    <section className="relative z-10 bg-[#09090B] text-white py-24 overflow-hidden">
+      <div className="w-full">
 
-      {/* GRID EDITORIAL SPLIT 60/40 */}
-      <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-        {/* ESQUERDA — Mobile: imagem vem antes (impacto), depois os pilares */}
+        {/* GRID: mobile empilha (1 col), desktop separa (2 col + justify-between) */}
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 lg:justify-between items-start">
 
-        {/* Imagem (40% no desktop, topo no mobile) */}
-        <div className="lg:order-2 lg:col-span-5">
-          <div className="group relative w-full overflow-hidden rounded-3xl border border-white/10 bg-[#121215] shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-            {/* glow verde suave ATRÁS, sem blur na imagem */}
-            <div className="absolute -inset-1 -z-10 rounded-3xl bg-gradient-to-r from-[#39D353]/20 to-transparent opacity-30" />
-            <img
-              src="/assets/background-2.png"
-              alt="Ecossistema DevClub FullStack PRO e IA Club"
-              className="h-auto w-full transform object-cover object-center transition-transform duration-500 ease-out group-hover:scale-102"
-            />
-            {/* Badge flutuante */}
-            <div className="absolute bottom-4 right-4 flex items-center gap-2 rounded-xl border border-white/10 bg-[#09090B]/90 px-4 py-2 text-xs font-mono text-neutral-300 shadow-lg">
-              Ambiente 100% Integrado
+          {/* =========================================================
+              COLUNA DA ESQUERDA: NARRATIVA + LISTA FAQ/ACCORDION
+          ========================================================= */}
+          <div className="order-1 flex flex-col w-full pl-6">
+
+            {/* Badge */}
+            <div className="border border-white/10 text-[#39D353] bg-[#121215] px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide w-fit mb-6">
+              🚀 AQUI VOCÊ APRENDE RÁPIDO
+            </div>
+
+            {/* Headline */}
+            <h2 className="text-3xl md:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+              Acesso Total às <span className="text-[#39D353]">AULAS GRAVADAS.</span>
+            </h2>
+
+            {/* Subtítulo */}
+            <p className="text-neutral-400 text-base md:text-lg font-light mb-10 leading-relaxed">
+              Plataforma própria, suporte diário com professores, networking ativo e Inteligência Artificial trabalhando 24/7 para acelerar a sua evolução.
+            </p>
+
+            {/* LISTA HORIZONTAL INTERATIVA (ESTILO FAQ) */}
+            <div className="divide-y divide-white/10 border-t border-b border-white/10">
+              {ecosystemItems.map((item, idx) => {
+                const Icon = item.icon;
+                const isOpen = openIndex === idx;
+
+                return (
+                  <div
+                    key={idx}
+                    onClick={() => toggleItem(idx)}
+                    className="py-4 cursor-pointer group transition-colors"
+                  >
+                    {/* Linha Principal: Ícone -> Título -> Descrição Truncada (...) -> Chevron */}
+                    <div className="flex items-center justify-between gap-4">
+
+                      <div className="flex items-center gap-3 min-w-0 flex-1">
+                        {/* Ícone */}
+                        <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                          isOpen
+                            ? 'bg-[#39D353] text-[#09090B] font-bold'
+                            : 'bg-[#121215] text-[#39D353] border border-white/5 group-hover:border-[#39D353]/40'
+                        }`}>
+                          <Icon size={18} />
+                        </div>
+
+                        {/* Título */}
+                        <span className="font-bold text-white text-base md:text-lg shrink-0">
+                          {item.title}
+                        </span>
+
+                        {/* Descrição Truncada (Surgem as reticências "..." se não estiver aberto) */}
+                        {!isOpen && (
+                          <span className="text-neutral-500 text-sm truncate hidden sm:inline">
+                            — {item.description}
+                          </span>
+                        )}
+                      </div>
+
+                  
+                    </div>
+
+                    {/* Conteúdo Expandido (Aparece na linha de baixo ao clicar) */}
+                    {isOpen && (
+                      <div className="mt-3 pl-12 pr-4 text-neutral-300 text-sm md:text-base leading-relaxed animate-fadeIn">
+                        {item.description}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+          </div>
+
+          {/* =========================================================
+              COLUNA DA DIREITA: SHOWCASE VISUAL (STICKY)
+          ========================================================= */}
+          <div className="order-2 lg:sticky lg:top-24 w-full">
+            <div className="relative w-full rounded-l-3xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-[#121215] group">
+
+              {/* Glow sutil atrás da imagem para dar profundidade */}
+              <div className="absolute -inset-1 bg-gradient-to-tr from-[#39D353]/20 via-transparent to-transparent opacity-50 blur-xl -z-10"></div>
+
+              {/* Imagem do Ecossistema */}
+              <img
+                src="/assets/background-2.png"
+                alt="Ecossistema DevClub"
+                className="w-full h-auto object-cover object-center transform group-hover:scale-102 transition-transform duration-700 ease-out"
+              />
+
+              {/* Badge flutuante de status */}
+              <div className="absolute bottom-4 right-4 bg-[#09090B]/90 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-xl text-xs font-mono text-neutral-300 flex items-center gap-2 shadow-lg">
+                <span className="w-2 h-2 rounded-full bg-[#39D353] animate-pulse"></span>
+                Ambiente 100% Integrado
+              </div>
+
             </div>
           </div>
+
         </div>
 
-        {/* DIREITA/ESQUERDA — Grade dos 6 pilares (60% no desktop) */}
-        <div className="lg:order-1 lg:col-span-7">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {PILARS.map((p) => {
-              const Icon = p.icon
-              return (
-                <div
-                  key={p.title}
-                  className="flex flex-col gap-3 rounded-2xl border border-white/5 bg-[#121215]/60 p-5 transition-all duration-200 hover:border-[#39D353]/30"
-                >
-                  <h3 className="flex items-center gap-3 text-lg font-bold text-white">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#39D353]/10 text-[#39D353]">
-                      <Icon size={18} />
-                    </span>
-                    {p.title}
-                  </h3>
-                  <p className="text-sm font-normal leading-relaxed text-neutral-400">
-                    {p.text}
-                  </p>
-                </div>
-              )
-            })}
-          </div>
-        </div>
       </div>
     </section>
-  )
+  );
 }
