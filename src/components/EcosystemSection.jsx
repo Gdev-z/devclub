@@ -96,12 +96,12 @@ export default function EcosystemSection() {
           rotateY: px * max * 2,
           rotateX: -py * max * 2,
           transformPerspective: 800,
-          duration: 0.3,
+          duration: 0.01,
           ease: 'power2.out',
         })
       }
       const onLeave = () => {
-        gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.7, ease: 'elastic.out(1,0.4)' })
+        gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.07, ease: 'elastic.out(1,0.4)' })
       }
 
       card.addEventListener('mousemove', onMove)
