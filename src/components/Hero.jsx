@@ -61,7 +61,7 @@ export default function Hero({ loading = false }) {
       {/* Canvas 3D */}
 
       {/* Conteúdo */}
-      <div className="relative z-10 flex w-full max-w-7xl items-center bg-[#09090B] px-6 py-24 md:px-12 md:py-32 lg:px-24">
+      <div className="relative z-10 flex lg:min-h-screen w-full max-w-7xl items-center bg-[#09090B] px-6 py-20 sm:py-2ag4 md:px-12 md:py-28 lg:px-24">
         <motion.div
           variants={container}
           initial="hidden"
@@ -82,7 +82,7 @@ export default function Hero({ loading = false }) {
           {/* Headline */}
           <motion.h1
             variants={item}
-            className="mt-6 max-w-full break-words bg-gradient-to-r from-white to-neutral-400 bg-clip-text font-jakarta text-3xl font-semibold leading-tight tracking-tight text-transparent sm:text-4xl md:text-5xl lg:text-6xl"
+            className="mt-4 max-w-full break-words bg-gradient-to-r from-white to-neutral-400 bg-clip-text font-jakarta text-2xl font-semibold leading-tight tracking-tight text-transparent sm:mt-6 sm:text-4xl md:text-5xl lg:text-6xl"
           >
             Aprenda as tecnologias mais demandadas do mercado e transforme sua
             carreira.
@@ -91,7 +91,7 @@ export default function Hero({ loading = false }) {
           {/* Subtítulo */}
           <motion.p
             variants={item}
-            className="mt-6 max-w-prose break-words text-base text-neutral-300/90 sm:text-lg"
+            className="mt-4 max-w-prose break-words text-sm text-neutral-300/90 sm:mt-6 sm:text-lg"
           >
             Formação prática e acelerada: domine as stacks mais pedidas pelas
             empresas e conquiste sua primeira vaga em tecnologia com projetos
@@ -99,7 +99,7 @@ export default function Hero({ loading = false }) {
           </motion.p>
 
           {/* CTA */}
-          <motion.div variants={item} className="mt-10">
+          <motion.div variants={item} className="mt-8 sm:mt-10">
             <MagneticButton label="MATRICULE-SE AGORA" />
           </motion.div>
         </motion.div>
