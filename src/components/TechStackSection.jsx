@@ -107,7 +107,7 @@ export default function TechStackSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="max-w mx-auto px-6 md:px-12 py-28 text-white relative z-10 overflow-hidden">
+    <section ref={sectionRef} id="stack" className="max-w mx-auto px-6 md:px-12 py-28 text-white relative z-10 overflow-hidden">
       {/* Fundo com reveal circular (scroll-driven) */}
       <div
         ref={bgRef}

@@ -1,12 +1,23 @@
 import { useState } from 'react'
 import logo from '../assets/logo.png'
 
-const NAV_LINKS = ['Formações', 'Faculdade', 'Área do Aluno']
+const NAV_LINKS = [
+  { label: 'Formações', href: '#formacoes' },
+  { label: 'Ecossistema', href: '#ecossistema' },
+  { label: 'Tecnologias', href: '#stack' },
+]
 
-function NavLink({ label }) {
+function NavLink({ label, href }) {
+  const handleClick = (e) => {
+    e.preventDefault()
+    const target = document.querySelector(href)
+    if (target) target.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <a
-      href="#"
+      href={href}
+      onClick={handleClick}
       className="group relative px-1 py-2 text-sm font-medium text-white/70 transition-colors hover:text-white"
     >
       {label}
@@ -33,7 +44,7 @@ export default function Header() {
         {/* Centro — navegação (desktop) */}
         <nav className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((l) => (
-            <NavLink key={l} label={l} />
+            <NavLink key={l.label} label={l.label} href={l.href} />
           ))}
         </nav>
 
@@ -61,8 +72,18 @@ export default function Header() {
       {open && (
         <nav className="flex flex-col gap-1 border-t border-white/5 px-6 py-4 md:hidden">
           {NAV_LINKS.map((l) => (
-            <a key={l} href="#" className="py-2 text-sm text-white/70 hover:text-white">
-              {l}
+            <a
+              key={l.label}
+              href={l.href}
+              onClick={(e) => {
+                e.preventDefault()
+                setOpen(false)
+                const target = document.querySelector(l.href)
+                if (target) target.scrollIntoView({ behavior: 'smooth' })
+              }}
+              className="py-2 text-sm text-white/70 hover:text-white"
+            >
+              {l.label}
             </a>
           ))}
         </nav>

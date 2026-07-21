@@ -7,7 +7,7 @@ import HeroScene from './components/HeroScene.jsx'
 import LogosCarousel from './components/LogosCarousel.jsx'
 import FormacoesSection from './components/FormacoesSection.jsx'
 import EcosystemSection from './components/EcosystemSection.jsx'
-import PlatformEcosystemSection from './components/PlatformEcosystemSection.jsx'
+import PlatformFeatures from './components/PlatformFeatures.jsx'
 import TechStackSection from './components/TechStackSection.jsx'
 import useSmoothScroll from './hooks/useSmoothScroll'
 
@@ -48,7 +48,7 @@ export default function App() {
       <TechStackSection />
 
       {/* Dobra 4 — Plataforma e Ecossistema (Feature Showcase) */}
-      <PlatformEcosystemSection />
+      <PlatformFeatures />
 
       {/* Loading por cima (z-50) até 100%; AnimatePresence aplica o exit */}
       <AnimatePresence>

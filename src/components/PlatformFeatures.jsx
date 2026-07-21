@@ -42,7 +42,7 @@ const ecosystemItems = [
   }
 ];
 
-export default function PlatformEcosystemSection() {
+export default function PlatformFeatures() {
   // Deixamos o primeiro item aberto por padrão para a página já carregar com conteúdo
   const [openIndex, setOpenIndex] = useState(0);
 
