@@ -206,19 +206,19 @@ export default function FormacoesSection() {
             ref={addCard}
             className="stack-card relative"
           >
-            <article className="card-inner group relative flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#18181B] shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)] transition-colors duration-500 hover:border-[#39D353]/40 hover:shadow-[0_30px_90px_-30px_rgba(57,211,83,0.18)] md:h-[72vh] md:flex-row">
+            <article className="card-inner max-h-fit group relative flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#18181B] shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)] transition-colors duration-500 hover:border-[#39D353]/40 hover:shadow-[0_30px_90px_-30px_rgba(57,211,83,0.18)] md:h-[72vh] md:flex-row">
               {/* COLUNA ESQUERDA — imagem (52%, arte 100% visível, escala maior) */}
-              <div className="relative w-full shrink-0 overflow-hidden md:w-[65%]">
+              <div className="relative w-full max-h-fit shrink-0 overflow-hidden md:w-[65%]">
                 <img
                   src={t.img}
                   alt={t.title}
                   loading="lazy"
-                  className="max-h-full max-w-full scale-110 object-contain object-center transition-transform duration-[900ms] ease-out"
+                  className="max-h-full max-w-full scale-100 object-contain object-center transition-transform duration-[900ms] ease-out"
                 />
               </div>
 
               {/* COLUNA DIREITA — conteúdo (~55%) */}
-              <div className="flex flex-1 flex-col p-7 md:justify-center md:p-12">
+              <div className="flex max-h-fit flex-1 flex-col p-7 md:justify-center md:p-12">
                 {t.badge && (
                   <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-white/80">
                     {t.badge}
