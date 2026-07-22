@@ -4,7 +4,7 @@ import { Float, ContactShadows, Environment } from '@react-three/drei';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import * as THREE from 'three';
 
-import bgVideo from '../assets/video.mp4';
+import bgVideo from '../assets/video.webm';
 
 /* ============================================================
    CENA A — Metal escovado + wireframe neon
