@@ -23,7 +23,7 @@ const ecosystemItems = [
   {
     icon: Users,
     title: "Comunidade VIP",
-    description: "O nosso 'Discord exclusivo'. Faça networking, compartilhe seus repositórios, comemore conquistas e nunca mais estude sozinho."
+    description: "A nossa plataforma exclusiva de comunicação. Faça networking, compartilhe seus repositórios, comemore conquistas e nunca mais estude sozinho."
   },
   {
     icon: Bot,

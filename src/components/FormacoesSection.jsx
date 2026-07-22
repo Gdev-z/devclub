@@ -11,10 +11,10 @@ gsap.registerPlugin(ScrollTrigger)
 
 const TRILHAS = [
   {
-    title: 'Full Stack & Inteligência Artificial',
-    desc: 'Domine o desenvolvimento completo, do visual ao banco de dados, integrando agentes de IA e Claude para programar 10x mais rápido.',
-    techs: ['React', 'Node.js', 'TypeScript', 'IA'],
-    topics: ['Fundamentos de UI e APIs REST', 'Banco de dados e autenticação', 'Integração de agentes de IA', 'Projeto full stack completo'],
+    title: 'Full Stack com React, Node.js & Typescript',
+    desc: 'Domine o desenvolvimento completo, do visual ao banco de dados,.',
+    techs: ['React', 'Node.js', 'TypeScript'],
+    topics: ['Fundamentos de UI e APIs REST', 'Banco de dados e autenticação', 'Gateway de pagamento', 'Projeto full stack completo'],
     badge: '🚀 Mais Procurada',
     img: imgIA,
   },
@@ -188,10 +188,10 @@ export default function FormacoesSection() {
             🎯 Carreiras Tech & Mercado
           </span>
           <h2 className="mt-5 font-display text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
-            Trilhas direto ao ponto para o mercado
+            Conheça nossas trilhas
           </h2>
           <p className="mt-4 text-base leading-relaxed text-neutral-400">
-            Quatro formações desenhadas para te levar do zero ao primeiro
+            Diversas formações desenhadas para te levar do zero ao primeiro
             emprego (ou à próxima promoção) com projetos reais e tecnologias que
             as empresas realmente usam.
           </p>
