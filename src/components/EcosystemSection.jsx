@@ -1,6 +1,7 @@
 import { useRef, useLayoutEffect } from 'react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
+import fernandaImg from '../assets/bento_grid/fernanda.png'
 
 /* ---------- Ícones (SVG inline, sem dependência externa) ---------- */
 function HeartIcon({ className = '' }) {
@@ -162,9 +163,12 @@ export default function EcosystemSection() {
             <div className="flex h-full flex-col justify-between">
               <Spotlight />
               <div className="relative z-10">
-                <h3 className="text-2xl font-bold text-white">
-                  Acompanhamento direto com Recrutadora Tech
-                </h3>
+                <div className="flex items-center gap-3 mb-3">
+                  <img src={fernandaImg} alt="Fernanda" className="h-[45px] w-[45px] rounded-full object-cover" />
+                  <h3 className="text-2xl font-bold text-white">
+                    Acompanhamento direto com Recrutadora Tech
+                  </h3>
+                </div>
                 <p className="mt-3 text-sm leading-relaxed text-neutral-400 max-w-xl">
                   Nossa especialista analisa seu perfil do LinkedIn, refatoramos seu
                   currículo e treinamos você com simulações reais de entrevistas
