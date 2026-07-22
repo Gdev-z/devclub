@@ -8,7 +8,7 @@ import typescript from '../assets/icons/Typescript.svg'
 import react from '../assets/icons/React.svg'
 import node from '../assets/icons/node_js.svg'
 import postgres from '../assets/icons/postgresql.svg'
-import python from '../assets/icons/python.svg'
+import docker from '../assets/icons/Docker.svg'
 import n8n from '../assets/icons/n8n.svg'
 import ai from '../assets/icons/openai.svg'
 
@@ -23,7 +23,7 @@ const ICONS = {
   react,
   node,
   postgres,
-  python,
+  docker,
   n8n,
   ai,
 }
@@ -37,7 +37,7 @@ const DOCK = [
   { key: 'react', label: 'React' },
   { key: 'node', label: 'Node.js' },
   { key: 'postgres', label: 'PostgreSQL' },
-  { key: 'python', label: 'Python' },
+  { key: 'docker', label: 'Docker' },
   { key: 'n8n', label: 'n8n' },
   { key: 'ai', label: 'Claude' },
 ]
