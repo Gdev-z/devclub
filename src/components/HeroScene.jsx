@@ -201,8 +201,7 @@ export default function Hero3DStage() {
         muted
         loop
         playsInline
-        preload="none"
-        loading="lazy"
+        preload="auto"
       />
 
       {/* Canvas 3D — se move com o scroll */}
