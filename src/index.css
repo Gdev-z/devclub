@@ -142,6 +142,24 @@ body.loading-active {
   100% { background-position: -200% center; }
 }
 
+/* Ticker infinito de pílulas (TechStackSection) */
+@keyframes pills-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.pills-track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: max-content;
+  animation: pills-scroll 30s linear infinite;
+  will-change: transform;
+}
+
 /* Glow pulse infinito do CTA principal da Dobra 5. */
 .cta-glow {
   box-shadow: 0 0 30px rgba(57, 211, 83, 0.4);

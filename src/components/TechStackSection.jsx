@@ -45,8 +45,8 @@ const DOCK = [
 /* Pílulas complementares */
 const PILLS = [
   'HTML5', 'CSS3', 'Tailwind CSS', 'Git', 'GitHub', 'Next.js', 'Express',
-  'Prisma ORM', 'MongoDB', 'Docker', 'Jest', 'LangChain', 'REST APIs',
-  'Webhooks', 'Linux', 'Vercel',
+  'Prisma ORM', 'MongoDB', 'Docker', 'Jest', 'REST APIs',
+  'Webhooks', 'Vscode', 'Vercel',
 ]
 
 /* ============================================================
@@ -135,7 +135,7 @@ export default function TechStackSection() {
       <motion.div
         initial={{ clipPath: 'circle(0% at 50% 50%)', opacity: 0 }}
         whileInView={{ clipPath: 'circle(150% at 50% 50%)', opacity: 1 }}
-        viewport={{ once: true, margin: '-100px' }}
+        viewport={{ once: true }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         className="max-w-5xl mx-auto rounded-[32px] p-8 md:p-14 relative border  overflow-hidden"
       >
@@ -189,13 +189,13 @@ export default function TechStackSection() {
         </a>
       </motion.div>
 
-      {/* Ecossistema complementar — pílulas */}
-      <div className="mt-8 max-w-5xl mx-auto bg-[#0E1210]/60 border border-white/5 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
-        <div className="flex flex-wrap justify-center items-center gap-3">
-          {PILLS.map((p) => (
+      {/* Ecossistema complementar — pílulas (ticker infinito) */}
+      <div className="mt-8 max-w-5xl mx-auto overflow-hidden rounded-2xl border border-white/5 bg-[#0E1210]/60 backdrop-blur-sm">
+        <div className="pills-track py-4 px-4">
+          {[...PILLS, ...PILLS].map((p, i) => (
             <span
-              key={p}
-              className="group cursor-default bg-[#141A16] border border-white/10 hover:border-[#39D353]/50 px-4 py-2 rounded-xl text-xs md:text-sm text-neutral-400 hover:text-white transition-all duration-200 flex items-center gap-2 font-mono"
+              key={`${p}-${i}`}
+              className="group cursor-default shrink-0 bg-[#141A16] border border-white/10 hover:border-[#39D353]/50 px-4 py-2 rounded-xl text-xs md:text-sm text-neutral-400 hover:text-white transition-all duration-200 flex items-center gap-2 font-mono"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-neutral-600 group-hover:bg-[#39D353] transition-colors" />
               {p}
