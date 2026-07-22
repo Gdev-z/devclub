@@ -169,16 +169,30 @@ function ParticleScene() {
    ============================================================ */
 const SWITCH_MS = 60000; // alterna a cada 1 minuto
 
+function useIsDesktop() {
+  const [isDesktop, setIsDesktop] = useState(
+    typeof window !== 'undefined' ? window.innerWidth >= 1024 : true
+  );
+  useEffect(() => {
+    const check = () => setIsDesktop(window.innerWidth >= 1024);
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isDesktop;
+}
+
 export default function Hero3DStage() {
   const { scrollYProgress } = useScroll();
+  const isDesktop = useIsDesktop();
 
-  // Posição do canvas controlada por scroll (valores sutis)
-  // Base: 50% (posição que o usuário testou)
-  // Movimento: desloca apenas 3% no meio do scroll
+  // Posição do canvas: centrado no mobile, deslocado no desktop
+  const baseX = isDesktop ? '50%' : '0%';
+  const peakX = isDesktop ? '53%' : '0%';
+
   const canvasX = useTransform(
     scrollYProgress,
     [0, 0.3, 0.8, 1],
-    ['50%', '53%', '53%', '50%']
+    [baseX, peakX, peakX, baseX]
   );
 
   // Troca de cena por tempo (a cada 60s)
