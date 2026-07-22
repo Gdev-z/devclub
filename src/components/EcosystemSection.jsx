@@ -176,11 +176,11 @@ export default function EcosystemSection() {
                 </p>
               </div>
               {/* Card de aprovação / checklist LinkedIn verificado */}
-              <div className="relative z-10 mt-6 flex items-center gap-3 self-end rounded-2xl border border-[#39D353]/30 bg-[#39D353]/5 px-4 py-3 text-[#39D353]">
-                <CheckBadgeIcon />
+              <div className="relative z-10 mt-4 flex items-center gap-2 self-end rounded-xl border border-[#39D353]/30 bg-[#39D353]/5 px-3 py-2 text-[#39D353] sm:mt-6 sm:gap-3 sm:rounded-2xl sm:px-4 sm:py-3">
+                <CheckBadgeIcon className="w-4 h-4 sm:w-[22px] sm:h-[22px]" />
                 <div className="text-left">
-                  <p className="text-xs font-semibold text-white">LinkedIn Verificado</p>
-                  <p className="text-xs">Perfil aprovado pela recrutadora</p>
+                  <p className="text-[10px] sm:text-xs font-semibold text-white">LinkedIn Verificado</p>
+                  <p className="text-[10px] sm:text-xs hidden sm:block">Perfil aprovado pela recrutadora</p>
                 </div>
               </div>
             </div>
