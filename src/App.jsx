@@ -9,6 +9,8 @@ import FormacoesSection from './components/FormacoesSection.jsx'
 import EcosystemSection from './components/EcosystemSection.jsx'
 import PlatformFeatures from './components/PlatformFeatures.jsx'
 import TechStackSection from './components/TechStackSection.jsx'
+import BrandShowcase from './components/BrandShowcase.jsx'
+import Footer from './components/Footer.jsx'
 import useSmoothScroll from './hooks/useSmoothScroll'
 
 export default function App() {
@@ -49,6 +51,12 @@ export default function App() {
 
       {/* Dobra 4 — Plataforma e Ecossistema (Feature Showcase) */}
       <PlatformFeatures />
+
+      {/* Dobra 6 — Marca gigante em destaque (overlay com canvas 3D) */}
+      <BrandShowcase />
+
+      {/* Footer minimalista */}
+      <Footer />
 
       {/* Loading por cima (z-50) até 100%; AnimatePresence aplica o exit */}
       <AnimatePresence>
