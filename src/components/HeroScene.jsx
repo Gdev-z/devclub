@@ -1,15 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, ContactShadows, Environment } from '@react-three/drei';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import * as THREE from 'three';
 
 import bgVideo from '../assets/video.mp4';
 
-const SWITCH_MS = 60000; // alterna a cada 1 minuto
-
 /* ============================================================
-   CENA A — Metal escovado + wireframe neon (atual)
+   CENA A — Metal escovado + wireframe neon
    ============================================================ */
 function InteractiveShape() {
   const meshRef = useRef();
@@ -56,31 +54,30 @@ function MetalScene() {
     >
       <Environment preset="city" environmentIntensity={0.6} />
       <ambientLight intensity={1.5} color="#ffffff" />
-      <directionalLight position={[5, 5, 3]} intensity={5} color="#8532F2" />
+      {/* <directionalLight position={[5, 5, 3]} intensity={5} color="#8532F2" /> */}
       <pointLight position={[-4, -4, -2]} intensity={15} color="#39D353" distance={12} />
       <directionalLight position={[0, 0, 5]} intensity={1.5} color="#ffffff" />
       <InteractiveShape />
-      <ContactShadows
+      {/* <ContactShadows
         position={[0, -2.5, 0]}
         opacity={0.5}
         scale={10}
         blur={2.5}
         far={4}
         color="#8532F2"
-      />
+      /> */}
     </Canvas>
   );
 }
 
 /* ============================================================
-   CENA B — Partículas / halo (versão antiga)
+   CENA B — Partículas / halo
    ============================================================ */
 function ParticleHalo() {
   const group = useRef();
   const haloMat = useRef();
   const count = 220;
 
-  // posições aleatórias numa casca esférica ao redor da esfera
   const positions = React.useMemo(() => {
     const arr = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
@@ -99,7 +96,6 @@ function ParticleHalo() {
       group.current.rotation.y += delta * 0.15;
       group.current.rotation.x += delta * 0.05;
     }
-    // pulso do halo
     if (haloMat.current) {
       const t = state.clock.elapsedTime;
       haloMat.current.opacity = 0.4 + Math.sin(t * 1.5) * 0.25;
@@ -108,12 +104,10 @@ function ParticleHalo() {
 
   return (
     <group ref={group}>
-      {/* esfera externa wireframe verde */}
       <mesh>
         <icosahedronGeometry args={[1.6, 1]} />
         <meshBasicMaterial color="#39D353" wireframe transparent opacity={0.35} />
       </mesh>
-      {/* núcleo roxo translúcido */}
       <mesh>
         <icosahedronGeometry args={[1.1, 1]} />
         <meshStandardMaterial
@@ -126,7 +120,6 @@ function ParticleHalo() {
           metalness={0.3}
         />
       </mesh>
-      {/* halo de partículas */}
       <points>
         <bufferGeometry>
           <bufferAttribute
@@ -167,10 +160,29 @@ function ParticleScene() {
 }
 
 /* ============================================================
-   HERO 3D STAGE — alterna A/B a cada 1 minuto (crossfade)
+   HERO 3D STAGE — controlado por scroll
+
+   Fluxo:
+   - 0% → 30%:   Partículas (cena B), posição center
+   - 30% → 60%:  Metal (cena A), canvas desliza para a direita
+   - 60% → 100%: Volta para Partículas (cena B), posição center
    ============================================================ */
+const SWITCH_MS = 60000; // alterna a cada 1 minuto
+
 export default function Hero3DStage() {
-  const [mode, setMode] = useState('metal'); // 'metal' | 'particles'
+  const { scrollYProgress } = useScroll();
+
+  // Posição do canvas controlada por scroll (valores sutis)
+  // Base: 50% (posição que o usuário testou)
+  // Movimento: desloca apenas 3% no meio do scroll
+  const canvasX = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.8, 1],
+    ['50%', '53%', '53%', '50%']
+  );
+
+  // Troca de cena por tempo (a cada 60s)
+  const [mode, setMode] = useState('particles');
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -181,7 +193,7 @@ export default function Hero3DStage() {
 
   return (
     <div className="r3f-bg-canvas">
-      {/* Vídeo de fundo (atrás do canvas 3D) */}
+      {/* Vídeo de fundo — fica fixo, não se move com o scroll */}
       <video
         className="absolute inset-0 h-full w-full object-cover pointer-events-none -z-10"
         src={bgVideo}
@@ -193,7 +205,13 @@ export default function Hero3DStage() {
         loading="lazy"
       />
 
-      {/* ambas as cenas ficam sobrepostas; o crossfade controla a opacidade */}
+      {/* Canvas 3D — se move com o scroll */}
+      <motion.div
+        className="absolute inset-0"
+        style={{ x: canvasX }}
+      >
+
+      {/* Cena Metal */}
       <div className="absolute inset-0">
         <AnimatePresence>
           {mode === 'metal' && (
@@ -210,6 +228,8 @@ export default function Hero3DStage() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Cena Partículas */}
       <div className="absolute inset-0">
         <AnimatePresence>
           {mode === 'particles' && (
@@ -226,7 +246,7 @@ export default function Hero3DStage() {
           )}
         </AnimatePresence>
       </div>
+      </motion.div>
     </div>
   );
 }
-
