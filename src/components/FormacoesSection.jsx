@@ -77,11 +77,11 @@ export default function FormacoesSection() {
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia()
 
-      // DESKTOP / TABLET (>= 768px): stack cards com sticky + sobreposição.
+      // DESKTOP (>= 1024px): stack cards com sticky + sobreposição.
       // Cada card gruda no topo; o próximo sobe por cima. O card anterior
       // recua progressivamente (scale/brightness/saturate/blur/overlay),
       // 100% sincronizado com o scroll (scrub) — sem saltos.
-      mm.add('(min-width: 768px)', () => {
+      mm.add('(min-width: 1024px)', () => {
         const cards = cardsRef.current
         cards.forEach((card, i) => {
           const inner = card.querySelector('.card-inner')
@@ -145,8 +145,8 @@ export default function FormacoesSection() {
         })
       })
 
-      // MOBILE (< 768px): animação simples — fade + translateY, sem sticky.
-      mm.add('(max-width: 767px)', () => {
+      // MOBILE / TABLET (< 1024px): animação simples — fade + translateY, sem sticky.
+      mm.add('(max-width: 1023px)', () => {
         const cards = cardsRef.current
         cards.forEach((card) => {
           gsap.fromTo(
@@ -206,9 +206,9 @@ export default function FormacoesSection() {
             ref={addCard}
             className="stack-card relative"
           >
-            <article className="card-inner max-h-fit group relative flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#18181B] shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)] transition-colors duration-500 hover:border-[#39D353]/40 hover:shadow-[0_30px_90px_-30px_rgba(57,211,83,0.18)] md:h-[72vh] md:flex-row">
+            <article className="card-inner max-h-fit group relative flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#18181B] shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)] transition-colors duration-500 hover:border-[#39D353]/40 hover:shadow-[0_30px_90px_-30px_rgba(57,211,83,0.18)] lg:h-[72vh] lg:flex-row">
               {/* COLUNA ESQUERDA — imagem (52%, arte 100% visível, escala maior) */}
-              <div className="relative w-full max-h-fit shrink-0 overflow-hidden md:w-[65%]">
+              <div className="relative w-full max-h-fit shrink-0 overflow-hidden lg:w-[65%]">
                 <img
                   src={t.img}
                   alt={t.title}
@@ -218,14 +218,14 @@ export default function FormacoesSection() {
               </div>
 
               {/* COLUNA DIREITA — conteúdo (~55%) */}
-              <div className="flex max-h-fit flex-1 flex-col p-7 md:justify-center md:p-12">
+              <div className="flex max-h-fit flex-1 flex-col p-7 lg:justify-center lg:p-12">
                 {t.badge && (
                   <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-white/80">
                     {t.badge}
                   </span>
                 )}
 
-                <h3 className="mt-4 text-2xl font-bold leading-tight tracking-tight text-white md:text-4xl">
+                <h3 className="mt-4 text-2xl font-bold leading-tight tracking-tight text-white lg:text-4xl">
                   {t.title}
                 </h3>
 
