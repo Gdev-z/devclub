@@ -5,6 +5,11 @@ import fernandaImg from '../assets/bento_grid/fernanda.png'
 import psicologoImg from '../assets/bento_grid/marcio_mentor.png'
 import giovannaImg from '../assets/bento_grid/giovanna_ia.jpg'
 import andreyImg from '../assets/bento_grid/andrey_maia_icon.png'
+import perfil1 from '../assets/bento_grid/perfil-devclub/Perfil-Devclub-1.png'
+import perfil2 from '../assets/bento_grid/perfil-devclub/Perfil-Devclub-2.png'
+import perfil3 from '../assets/bento_grid/perfil-devclub/Perfil-Devclub-3.png'
+import perfil4 from '../assets/bento_grid/perfil-devclub/Perfil-Devclub-4.png'
+import perfil5 from '../assets/bento_grid/perfil-devclub/Perfil-Devclub-5.png'
 
 /* =========================================================================
    ECOSYSTEM SECTION — Dark Futuristic Redesign
@@ -39,17 +44,18 @@ function Badge({ accent = 'green', icon, children }) {
   )
 }
 
-/** Avatar stack — sobrepostos com anel colorido */
-function AvatarStack({ colors, count, accent = 'green' }) {
+/** Avatar stack — sobrepostos com fotos ou cores */
+function AvatarStack({ avatars, count, accent = 'green' }) {
   const a = ACCENT[accent]
   return (
     <div className="flex items-center gap-3">
       <div className="flex -space-x-2">
-        {colors.map((c, i) => (
-          <span
+        {avatars.map((src, i) => (
+          <img
             key={i}
-            className="h-8 w-8 rounded-full ring-2 ring-[#0a0e14]"
-            style={{ backgroundColor: c }}
+            src={src}
+            alt=""
+            className="h-8 w-8 rounded-full object-cover ring-2 ring-[#0a0e14]"
           />
         ))}
         <span
@@ -443,7 +449,7 @@ export default function EcosystemSection() {
               </div>
               <AvatarStack
                 accent="green"
-                colors={['#39D353', '#8532F2', '#fafafa', '#22D3EE', '#F97316']}
+                avatars={[perfil1, perfil2, perfil3, perfil4, perfil5]}
                 count={12}
               />
             </div>
