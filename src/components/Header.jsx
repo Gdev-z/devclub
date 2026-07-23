@@ -50,7 +50,9 @@ export default function Header() {
 
         {/* Direita — CTA outline verde */}
         <a
-          href="#"
+          href="https://wa.me/5516990482444"
+          target="_blank"
+          rel="noopener noreferrer"
           className="rounded-full border border-[#39D353] px-5 py-2 text-sm font-semibold text-[#39D353] transition-all duration-300 hover:bg-[#39D353] hover:text-black"
         >
           Quero ser aluno

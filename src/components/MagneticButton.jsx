@@ -5,7 +5,7 @@ import gsap from 'gsap'
  * MagneticButton — botão CTA verde neon com micro-interação:
  * é atraído suavemente pelo cursor (magnetic) e ganha glow no hover.
  */
-export default function MagneticButton({ label = 'COMEÇAR MINHA JORNADA' }) {
+export default function MagneticButton({ label = 'COMEÇAR MINHA JORNADA', href = '#' }) {
   const wrapRef = useRef(null)
   const btnRef = useRef(null)
 
@@ -41,8 +41,11 @@ export default function MagneticButton({ label = 'COMEÇAR MINHA JORNADA' }) {
       onMouseLeave={handleLeave}
       className="inline-block"
     >
-      <button
+      <a
         ref={btnRef}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
         className="group relative inline-flex items-center gap-2 rounded-lg bg-devgreen px-8 py-4 font-mono text-sm font-bold tracking-widest text-zinc-950 shadow-neon-green transition-[box-shadow,transform] duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(57,211,83,0.5),0_0_50px_rgba(57,211,83,0.3)]"
       >
         <span className="relative z-10">{label}</span>
@@ -59,7 +62,7 @@ export default function MagneticButton({ label = 'COMEÇAR MINHA JORNADA' }) {
         >
           <path d="M5 12h14M13 6l6 6-6 6" />
         </svg>
-      </button>
+      </a>
     </div>
   )
 }

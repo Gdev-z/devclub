@@ -182,7 +182,9 @@ export default function TechStackSection() {
 
         {/* CTA */}
         <a
-          href="#"
+          href="https://wa.me/5516990482444"
+          target="_blank"
+          rel="noopener noreferrer"
           className="bg-[#39D353] hover:bg-[#32b848] text-black font-extrabold px-8 py-4 rounded-xl transition-all shadow-[0_0_30px_rgba(57,211,83,0.4)] hover:shadow-[0_0_45px_rgba(57,211,83,0.6)] mx-auto block w-fit scale-100 hover:scale-105 active:scale-95 relative z-10"
         >
           Quero Dominar Essa Stack ➔
