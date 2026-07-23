@@ -10,6 +10,7 @@ import EcosystemSection from './components/EcosystemSection.jsx'
 import PlatformFeatures from './components/PlatformFeatures.jsx'
 import TechStackSection from './components/TechStackSection.jsx'
 import SalaryBenefitsSection from './components/SalaryBenefitsSection.jsx'
+import FounderSection from './components/FounderSection.jsx'
 import BrandShowcase from './components/BrandShowcase.jsx'
 import Footer from './components/Footer.jsx'
 import useSmoothScroll from './hooks/useSmoothScroll'
@@ -41,7 +42,10 @@ export default function App() {
       {/* Mini seção — carrossel infinito de logos de empresas */}
       <LogosCarousel />
 
-      {/* Dobra 2 — Trilhas de Formação (scroll horizontal no desktop / carrossel no mobile) */}
+      {/* Dobra 2 — Conheça o Fundador (Rodolfo Mori) */}
+      <FounderSection />
+
+      {/* Dobra 3 — Trilhas de Formação (scroll horizontal no desktop / carrossel no mobile) */}
       <FormacoesSection />
 
       {/* Dobra 3 — Ecossistema DevClub (Bento Grid) */}
