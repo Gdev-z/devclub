@@ -293,45 +293,38 @@ export default function EcosystemSection() {
         whileInView="show"
         viewport={{ once: true, margin: '-60px' }}
         className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6"
-        style={{ gridAutoRows: '280px' }}
+        style={{ gridAutoRows: 'auto' }}
       >
         {/* ─── CARD 1 — Recrutadora ─── */}
         <Card accent="green" className="card-tilt">
-          <div className="flex h-full">
-            <div className="relative w-[35%] shrink-0 overflow-hidden">
+          <div className="flex flex-col md:flex-row h-full">
+            <div className="relative w-full md:w-[35%] shrink-0 h-48 md:h-full overflow-hidden">
               <img
                 src={fernandaImg}
                 alt="Fernanda — Recrutadora Tech"
                 className="absolute inset-0 h-full w-full object-cover object-center"
               />
-              {/* Overlay gradiente para fundir com o card */}
               <div
                 className="absolute inset-0"
                 style={{
                   background: 'linear-gradient(90deg, transparent 50%, #12161f 100%)',
                 }}
               />
-              {/* Glow verde sutil na borda direita */}
               <div
-                className="absolute top-0 right-0 h-full w-px"
+                className="absolute top-0 right-0 h-full w-px hidden md:block"
                 style={{ background: 'linear-gradient(180deg, rgba(57,211,83,0.4) 0%, rgba(57,211,83,0.1) 100%)' }}
               />
             </div>
-            <div className="flex flex-1 flex-col justify-between p-10">
+            <div className="flex flex-1 flex-col justify-between p-6 md:p-10">
               <div>
-                <h3 className="text-[26px] font-bold text-white leading-tight mb-3">
+                <h3 className="text-lg md:text-[26px] font-bold text-white leading-tight mb-2 md:mb-3">
                   Acompanhamento direto com Recrutadora
                 </h3>
-                <p className="text-[14px] leading-relaxed text-neutral-400">
+                <p className="text-[13px] md:text-[14px] leading-relaxed text-neutral-400">
                   Nossa especialista analisa seu perfil do LinkedIn, refatoramos seu
                   currículo e treinamos você com simulações reais de entrevistas
                   técnicas e comportamentais.
                 </p>
-              </div>
-              <div>
-                <Badge accent="green" icon={<CheckIcon />}>
-                  LinkedIn Verificado
-                </Badge>
               </div>
             </div>
           </div>
@@ -339,8 +332,8 @@ export default function EcosystemSection() {
 
         {/* ─── CARD 2 — Agentes IA 24/7 ─── */}
         <Card accent="purple" className="card-tilt">
-          <div className="flex h-full">
-            <div className="relative w-[35%] shrink-0 overflow-hidden">
+          <div className="flex flex-col md:flex-row h-full">
+            <div className="relative w-full md:w-[35%] shrink-0 h-48 md:h-full overflow-hidden">
               <img
                 src={giovannaImg}
                 alt="Giovanna — Inteligência Artificial"
@@ -353,16 +346,16 @@ export default function EcosystemSection() {
                 }}
               />
               <div
-                className="absolute top-0 right-0 h-full w-px"
+                className="absolute top-0 right-0 h-full w-px hidden md:block"
                 style={{ background: 'linear-gradient(180deg, rgba(133,50,242,0.4) 0%, rgba(133,50,242,0.1) 100%)' }}
               />
             </div>
-            <div className="flex flex-1 flex-col justify-between p-10">
+            <div className="flex flex-1 flex-col justify-between p-6 md:p-10">
               <div>
-                <h3 className="text-[26px] font-bold text-white leading-tight mb-3">
+                <h3 className="text-lg md:text-[26px] font-bold text-white leading-tight mb-2 md:mb-3">
                   Agentes IA &amp; Plantão 24/7
                 </h3>
-                <p className="text-[14px] leading-relaxed text-neutral-400">
+                <p className="text-[13px] md:text-[14px] leading-relaxed text-neutral-400">
                   Travou em um erro às 2h da manhã? Nossa inteligência artificial e
                   nossa comunidade tiram suas dúvidas de código instantaneamente.
                 </p>
@@ -378,8 +371,8 @@ export default function EcosystemSection() {
 
         {/* ─── CARD 3 — Apoio Psicológico ─── */}
         <Card accent="orange" className="card-tilt">
-          <div className="flex h-full">
-            <div className="relative w-[35%] shrink-0 overflow-hidden">
+          <div className="flex flex-col md:flex-row h-full">
+            <div className="relative w-full md:w-[35%] shrink-0 h-48 md:h-full overflow-hidden">
               <img
                 src={psicologoImg}
                 alt="Psicólogo — Apoio Emocional"
@@ -392,16 +385,16 @@ export default function EcosystemSection() {
                 }}
               />
               <div
-                className="absolute top-0 right-0 h-full w-px"
+                className="absolute top-0 right-0 h-full w-px hidden md:block"
                 style={{ background: 'linear-gradient(180deg, rgba(249,115,22,0.4) 0%, rgba(249,115,22,0.1) 100%)' }}
               />
             </div>
-            <div className="flex flex-1 flex-col justify-between p-10">
+            <div className="flex flex-1 flex-col justify-between p-6 md:p-10">
               <div>
-                <h3 className="text-[26px] font-bold text-white leading-tight mb-3">
+                <h3 className="text-lg md:text-[26px] font-bold text-white leading-tight mb-2 md:mb-3">
                   Apoio Psicológico e Emocional
                 </h3>
-                <p className="text-[14px] leading-relaxed text-neutral-400">
+                <p className="text-[13px] md:text-[14px] leading-relaxed text-neutral-400">
                   A transição de carreira exige força mental. Conte com nossa
                   terapeuta parceira para vencer a síndrome do impostor e gerenciar
                   a ansiedade.
@@ -418,18 +411,18 @@ export default function EcosystemSection() {
 
         {/* ─── CARD 4 — Mentorias ─── */}
         <Card accent="green" className="card-tilt">
-          <div className="flex h-full">
-            <div className="w-[35%] shrink-0">
+          <div className="flex flex-col md:flex-row h-full">
+            <div className="hidden md:flex w-[35%] shrink-0">
               <IconBlock accent="green">
                 <CodeIcon />
               </IconBlock>
             </div>
-            <div className="flex flex-1 flex-col justify-between p-10">
+            <div className="flex flex-1 flex-col justify-between p-6 md:p-10">
               <div>
-                <h3 className="text-[26px] font-bold text-white leading-tight mb-3">
+                <h3 className="text-lg md:text-[26px] font-bold text-white leading-tight mb-2 md:mb-3">
                   Mentorias ao Vivo &amp; Code Reviews
                 </h3>
-                <p className="text-[14px] leading-relaxed text-neutral-400">
+                <p className="text-[13px] md:text-[14px] leading-relaxed text-neutral-400">
                   Encontros semanais com programadores Sêniores que atuam nas maiores
                   empresas do mercado para revisar seu código, tirar dúvidas de
                   arquitetura e guiar seus projetos.
