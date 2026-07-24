@@ -11,6 +11,7 @@ import PlatformFeatures from './components/PlatformFeatures.jsx'
 import TechStackSection from './components/TechStackSection.jsx'
 import SalaryBenefitsSection from './components/SalaryBenefitsSection.jsx'
 import FounderSection from './components/FounderSection.jsx'
+import CareerJourneySection from './components/CareerJourneySection.jsx'
 import BrandShowcase from './components/BrandShowcase.jsx'
 import Footer from './components/Footer.jsx'
 import useSmoothScroll from './hooks/useSmoothScroll'
@@ -57,6 +58,9 @@ export default function App() {
       {/* Dobra 6 — Média Salarial e Benefícios */}
       <SalaryBenefitsSection />
 
+      {/* Dobra 6 — Jornada de Carreira */}
+      <CareerJourneySection />
+      
       {/* Dobra 7 — Plataforma e Ecossistema (Feature Showcase) */}
       <PlatformFeatures />
 
