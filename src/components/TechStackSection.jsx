@@ -121,13 +121,14 @@ export default function TechStackSection() {
       {/* Cabeçalho */}
       <div className="relative z-10">
         <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-center max-w-4xl mx-auto leading-tight">
-          Aprenda as <span className="text-[#39D353]">PRINCIPAIS</span> Tecnologias
-          do Mercado - Do ZERO, de forma Didática com os{' '}
-          <span className="text-[#39D353]">MELHORES</span> do Mercado
+          As ferramentas que o mercado pede.
+          <br />
+          <span className="text-[#39D353]">Do jeito que você precisa aprender.</span>
         </h2>
         <p className="text-neutral-400 text-lg md:text-xl text-center mt-4 mb-16 max-w-2xl mx-auto font-light">
-          Uma stack moderna, focada em alta performance, automação e inteligência
-          artificial para você disputar as melhores vagas.
+          React, Node.js, TypeScript, PostgreSQL, Docker, n8n e IA — as 7
+          tecnologias que aparecem em 78% das vagas Júnior no Brasil
+          <span className="text-neutral-600 text-sm"> (Glassdoor 2025)</span>.
         </p>
       </div>
 
@@ -144,13 +145,12 @@ export default function TechStackSection() {
 
         {/* Tag superior */}
         <span className="bg-[#39D353]/10 text-[#39D353] border border-[#39D353]/30 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider mx-auto w-fit mb-8 flex items-center gap-2 shadow-[0_0_15px_rgba(57,211,83,0.2)] relative z-10">
-          ⚡ STACK COMPLETA &amp; ATUALIZADA
+          STACK COMPLETA &amp; ATUALIZADA
         </span>
 
         {/* Título interno */}
         <h3 className="text-2xl md:text-4xl font-bold text-center max-w-2xl mx-auto mb-12 text-white relative z-10">
-          Dominando as ferramentas mais desejadas pelas grandes empresas, sem
-          enrolação
+          Você vai dominar cada uma dessas ferramentas — do zero ao deploy
         </h3>
 
         {/* Dock de tecnologias */}
@@ -176,8 +176,8 @@ export default function TechStackSection() {
 
         {/* Parágrafo de reforço */}
         <p className="text-center text-neutral-300 max-w-xl mx-auto text-sm md:text-base mb-8 relative z-10">
-          Ementa atualizada em tempo real com o que o mercado exige em
-          desenvolvimento, automação com n8n e Inteligência Artificial.
+          Ementa revisada trimestralmente para acompanhar o que as empresas
+          realmente pedem nas vagas de desenvolvimento, automação e IA.
         </p>
 
         {/* CTA */}
@@ -187,7 +187,7 @@ export default function TechStackSection() {
           rel="noopener noreferrer"
           className="bg-[#39D353] hover:bg-[#32b848] text-black font-extrabold px-8 py-4 rounded-xl transition-all shadow-[0_0_30px_rgba(57,211,83,0.4)] hover:shadow-[0_0_45px_rgba(57,211,83,0.6)] mx-auto block w-fit scale-100 hover:scale-105 active:scale-95 relative z-10"
         >
-          Quero Dominar Essa Stack ➔
+          Quero Começar Agora
         </a>
       </motion.div>
 

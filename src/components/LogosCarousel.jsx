@@ -29,7 +29,7 @@ export default function LogosCarousel() {
         transition={{ duration: 0.6 }}
         className="ticker-title mx-auto mb-12 px-6 text-center text-xs uppercase tracking-[0.2em] text-white/40"
       >
-        Nossos alunos são contratados por
+        Nossos alunos trabalham em
       </motion.p>
 
       {/* máscara de fade nas laterais */}

@@ -1,6 +1,12 @@
 import { useRef, useLayoutEffect } from 'react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
+import {
+  Clock,
+  Map,
+  Monitor,
+  
+} from 'lucide-react'
 import fernandaImg from '../assets/bento_grid/fernanda.png'
 import psicologoImg from '../assets/bento_grid/marcio_mentor.png'
 import giovannaImg from '../assets/bento_grid/giovanna_ia.jpg'
@@ -219,6 +225,29 @@ const cardVariants = {
   },
 }
 
+/* ---------- Platform Features (consolidated from PlatformFeatures.jsx) ---------- */
+const platformItems = [
+  {
+    icon: Clock,
+    title: 'Aprenda no seu tempo',
+    description:
+      'Estude de onde quiser e no seu próprio ritmo. Concilie a programação com a sua rotina atual sem prazos engessados ou pressão.',
+  },
+  {
+    icon: Map,
+    title: 'Sem pré-requisitos',
+    description:
+      'Comece do absoluto zero. Não é necessário ter conhecimento prévio em tecnologia ou matemática avançada para iniciar a sua jornada.',
+  },
+  {
+    icon: Monitor,
+    title: 'Plataforma prática e organizada',
+    description:
+      'Ambiente de aprendizado moderno, livre de distrações, com player otimizado, trilhas de estudo visuais e marcação de progresso intuitiva.',
+  },
+ 
+]
+
 /* =========================================================================
    SECTION
    ========================================================================= */
@@ -279,16 +308,16 @@ export default function EcosystemSection() {
         className="relative z-10 text-left"
       >
         <Badge accent="green" icon={<SparkleIcon />}>
-          Ecossistema Completo de Aceleração
+          Ecossistema + Plataforma
         </Badge>
         <h2 className="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight">
-          Muito além de aulas gravadas.
+          Você não vai estudar sozinho.
           <br />
-          Você nunca estará sozinho.
+          <span className="text-neutral-400">Ninguém aqui fica pra trás.</span>
         </h2>
         <p className="text-neutral-400 text-lg max-w-2xl mt-4 mb-16">
-          O DevClub une tecnologia, acompanhamento humano e estratégia de
-          carreira para garantir que você chegue à sua vaga.
+          Plataforma própria, recrutadora dedicada, mentoria ao vivo, apoio
+          psicológico e IA 24/7 — tudo para você chegar à sua vaga.
         </p>
       </motion.div>
 
@@ -455,6 +484,40 @@ export default function EcosystemSection() {
             </div>
           </div>
         </Card>
+      </motion.div>
+
+      {/* ─── PLATFORM FEATURES — Compact grid ─── */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="relative z-10 mt-16"
+      >
+        <h3 className="text-xl font-bold text-white mb-8 text-center">
+          E mais — tudo o que você precisa em um só lugar
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {platformItems.map((item) => {
+            const Icon = item.icon
+            return (
+              <div
+                key={item.title}
+                className="group rounded-2xl border border-white/10 bg-[#121215]/80 p-5 transition-all duration-300 hover:border-[#39D353]/20 hover:bg-[#121215]"
+              >
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#39D353]/10">
+                  <Icon size={18} className="text-[#39D353]" />
+                </div>
+                <h4 className="font-bold text-white text-sm mb-1.5">
+                  {item.title}
+                </h4>
+                <p className="text-neutral-500 text-[13px] leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            )
+          })}
+        </div>
       </motion.div>
     </section>
   )

@@ -121,12 +121,11 @@ export default function FounderSection() {
                 variants={fadeUp}
                 className="mt-6 text-lg leading-relaxed text-neutral-300"
               >
-                O DevClub é uma escola de tecnologia focada em formar programadores
-                prontos para o mercado — do zero ao nível profissional. Aqui, o
-                aprendizado é direto ao ponto, com uma metodologia prática, validada
-                e desenhada exclusivamente para garantir domínio técnico profundo,
-                experiência real em projetos e o preparo absoluto para você
-                conquistar as melhores oportunidades em tecnologia.
+                O DevClub nasceu da frustração de ver gente talentosa perdida no
+                meio de cursos que prometem tudo e entregam nada. Aqui, você não
+                vai assistir aulas e torcer para dar certo. Vai construir projetos
+                reais, receber feedback de quem atua nas maiores empresas do país,
+                e sair com um portfólio e uma preparação que falam por você.
               </motion.p>
 
               {/* Blockquote */}
@@ -134,9 +133,10 @@ export default function FounderSection() {
                 variants={fadeUp}
                 className="mt-8 border-l-2 border-[#39D353] pl-6 text-base italic leading-relaxed text-white/90"
               >
-                &ldquo;Não ensinamos a programar. Ensinamos a construir carreiras.
-                Cada linha de código que você escreve aqui te aproxima de uma vaga
-                real.&rdquo;
+                &ldquo;A diferença entre um curso e uma carreira é o que acontece
+                depois da aula. Aqui, você não estuda sozinho — tem recrutadora
+                revisando seu currículo, mentor corrigindo seu código e uma
+                comunidade que não te deixa parar.&rdquo;
               </motion.blockquote>
             </motion.div>
           </motion.div>

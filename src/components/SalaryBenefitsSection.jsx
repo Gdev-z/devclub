@@ -39,7 +39,7 @@ const benefits = [
     icon: TrendingUp,
     title: 'Mercado Aquecido',
     description:
-      'O Brasil tem mais de 500 mil vagas abertas para devs. Empresas nacionais e internacionais disputam profissionais qualificados.',
+      'Mais de 500 mil vagas abertas para desenvolvedores no Brasil. Empresas nacionais e internacionais disputam profissionais qualificados (Indeed 2025).',
   },
   {
     icon: Globe,
@@ -51,7 +51,7 @@ const benefits = [
     icon: DollarSign,
     title: 'Ganhe em moeda estrangeira',
     description:
-      'Plataformas como Toptal, Turing e companies abertas pagam em dólar ou euro, multiplicando seu poder de compra.',
+      'Trabalhe remotamente em companias que pagam em dólar ou euro. Você pode multiplicar seu poder de compra trabalhando do Brasil.',
   },
 ]
 
@@ -73,7 +73,7 @@ const fadeUp = {
 /* ---------- Componente ---------- */
 export default function SalaryBenefitsSection() {
   return (
-    <section className="relative bg-[#09090B] py-24 text-white">
+    <section id="salario" className="relative bg-[#09090B] py-24 text-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
 
@@ -90,13 +90,12 @@ export default function SalaryBenefitsSection() {
                 Mercado em alta
               </span>
               <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight md:text-4xl lg:text-5xl">
-                Essa é a média salarial de um{' '}
-                <span className="text-[#39D353]">programador</span> no Brasil
+                Seu potencial de renda como{' '}
+                <span className="text-[#39D353]">desenvolvedor</span> no Brasil
               </h2>
               <p className="mt-4 max-w-lg text-base leading-relaxed text-neutral-400">
-                Dados atualizados do mercado brasileiro. Com as habilidades certas,
-                seu potencial de renda cresce exponencialmente a cada nível de
-                experiência.
+                Com as habilidades certas, você cresce de Júnior a Sênior em
+                menos tempo do que imagina. Dados do mercado brasileiro de 2025.
               </p>
             </motion.div>
 

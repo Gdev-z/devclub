@@ -73,10 +73,8 @@ export default function Hero({ loading = false }) {
             variants={badge}
             className="flex w-fit max-w-full items-center gap-2 rounded-full border border-white/10 bg-[#18181B] px-4 py-1.5 text-sm text-white/80"
           >
-            <span className="inline-block animate-pulse text-[#39D353]">
-              ⭐️
-            </span>
-            +25 mil alunos já passaram por aqui
+            <span className="w-2 h-2 rounded-full bg-[#39D353]" />
+            +25 mil alunos formados
           </motion.span>
 
           {/* Headline */}
@@ -84,8 +82,7 @@ export default function Hero({ loading = false }) {
             variants={item}
             className="mt-4 max-w-full break-words bg-gradient-to-r from-white to-neutral-400 bg-clip-text font-jakarta text-2xl font-semibold leading-tight tracking-tight text-transparent sm:mt-6 sm:text-4xl md:text-5xl lg:text-6xl"
           >
-            Aprenda as tecnologias mais demandadas do mercado e transforme sua
-            carreira.
+            Construa sua carreira em tecnologia com quem já trilhou esse caminho.
           </motion.h1>
 
           {/* Subtítulo */}
@@ -93,14 +90,14 @@ export default function Hero({ loading = false }) {
             variants={item}
             className="mt-4 max-w-prose break-words text-sm text-neutral-300/90 sm:mt-6 sm:text-lg"
           >
-            Formação prática e acelerada: domine as stacks mais pedidas pelas
-            empresas e conquiste sua primeira vaga em tecnologia com projetos
-            reais, mentoria e comunidade ativa.
+            Você vai construir projetos reais, receber feedback de quem trabalha
+            nas maiores empresas do país, e sair com um portfólio que fala por
+            você. Do primeiro código à sua primeira vaga.
           </motion.p>
 
           {/* CTA */}
           <motion.div variants={item} className="mt-8 sm:mt-10">
-            <MagneticButton label="MATRICULE-SE AGORA" href="https://wa.me/5516990482444" />
+            <MagneticButton label="Matricule-se" href="https://wa.me/5516990482444" />
           </motion.div>
         </motion.div>
       </div>

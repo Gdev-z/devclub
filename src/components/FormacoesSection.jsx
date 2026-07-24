@@ -12,34 +12,34 @@ gsap.registerPlugin(ScrollTrigger)
 const TRILHAS = [
   {
     title: 'Full Stack com React, Node.js & Typescript',
-    desc: 'Domine o desenvolvimento completo, do visual ao banco de dados,.',
+    desc: 'Você vai construir do front ao banco de dados: interfaces com React, APIs com Node e TypeScript, autenticação e deploy completo.',
     techs: ['React', 'Node.js', 'TypeScript'],
     topics: ['Fundamentos de UI e APIs REST', 'Banco de dados e autenticação', 'Gateway de pagamento', 'Projeto full stack completo'],
-    badge: '🚀 Mais Procurada',
+    badge: 'Mais Procurada',
     img: imgIA,
   },
   {
     title: 'Automação & Integrações com n8n',
-    desc: 'A habilidade mais quente do mercado. Crie fluxos automatizados, integre APIs e desenvolva sistemas autônomos para empresas de alto nível.',
+    desc: 'Você vai criar fluxos que rodem sozinhos: automatizar processos, integrar APIs e construir sistemas autônomos — a habilidade mais requisitada de 2025.',
     techs: ['n8n', 'Webhooks', 'APIs', 'Python'],
     topics: ['Lógica de fluxos e webhooks', 'Integração de APIs externas', 'Automação com Python', 'Sistemas autônomos de ponta a ponta'],
-    badge: '⚡ Em Alta',
+    badge: 'Em Alta',
     img: imgAutomacao,
   },
   {
     title: 'Front-End de Alta Performance',
-    desc: 'Construa interfaces modernas, interativas e com otimização extrema que impressionam recrutadores e geram conversão real.',
+    desc: 'Você vai construir interfaces que impressionam: componentes reutilizáveis, animações fluidas e otimação que faz o Google rankear seu site.',
     techs: ['React', 'Next.js', 'Tailwind', 'GSAP'],
     topics: ['Componentização com React/Next', 'Estilização com Tailwind', 'Animações com GSAP', 'Otimização e Core Web Vitals'],
-    badge: '🎯 Foco em Conversão',
+    badge: 'Foco em Conversão',
     img: imgFront,
   },
   {
     title: 'Back-End & Arquitetura Limpa',
-    desc: 'Projete APIs robustas, arquiteturas escaláveis e gerencie bancos de dados complexos prontos para o tráfego de grandes empresas.',
+    desc: 'Você vai projetar APIs que suportam milhares de usuários: modelagem de dados, padrões de arquitetura e containers para produção.',
     techs: ['Node.js', 'SQL', 'NoSQL', 'Docker'],
     topics: ['APIs REST e GraphQL', 'Modelagem SQL e NoSQL', 'Padrões de arquitetura limpa', 'Containers e deploy com Docker'],
-    badge: '🏗️ Escalável',
+    badge: 'Escalável',
     img: imgBack,
   },
 ]
@@ -185,15 +185,15 @@ export default function FormacoesSection() {
         {/* Cabeçalho da seção */}
         <header className="mb-16 max-w-2xl text-left">
           <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-[#18181B] px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-white/70">
-            🎯 Carreiras Tech & Mercado
+            Trilhas de Formação
           </span>
           <h2 className="mt-5 font-display text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
-            Conheça nossas trilhas
+            Você vai sair daqui com um portfólio que fala por você
           </h2>
           <p className="mt-4 text-base leading-relaxed text-neutral-400">
-            Diversas formações desenhadas para te levar do zero ao primeiro
-            emprego (ou à próxima promoção) com projetos reais e tecnologias que
-            as empresas realmente usam.
+            Cada trilha é um caminho estruturado do zero à vaga — com projetos
+            publicados no GitHub, feedback de mentores que atuam em empresas
+            reais e tecnologias que aparecem nas vagas de hoje.
           </p>
         </header>
       </div>

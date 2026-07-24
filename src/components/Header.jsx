@@ -5,6 +5,7 @@ const NAV_LINKS = [
   { label: 'Formações', href: '#formacoes' },
   { label: 'Ecossistema', href: '#ecossistema' },
   { label: 'Tecnologias', href: '#stack' },
+  { label: 'Salário', href: '#salario' },
 ]
 
 function NavLink({ label, href }) {
@@ -21,7 +22,6 @@ function NavLink({ label, href }) {
       className="group relative px-1 py-2 text-sm font-medium text-white/70 transition-colors hover:text-white"
     >
       {label}
-      {/* underline que se expande do centro no hover */}
       <span className="absolute bottom-1 left-1/2 h-px w-0 -translate-x-1/2 bg-[#39D353] transition-all duration-300 group-hover:w-full" />
     </a>
   )
@@ -33,7 +33,6 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 z-50 w-full border-b border-white/5 bg-black/20 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
-        {/* Esquerda — logo */}
         <a href="#" className="flex items-center gap-2">
           <img src={logo} alt="DevClub" className="h-7 w-auto" />
           <span className="text-lg font-extrabold tracking-tight text-white">
@@ -41,14 +40,12 @@ export default function Header() {
           </span>
         </a>
 
-        {/* Centro — navegação (desktop) */}
         <nav className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((l) => (
             <NavLink key={l.label} label={l.label} href={l.href} />
           ))}
         </nav>
 
-        {/* Direita — CTA outline verde */}
         <a
           href="https://wa.me/5516990482444"
           target="_blank"
@@ -58,7 +55,6 @@ export default function Header() {
           Quero ser aluno
         </a>
 
-        {/* toggle mobile */}
         <button
           onClick={() => setOpen((v) => !v)}
           className="text-white/80 md:hidden"
@@ -70,7 +66,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* menu mobile */}
       {open && (
         <nav className="flex flex-col gap-1 border-t border-white/5 px-6 py-4 md:hidden">
           {NAV_LINKS.map((l) => (
