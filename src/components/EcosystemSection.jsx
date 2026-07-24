@@ -311,9 +311,9 @@ export default function EcosystemSection() {
           Ecossistema + Plataforma
         </Badge>
         <h2 className="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight">
-          Você não vai estudar sozinho.
+          Ninguém aqui fica pra trás.
           <br />
-          <span className="text-neutral-400">Ninguém aqui fica pra trás.</span>
+          <span className="text-neutral-400">Aprenda com os melhores.</span>
         </h2>
         <p className="text-neutral-400 text-lg max-w-2xl mt-4 mb-16">
           Plataforma própria, recrutadora dedicada, mentoria ao vivo, apoio
