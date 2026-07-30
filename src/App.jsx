@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import LoadingScreen from './components/LoadingScreen.jsx'
+import BgVideo from './components/BgVideo.jsx'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import HeroScene from './components/HeroScene.jsx'
+import ModelViewer from './components/ModelViewer.jsx'
 import LogosCarousel from './components/LogosCarousel.jsx'
 import EmpathySection from './components/EmpathySection.jsx'
 import FounderSection from './components/FounderSection.jsx'
@@ -30,9 +32,11 @@ export default function App() {
   }
 
   return (
-    <div className="relative min-h-screen w-full bg-[#09090B] text-white">
+    <div className="relative min-h-screen w-full text-white">
+      <BgVideo />
       <Header />
-      <HeroScene />
+      {/* <HeroScene /> */}
+      <ModelViewer />
 
       <Hero loading={!revealHero} />
 
