@@ -265,10 +265,14 @@ export default function EcosystemSection() {
     const cleanups = []
 
     cards.forEach((card) => {
+      let rect = null
+      const onEnter = () => {
+        rect = card.getBoundingClientRect()
+      }
       const onMove = (e) => {
-        const r = card.getBoundingClientRect()
-        const px = (e.clientX - r.left) / r.width - 0.5
-        const py = (e.clientY - r.top) / r.height - 0.5
+        if (!rect) rect = card.getBoundingClientRect()
+        const px = (e.clientX - rect.left) / rect.width - 0.5
+        const py = (e.clientY - rect.top) / rect.height - 0.5
         gsap.to(card, {
           rotateY: px * max * 2,
           rotateX: -py * max * 2,
@@ -278,12 +282,15 @@ export default function EcosystemSection() {
         })
       }
       const onLeave = () => {
+        rect = null
         gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: 'elastic.out(1,0.5)' })
       }
 
+      card.addEventListener('mouseenter', onEnter)
       card.addEventListener('mousemove', onMove)
       card.addEventListener('mouseleave', onLeave)
       cleanups.push(() => {
+        card.removeEventListener('mouseenter', onEnter)
         card.removeEventListener('mousemove', onMove)
         card.removeEventListener('mouseleave', onLeave)
       })

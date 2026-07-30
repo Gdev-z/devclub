@@ -15,9 +15,9 @@ const LOGOS = [
 
 export default function LogosCarousel() {
   // Garante que um "conjunto" seja sempre maior que a viewport (evita
-  // buraco/ corte abrupto). Base = 3x as logos; track = 2x a base,
+  // buraco/ corte abrupto). Base = 2x as logos; track = 2x a base,
   // animada em translateX(-50%) para um loop perfeito e contínuo.
-  const base = [...LOGOS, ...LOGOS, ...LOGOS]
+  const base = [...LOGOS, ...LOGOS]
   const loop = [...base, ...base]
 
   return (

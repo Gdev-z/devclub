@@ -16,11 +16,12 @@ export default function BgVideo() {
     <video
       className="fixed inset-0 h-full w-full object-cover pointer-events-none "
       src={bgVideo}
+      poster="/assets/logo.png"
       autoPlay
       muted
       loop
       playsInline
-      preload="auto"
+      preload="metadata"
     />
   )
 }
