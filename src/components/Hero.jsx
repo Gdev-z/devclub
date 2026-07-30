@@ -57,11 +57,11 @@ const badge = {
 
 export default function Hero({ loading = false }) {
   return (
-    <section className="hero-section relative flex min-h-screen w-full flex-col items-center justify-start overflow-hidden bg-transparent lg:flex-row lg:items-center">
+    <section className="hero-section relative flex min-h-screen w-full flex-col items-center justify-start overflow-hidden lg:flex-row lg:items-center">
       {/* Canvas 3D */}
 
       {/* Conteúdo */}
-      <div className="relative z-10 flex lg:min-h-screen w-full max-w-7xl items-center bg-[#09090B] px-6 py-20 sm:py-2ag4 md:px-12 md:py-28 lg:px-24">
+      <div className="relative z-10 flex lg:min-h-screen w-full bg-[#09090B] max-w-7xl items-center px-6 py-20 sm:py-2ag4 md:px-12 md:py-28 lg:px-24">
         <motion.div
           variants={container}
           initial="hidden"

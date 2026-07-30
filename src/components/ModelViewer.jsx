@@ -31,8 +31,8 @@ function Model({ mouseX, mouseY }) {
     if (!meshRef.current) return // guarda: evita erro se o mesh ainda não montou
 
     // Converte a posição do mouse (-1 a 1) em um ângulo alvo de rotação
-    const targetY = mouseX * Math.PI * 0.3  // rotação no eixo Y (esquerda/direita), amplitude menor que 2π
-    const targetX = mouseY * Math.PI * 0.15 // rotação no eixo X (cima/baixo), amplitude ainda menor
+    const targetY = mouseX * Math.PI * 0.08
+    const targetX = mouseY * Math.PI * 0.04
 
     // Interpolação suave (lerp) entre a rotação atual e o alvo — evita "grudar" na posição do mouse,
     // criando um movimento com leve atraso/suavidade (o 0.05 é o "peso" da interpolação por frame)
@@ -44,7 +44,7 @@ function Model({ mouseX, mouseY }) {
     // Float: componente do drei que aplica flutuação/oscilação idle ao filho,
     // independente da rotação controlada pelo mouse acima
     <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.8}>
-      <primitive ref={meshRef} object={scene} position={[0, -0.4, 0]} />
+      <primitive ref={meshRef} object={scene} position={[0, -0.4, 0]} scale={2} />
     </Float>
   )
 }
@@ -59,7 +59,7 @@ export default function ModelViewer() {
 
   // Posição do canvas: centrado no mobile, deslocado no desktop.
   // baseX/peakX são strings percentuais consumidas pelo framer-motion.
-  const baseX = isDesktop ? '50%' : '0%'
+  const baseX = isDesktop ? '40%' : '0%'
   const peakX = isDesktop ? '53%' : '0%'
 
   // Mapeia o progresso do scroll (0 → 0.3 → 0.8 → 1) para os valores de X acima,
