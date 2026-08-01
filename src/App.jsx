@@ -17,11 +17,23 @@ import CareerJourneySection from './components/CareerJourneySection.jsx'
 import PlatformFeatures from './components/PlatformFeatures.jsx'
 import BrandShowcase from './components/BrandShowcase.jsx'
 import Footer from './components/Footer.jsx'
+import CircleToggleButton from './components/CircleToggleButton.jsx'
+import SettingsModal from './components/SettingsModal.jsx'
+import useModel3DSettings from './hooks/useModel3DSettings'
+import models3D from './config/models3D.js'
 import useSmoothScroll from './hooks/useSmoothScroll'
 
 export default function App() {
   const [loading, setLoading] = useState(true)
   const [revealHero, setRevealHero] = useState(false)
+  const [showSettings, setShowSettings] = useState(false)
+
+  const { models, toggleModel, isEnabled } = useModel3DSettings()
+
+  // Encontrar o modelo principal pelo registry
+  const heroModel = models3D.find((m) => m.id === 'hero-model')
+  const heroModelPath = heroModel?.path ?? '/logoForSpline2.glb'
+  const heroModelEnabled = isEnabled(heroModel?.id ?? 'hero-model')
 
   useSmoothScroll(loading)
 
@@ -35,7 +47,11 @@ export default function App() {
       <Header />
       {/* <HeroScene /> */}
 
-      <Hero loading={!revealHero} />
+      <Hero
+        loading={!revealHero}
+        heroModelPath={heroModelPath}
+        heroModelEnabled={heroModelEnabled}
+      />
 
       <LogosCarousel />
 
@@ -73,6 +89,19 @@ export default function App() {
       <BrandShowcase />
 
       <Footer />
+
+      {/* Controles 3D */}
+      <CircleToggleButton onOpen={() => setShowSettings(true)} />
+      {showSettings && (
+        <SettingsModal
+          onClose={() => setShowSettings(false)}
+          models={models}
+          enabledModels={Object.fromEntries(
+            models.map((m) => [m.id, m.enabled])
+          )}
+          toggleModel={toggleModel}
+        />
+      )}
 
       <AnimatePresence>
         {loading && (

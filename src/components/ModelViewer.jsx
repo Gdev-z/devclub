@@ -45,9 +45,9 @@ function useIsDesktop() {
 // ============================================================
 // Model — renderiza o glTF com rotação por mouse
 // ============================================================
-function Model({ mouseX, mouseY, isDesktop }) {
+function Model({ modelPath, mouseX, mouseY, isDesktop }) {
   const meshRef = useRef()
-  const { scene } = useGLTF('/logoForSpline2.glb')
+  const { scene } = useGLTF(modelPath)
 
   useFrame(() => {
     if (!meshRef.current) return
@@ -93,7 +93,7 @@ function LoadingSkeleton() {
 // ============================================================
 // ModelViewer — componente principal
 // ============================================================
-export default function ModelViewer() {
+export default function ModelViewer({ modelPath = '/logoForSpline2.glb' }) {
   const [mouseX, setMouseX] = useState(0)
   const [mouseY, setMouseY] = useState(0)
   const [loaded, setLoaded] = useState(false)
@@ -145,7 +145,7 @@ export default function ModelViewer() {
 
         {/* ErrorBoundary para isolar falhas do useGLTF */}
         <ModelErrorBoundary>
-          <Model mouseX={mouseX} mouseY={mouseY} isDesktop={isDesktop} />
+          <Model modelPath={modelPath} mouseX={mouseX} mouseY={mouseY} isDesktop={isDesktop} />
         </ModelErrorBoundary>
 
         <OrbitControls enableZoom={false} enablePan={false} />

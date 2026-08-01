@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import MagneticButton from './MagneticButton.jsx'
-import ModelViewer from './ModelViewer.jsx'
+import ModelViewerContainer from './ModelViewerContainer.jsx'
 
 // ============================================================
 // CONTROLE DO REVEAL DA HERO
@@ -53,10 +53,15 @@ const badge = {
   },
 }
 
-export default function Hero({ loading = false }) {
+export default function Hero({
+  loading = false,
+  heroModelPath = '/logoForSpline2.glb',
+  heroModelEnabled = false,
+}) {
   return (
     <section className="hero-section relative min-h-screen w-full overflow-hidden">
       <div className="relative z-10 flex w-full flex-col items-start justify-center bg-[#09090B] px-6 py-20 sm:px-8 sm:py-24 md:px-12 md:py-28 lg:px-24 lg:h-screen lg:w-2/5 lg:min-w-[40vw]">
+        {/* Spacer — o Modelo é renderizado fora do fluxo pelo ModelViewerContainer */}
         <motion.div
           variants={container}
           initial="hidden"
@@ -99,7 +104,7 @@ export default function Hero({ loading = false }) {
 
       {/* 3D Model — responsive: full width on mobile, 40% of right side on desktop */}
       <div className="relative h-[60vh] w-full lg:absolute lg:inset-y-0 lg:right-0 lg:z-10 lg:block lg:h-screen lg:w-3/5">
-        <ModelViewer />
+        <ModelViewerContainer modelPath={heroModelPath} enabled={heroModelEnabled} />
       </div>
     </section>
   )
