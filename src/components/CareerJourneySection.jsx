@@ -65,18 +65,18 @@ function JourneyCard({ card, index, reducedMotion }) {
       whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="group relative flex-shrink-0 w-[85vw] sm:w-[75vw] md:w-[500px] min-h-[350px] h-auto rounded-3xl bg-[#121215] border border-white/10 p-8 md:p-10 transition-all duration-300 hover:-translate-y-2 hover:border-[#39D353]/30 snap-center"
+      className="group relative flex-shrink-0 w-[85vw] sm:w-[75vw] md:w-[500px] min-h-[350px] h-auto rounded-3xl bg-surface-alt border border-white/10 p-8 md:p-10 transition-all duration-300 hover:-translate-y-2 hover:border-accent/30 snap-center"
     >
       {/* Hover glow */}
       <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-[#39D353]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-sm" />
 
       {/* Icon circle */}
-      <div className="bg-[#39D353] text-black w-14 h-14 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(57,211,83,0.3)] group-hover:shadow-[0_0_30px_rgba(57,211,83,0.5)] transition-shadow duration-300">
+      <div className="bg-accent text-black w-14 h-14 rounded-full flex items-center justify-center mb-6 shadow-[0_0_10px_rgba(57,211,83,0.2)] group-hover:shadow-[0_0_16px_rgba(57,211,83,0.3)] transition-shadow duration-300">
         <Icon size={24} strokeWidth={2.2} />
       </div>
 
       {/* Title */}
-      <h3 className="text-2xl font-bold text-white mb-4">{card.title}</h3>
+      <h3 className="text-2xl font-bold text-ink mb-4">{card.title}</h3>
 
       {/* Description */}
       <p className="text-neutral-400 text-lg leading-relaxed">
@@ -100,7 +100,7 @@ function ProgressDots({ count, progress }) {
             key={i}
             animate={{
               width: isActive ? 28 : 8,
-              backgroundColor: isActive || isPast ? '#39D353' : '#27272A',
+              backgroundColor: isActive ? '#39D353' : '#27272A',
             }}
             transition={{ type: 'spring', stiffness: 400, damping: 30 }}
             className="h-2 rounded-full"
@@ -151,7 +151,7 @@ function DesktopLayout({ reducedMotion }) {
     : useTransform(scrollYProgress, [0, 1], [0, -trackWidth]);
 
   return (
-    <section ref={wrapperRef} className="relative h-[400vh] bg-[#09090B]">
+    <section ref={wrapperRef} className="relative h-[400vh] bg-bg-base">
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
         {/* Card track */}
         <motion.div
@@ -199,7 +199,7 @@ function MobileLayout({ reducedMotion }) {
   }, []);
 
   return (
-    <section className="relative bg-[#09090B] py-16 overflow-hidden">
+    <section className="relative bg-bg-base py-16 overflow-hidden">
       {/* Scrollable card row */}
       <div
         ref={scrollRef}
@@ -247,12 +247,12 @@ export default function CareerJourneySection() {
   }, []);
 
   return (
-    <div className="bg-[#09090B]">
+    <div className="bg-bg-base">
       {/* Shared header — outside sticky, outside scroll */}
       <div className="w-full text-center px-6 pt-20 pb-10 md:pt-24 md:pb-14">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-ink leading-tight">
           Uma jornada completa para sua{' '}
-          <span className="text-[#39D353]">carreira em tecnologia</span>
+          <span className="text-accent">carreira em tecnologia</span>
         </h2>
       </div>
 

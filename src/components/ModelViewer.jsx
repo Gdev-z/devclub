@@ -25,7 +25,7 @@ class ModelErrorBoundary extends React.Component {
         <div className="flex h-full w-full items-center justify-center">
           <p className="text-sm text-red-400">Erro ao carregar o modelo 3D.</p>
           {this.state.errorDetails && (
-            <p className="mt-1 text-xs text-white/40">{this.state.errorDetails.slice(0, 120)}</p>
+            <p className="mt-1 text-xs text-white/50">{this.state.errorDetails.slice(0, 120)}</p>
           )}
         </div>
       )
@@ -55,10 +55,17 @@ function useIsDesktop() {
 // ============================================================
 function Model({ modelPath, mouseX, mouseY, isDesktop }) {
   const meshRef = useRef()
-  const { scene } = useGLTF(modelPath)
+  console.log('[ModelViewer] Loading model:', modelPath)
+  const { scene, error: gltfError } = useGLTF(modelPath)
+  console.log('[ModelViewer] Model loaded or error:', { scene: !!scene, gltfError })
+  if (gltfError) {
+    console.error('[ModelViewer] useGLTF error:', gltfError)
+  }
 
   useEffect(() => {
-    console.log('[Model] Loaded:', modelPath, 'children:', scene.children?.length, 'uuid:', scene.uuid)
+    if (scene) {
+      console.log('[ModelViewer] Scene ready, nodes:', Object.keys(scene.children || {}).length)
+    }
   }, [scene, modelPath])
 
   useFrame(() => {

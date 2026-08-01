@@ -22,14 +22,21 @@ const testimonials = [
     role: 'Dev Backend — Remote (US)',
     text: 'Saí de um emprego que me dava 2k por mês para ganhar em dólar trabalhando remoto. O DevClub não é só curso, é uma transformação completa de carreira.',
     avatar: 'C',
-    accent: '#22D3EE',
+    accent: '#8532F2',
+  },
+  {
+    name: 'Camila Santos',
+    role: 'Dev Backend — Remote (US)',
+    text: 'Saí de um emprego que me dava 2k por mês para ganhar em dólar trabalhando remoto. O DevClub não é só curso, é uma transformação completa de carreira.',
+    avatar: 'C',
+    accent: '#8532F2',
   },
   {
     name: 'Rafael Costa',
     role: 'Automação & IA — Freelancer',
     text: 'Comecei do zero absoluto. Hoje automatizo processos para empresas usando n8n e IA. Em 8 meses saí do zero para faturar mais do que meu emprego anterior.',
     avatar: 'R',
-    accent: '#F97316',
+    accent: '#39D353',
   },
 ];
 
@@ -51,7 +58,7 @@ export default function TestimonialsSection() {
   const t = testimonials[current];
 
   return (
-    <section className="relative bg-[#09090B] py-24 text-white overflow-hidden">
+    <section className="relative bg-bg-base py-24 text-ink-primary overflow-hidden">
       <div className="mx-auto max-w-5xl px-6">
         <motion.div
           initial="hidden"
@@ -65,18 +72,18 @@ export default function TestimonialsSection() {
           {/* Header */}
           <motion.div variants={fadeUp} className="text-center mb-14">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-neutral-400 mb-6">
-              <span className="text-[#39D353]">●</span>
+              <span className="text-accent">●</span>
               Quem já passou por aqui
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
               Histórias reais de{' '}
-              <span className="text-[#39D353]">transformação.</span>
+              <span className="text-accent">transformação.</span>
             </h2>
           </motion.div>
 
           {/* Testimonial card */}
           <motion.div variants={fadeUp} className="relative">
-            <div className="rounded-3xl border border-white/10 bg-[#121215] p-8 md:p-12 min-h-[320px] flex flex-col justify-between">
+            <div className="rounded-3xl border border-white/10 bg-surface p-8 md:p-12 min-h-[320px] flex flex-col justify-between">
               {/* Quote icon */}
               <Quote
                 size={40}
@@ -115,7 +122,7 @@ export default function TestimonialsSection() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="font-bold text-white"
+                        className="font-bold text-ink"
                       >
                         {t.name}
                       </motion.p>
@@ -144,7 +151,7 @@ export default function TestimonialsSection() {
                         onClick={() => setCurrent(i)}
                         className={`h-2 rounded-full transition-all duration-300 ${
                           i === current
-                            ? 'w-6 bg-[#39D353]'
+                            ? 'w-6 bg-accent'
                             : 'w-2 bg-neutral-700 hover:bg-neutral-500'
                         }`}
                         aria-label={`Depoimento ${i + 1}`}
@@ -154,14 +161,14 @@ export default function TestimonialsSection() {
 
                   <button
                     onClick={prev}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-neutral-400 transition-colors hover:border-white/20 hover:text-white"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-neutral-400 transition-colors hover:border-white/20 hover:text-ink"
                     aria-label="Anterior"
                   >
                     <ChevronLeft size={18} />
                   </button>
                   <button
                     onClick={next}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-neutral-400 transition-colors hover:border-white/20 hover:text-white"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-neutral-400 transition-colors hover:border-white/20 hover:text-ink"
                     aria-label="Próximo"
                   >
                     <ChevronRight size={18} />
@@ -183,9 +190,9 @@ export default function TestimonialsSection() {
             ].map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-2xl border border-white/10 bg-[#121215] py-5 px-4"
+                className="rounded-2xl border border-white/10 bg-surface py-5 px-4"
               >
-                <p className="text-2xl md:text-3xl font-extrabold text-[#39D353]">
+                <p className="text-2xl md:text-3xl font-extrabold text-accent">
                   {stat.value}
                 </p>
                 <p className="text-sm text-neutral-500 mt-1">{stat.label}</p>

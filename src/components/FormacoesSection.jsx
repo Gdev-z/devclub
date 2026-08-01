@@ -184,7 +184,7 @@ export default function FormacoesSection() {
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         {/* Cabeçalho da seção */}
         <header className="mb-16 max-w-2xl text-left">
-          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-[#18181B] px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-white/70">
+          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-surface px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-white/70">
             Trilhas de Formação
           </span>
           <h2 className="mt-5 font-display text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
@@ -206,7 +206,7 @@ export default function FormacoesSection() {
             ref={addCard}
             className="stack-card relative"
           >
-            <article className="card-inner max-h-fit group relative flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-[#18181B] shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)] transition-colors duration-500 hover:border-[#39D353]/40 hover:shadow-[0_30px_90px_-30px_rgba(57,211,83,0.18)] lg:h-[72vh] lg:flex-row">
+            <article className="card-inner max-h-fit group relative flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-surface shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)] transition-colors duration-500 hover:border-[#39D353]/40 hover:shadow-[0_30px_90px_-30px_rgba(57,211,83,0.18)] lg:h-[72vh] lg:flex-row">
               {/* COLUNA ESQUERDA — imagem (52%, arte 100% visível, escala maior) */}
               <div className="relative w-full max-h-fit shrink-0 overflow-hidden lg:w-[65%]">
                 <img

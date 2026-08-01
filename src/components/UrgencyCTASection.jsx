@@ -18,7 +18,7 @@ const container = {
 
 export default function UrgencyCTASection() {
   return (
-    <section className="relative bg-[#09090B] py-28 text-white overflow-hidden">
+    <section className="relative bg-bg-base py-28 text-ink overflow-hidden">
     
 
       <div className="relative mx-auto max-w-4xl px-6 text-center">
@@ -30,7 +30,7 @@ export default function UrgencyCTASection() {
         >
           {/* Urgency badge */}
           <motion.div variants={fadeUp} className="mb-8">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#39D353]/30 bg-[#39D353]/10 px-5 py-2 text-sm font-semibold text-[#39D353] shadow-[0_0_20px_rgba(57,211,83,0.15)]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent-soft px-5 py-2 text-sm font-semibold text-accent shadow-[0_0_20px_rgba(57,211,83,0.15)]">
               <Zap size={16} className="fill-current" />
               Vagas limitadas para a próxima turma
             </span>
@@ -42,7 +42,7 @@ export default function UrgencyCTASection() {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6"
           >
             Você merece uma{' '}
-            <span className="text-[#39D353]">nova história.</span>
+            <span className="text-accent">nova história.</span>
           </motion.h2>
 
           {/* Sub */}

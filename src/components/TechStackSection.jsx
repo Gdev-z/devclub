@@ -158,7 +158,7 @@ export default function TechStackSection() {
           {DOCK.map((t) => (
             <div
               key={t.key}
-              className="group w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative cursor-pointer bg-[#141816]/80 backdrop-blur-md border border-white/10 transition-all duration-300 hover:scale-110 hover:-translate-y-2 hover:border-[#39D353]/60 hover:shadow-[0_0_25px_rgba(57,211,83,0.3)]"
+              className="group w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative cursor-pointer bg-surface/80 backdrop-blur-md border border-white/10 transition-all duration-300 hover:scale-110 hover:-translate-y-2 hover:border-[#39D353]/60 hover:shadow-[0_0_14px_rgba(57,211,83,0.2)]"
             >
               <img
                 src={ICONS[t.key]}
@@ -185,14 +185,14 @@ export default function TechStackSection() {
           href="https://wa.me/5516990482444"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-[#39D353] hover:bg-[#32b848] text-black font-extrabold px-8 py-4 rounded-xl transition-all shadow-[0_0_30px_rgba(57,211,83,0.4)] hover:shadow-[0_0_45px_rgba(57,211,83,0.6)] mx-auto block w-fit scale-100 hover:scale-105 active:scale-95 relative z-10"
+          className="bg-[#39D353] hover:bg-[#32b848] text-black font-extrabold px-8 py-4 rounded-xl transition-all shadow-[0_0_16px_rgba(57,211,83,0.25)] hover:shadow-[0_0_24px_rgba(57,211,83,0.35)] mx-auto block w-fit scale-100 hover:scale-105 active:scale-95 relative z-10"
         >
           Quero Começar Agora
         </a>
       </motion.div>
 
       {/* Ecossistema complementar — pílulas (ticker infinito) */}
-      <div className="mt-8 max-w-5xl mx-auto overflow-hidden rounded-2xl border border-white/5 bg-[#0E1210]/60 backdrop-blur-sm">
+      <div className="mt-8 max-w-5xl mx-auto overflow-hidden rounded-2xl border border-white/5 bg-surface/60 backdrop-blur-sm">
         <div className="pills-track py-4 px-4">
           {[...PILLS, ...PILLS].map((p, i) => (
             <span

@@ -51,7 +51,7 @@ export default function PlatformFeatures() {
   };
 
   return (
-    <section className="relative z-10 bg-[#09090B] text-white py-24 overflow-hidden">
+    <section className="relative z-10 bg-bg-base text-ink py-24 overflow-hidden">
       <div className="w-full">
 
         {/* GRID: mobile empilha (1 col), desktop separa (2 col + justify-between) */}
@@ -63,13 +63,13 @@ export default function PlatformFeatures() {
           <div className="order-1 flex flex-col w-full pl-6">
 
             {/* Badge */}
-            <div className="border border-white/10 text-[#39D353] bg-[#121215] px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide w-fit mb-6">
+            <div className="border border-white/10 text-accent bg-surface px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide w-fit mb-6">
               🚀 AQUI VOCÊ APRENDE RÁPIDO
             </div>
 
             {/* Headline */}
             <h2 className="text-3xl md:text-6xl font-extrabold tracking-tight leading-tight mb-6">
-              Acesso Total às <span className="text-[#39D353]">AULAS GRAVADAS.</span>
+              Acesso Total às <span className="text-accent">AULAS GRAVADAS.</span>
             </h2>
 
             {/* Subtítulo */}
@@ -96,14 +96,14 @@ export default function PlatformFeatures() {
                         {/* Ícone */}
                         <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
                           isOpen
-                            ? 'bg-[#39D353] text-[#09090B] font-bold'
-                            : 'bg-[#121215] text-[#39D353] border border-white/5 group-hover:border-[#39D353]/40'
+                            ? 'bg-accent text-bg-base font-bold'
+                            : 'bg-surface text-accent border border-white/5 group-hover:border-[#39D353]/40'
                         }`}>
                           <Icon size={18} />
                         </div>
 
                         {/* Título */}
-                        <span className="font-bold text-white text-base md:text-lg shrink-0">
+                        <span className="font-bold text-ink text-base md:text-lg shrink-0">
                           {item.title}
                         </span>
 
@@ -115,7 +115,7 @@ export default function PlatformFeatures() {
                         )}
                       </div>
 
-                  
+
                     </div>
 
                     {/* Conteúdo Expandido (Aparece na linha de baixo ao clicar) */}
@@ -135,10 +135,10 @@ export default function PlatformFeatures() {
               COLUNA DA DIREITA: SHOWCASE VISUAL (STICKY)
           ========================================================= */}
           <div className="order-2 lg:sticky lg:top-24 w-full">
-            <div className="relative w-full rounded-l-3xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-[#121215] group">
+            <div className="relative w-full rounded-l-3xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-surface group">
 
               {/* Glow sutil atrás da imagem para dar profundidade */}
-              <div className="absolute -inset-1 bg-gradient-to-tr from-[#39D353]/20 via-transparent to-transparent opacity-50 blur-xl -z-10"></div>
+              <div className="absolute -inset-1 bg-gradient-to-tr from-accent/20 via-transparent to-transparent opacity-50 blur-xl -z-10"></div>
 
               {/* Imagem do Ecossistema */}
               <img
@@ -148,8 +148,8 @@ export default function PlatformFeatures() {
               />
 
               {/* Badge flutuante de status */}
-              <div className="absolute bottom-4 right-4 bg-[#09090B]/90 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-xl text-xs font-mono text-neutral-300 flex items-center gap-2 shadow-lg">
-                <span className="w-2 h-2 rounded-full bg-[#39D353] animate-pulse"></span>
+              <div className="absolute bottom-4 right-4 bg-bg-base/90 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-xl text-xs font-mono text-neutral-300 flex items-center gap-2 shadow-lg">
+                <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
                 Ambiente 100% Integrado
               </div>
 

@@ -72,7 +72,7 @@ export default function Hero({
           {/* Badge */}
           <motion.span
             variants={badge}
-            className="flex w-fit shrink-0 items-center gap-2 rounded-full border border-white/10 bg-[#18181B] px-4 py-1.5 text-sm text-white/80"
+            className="flex w-fit shrink-0 items-center gap-2 rounded-full border border-white/10 bg-surface px-4 py-1.5 text-sm text-white/80"
           >
             <span className="h-2 w-2 shrink-0 rounded-full bg-[#39D353]" />
             +25 mil alunos formados

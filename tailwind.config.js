@@ -19,6 +19,24 @@ export default {
       colors: {
         devgreen: '#39D353',
         devpurple: '#8532F2',
+        bg: {
+          base: '#09090B',
+          surface: '#151619',
+          'surface-alt': '#1C1E23',
+        },
+        ink: {
+          primary: '#EDEFF2',
+          secondary: '#9CA3AF',
+          muted: '#6B7280',
+        },
+        accent: {
+          DEFAULT: '#39D353',
+          soft: 'rgba(57,211,83,0.12)',
+        },
+        accent2: {
+          DEFAULT: '#8532F2',
+          soft: 'rgba(133,50,242,0.12)',
+        },
       },
       fontFamily: {
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],

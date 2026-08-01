@@ -73,7 +73,7 @@ const fadeUp = {
 /* ---------- Componente ---------- */
 export default function SalaryBenefitsSection() {
   return (
-    <section id="salario" className="relative bg-[#09090B] py-24 text-white">
+    <section id="salario" className="relative bg-bg-base py-24 text-ink">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
 
@@ -85,13 +85,13 @@ export default function SalaryBenefitsSection() {
             viewport={{ once: true, margin: '-80px' }}
           >
             <motion.div variants={fadeUp}>
-              <span className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-sm font-medium text-[#39D353]">
+              <span className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-sm font-medium text-accent">
                 <TrendingUp size={14} />
                 Mercado em alta
               </span>
               <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight md:text-4xl lg:text-5xl">
                 Seu potencial de renda como{' '}
-                <span className="text-[#39D353]">desenvolvedor</span> no Brasil
+                <span className="text-accent">desenvolvedor</span> no Brasil
               </h2>
               <p className="mt-4 max-w-lg text-base leading-relaxed text-neutral-400">
                 Com as habilidades certas, você cresce de Júnior a Sênior em
@@ -110,7 +110,7 @@ export default function SalaryBenefitsSection() {
                     <span className="text-sm font-semibold text-neutral-200">
                       {s.level}
                     </span>
-                    <span className="text-sm font-bold text-white">
+                    <span className="text-sm font-bold text-ink">
                       {s.range}
                     </span>
                   </div>
@@ -135,7 +135,7 @@ export default function SalaryBenefitsSection() {
                     />
                     {/* Label sobre a barra */}
                     <motion.span
-                      className="absolute inset-y-0 flex items-center pl-4 text-sm font-bold text-white"
+                      className="absolute inset-y-0 flex items-center pl-4 text-sm font-bold text-ink"
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       viewport={{ once: true }}
@@ -168,10 +168,10 @@ export default function SalaryBenefitsSection() {
                   variants={fadeUp}
                   className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-all duration-300 hover:border-[#39D353]/30 hover:bg-white/[0.07]"
                 >
-                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#39D353]/10">
-                    <Icon size={20} className="text-[#39D353]" />
+                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft">
+                    <Icon size={20} className="text-accent" />
                   </div>
-                  <h3 className="text-lg font-bold text-white">
+                  <h3 className="text-lg font-bold text-ink">
                     {b.title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-neutral-400">

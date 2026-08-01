@@ -170,23 +170,23 @@ function BokehBackground() {
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       {/* Purple blob — top-left */}
       <div
-        className="absolute -top-32 -left-24 h-[500px] w-[500px] rounded-full blur-[120px]"
-        style={{ background: 'radial-gradient(circle, rgba(133,50,242,0.15) 0%, transparent 70%)' }}
+        className="absolute -top-32 -left-24 h-[500px] w-[500px] rounded-full blur-[80px]"
+        style={{ background: 'radial-gradient(circle, rgba(133,50,242,0.10) 0%, transparent 70%)' }}
       />
       {/* Cyan blob — center-right */}
       <div
-        className="absolute top-1/3 -right-16 h-[400px] w-[400px] rounded-full blur-[100px]"
-        style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.10) 0%, transparent 70%)' }}
+        className="absolute top-1/3 -right-16 h-[400px] w-[400px] rounded-full blur-[70px]"
+        style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.07) 0%, transparent 70%)' }}
       />
       {/* Orange blob — bottom-left */}
       <div
-        className="absolute -bottom-24 left-1/4 h-[350px] w-[350px] rounded-full blur-[110px]"
-        style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%)' }}
+        className="absolute -bottom-24 left-1/4 h-[350px] w-[350px] rounded-full blur-[70px]"
+        style={{ background: 'radial-gradient(circle, rgba(249,115,22,0.06) 0%, transparent 70%)' }}
       />
       {/* Green blob — bottom-right */}
       <div
-        className="absolute bottom-0 right-1/3 h-[300px] w-[300px] rounded-full blur-[90px]"
-        style={{ background: 'radial-gradient(circle, rgba(57,211,83,0.10) 0%, transparent 70%)' }}
+        className="absolute bottom-0 right-1/3 h-[300px] w-[300px] rounded-full blur-[60px]"
+        style={{ background: 'radial-gradient(circle, rgba(57,211,83,0.07) 0%, transparent 70%)' }}
       />
     </div>
   )
@@ -200,7 +200,7 @@ function Card({ accent = 'green', children, className = '' }) {
       variants={cardVariants}
       className={`group relative overflow-hidden rounded-2xl ${className}`}
       style={{
-        background: 'linear-gradient(160deg, #12161f 0%, #0a0e14 100%)',
+        background: 'linear-gradient(160deg, #151619 0%, #0a0e14 100%)',
         border: `1px solid ${a.border}`,
         boxShadow: `0 0 30px ${a.glow.replace('0.35', '0.08')}, 0 8px 32px rgba(0,0,0,0.4)`,
       }}
@@ -302,7 +302,7 @@ export default function EcosystemSection() {
   return (
     <section
       id="ecossistema"
-      className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-24 bg-transparent text-white"
+      className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-24 bg-transparent text-ink-primary"
     >
       <BokehBackground />
 
@@ -350,7 +350,7 @@ export default function EcosystemSection() {
               <div
                 className="absolute inset-0"
                 style={{
-                  background: 'linear-gradient(90deg, transparent 50%, #12161f 100%)',
+                  background: 'linear-gradient(90deg, transparent 50%, #151619 100%)',
                 }}
               />
               <div
@@ -360,7 +360,7 @@ export default function EcosystemSection() {
             </div>
             <div className="flex flex-1 flex-col justify-between p-6 lg:p-10">
               <div>
-                <h3 className="text-lg lg:text-[26px] font-bold text-white leading-tight mb-2 lg:mb-3">
+                <h3 className="text-lg lg:text-[26px] font-bold text-ink leading-tight mb-2 lg:mb-3">
                   Acompanhamento direto com Recrutadora
                 </h3>
                 <p className="text-[13px] lg:text-[14px] leading-relaxed text-neutral-400">
@@ -385,7 +385,7 @@ export default function EcosystemSection() {
               <div
                 className="absolute inset-0"
                 style={{
-                  background: 'linear-gradient(90deg, transparent 50%, #12161f 100%)',
+                  background: 'linear-gradient(90deg, transparent 50%, #151619 100%)',
                 }}
               />
               <div
@@ -395,7 +395,7 @@ export default function EcosystemSection() {
             </div>
             <div className="flex flex-1 flex-col justify-between p-6 lg:p-10">
               <div>
-                <h3 className="text-lg lg:text-[26px] font-bold text-white leading-tight mb-2 lg:mb-3">
+                <h3 className="text-lg lg:text-[26px] font-bold text-ink leading-tight mb-2 lg:mb-3">
                   Agentes IA &amp; Plantão 24/7
                 </h3>
                 <p className="text-[13px] lg:text-[14px] leading-relaxed text-neutral-400">
@@ -424,7 +424,7 @@ export default function EcosystemSection() {
               <div
                 className="absolute inset-0"
                 style={{
-                  background: 'linear-gradient(90deg, transparent 50%, #12161f 100%)',
+                  background: 'linear-gradient(90deg, transparent 50%, #151619 100%)',
                 }}
               />
               <div
@@ -434,7 +434,7 @@ export default function EcosystemSection() {
             </div>
             <div className="flex flex-1 flex-col justify-between p-6 lg:p-10">
               <div>
-                <h3 className="text-lg lg:text-[26px] font-bold text-white leading-tight mb-2 lg:mb-3">
+                <h3 className="text-lg lg:text-[26px] font-bold text-ink leading-tight mb-2 lg:mb-3">
                   Apoio Psicológico e Emocional
                 </h3>
                 <p className="text-[13px] lg:text-[14px] leading-relaxed text-neutral-400">
@@ -464,7 +464,7 @@ export default function EcosystemSection() {
               <div
                 className="absolute inset-0"
                 style={{
-                  background: 'linear-gradient(90deg, transparent 50%, #12161f 100%)',
+                  background: 'linear-gradient(90deg, transparent 50%, #151619 100%)',
                 }}
               />
               <div
@@ -474,7 +474,7 @@ export default function EcosystemSection() {
             </div>
             <div className="flex flex-1 flex-col justify-between p-6 lg:p-10">
               <div>
-                <h3 className="text-lg lg:text-[26px] font-bold text-white leading-tight mb-2 lg:mb-3">
+                <h3 className="text-lg lg:text-[26px] font-bold text-ink leading-tight mb-2 lg:mb-3">
                   Mentorias ao Vivo &amp; Code Reviews
                 </h3>
                 <p className="text-[13px] lg:text-[14px] leading-relaxed text-neutral-400">
@@ -501,7 +501,7 @@ export default function EcosystemSection() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="relative z-10 mt-16"
       >
-        <h3 className="text-xl font-bold text-white mb-8 text-center">
+        <h3 className="text-xl font-bold text-ink mb-8 text-center">
           E mais — tudo o que você precisa em um só lugar
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -510,12 +510,12 @@ export default function EcosystemSection() {
             return (
               <div
                 key={item.title}
-                className="group rounded-2xl border border-white/10 bg-[#121215]/80 p-5 transition-all duration-300 hover:border-[#39D353]/20 hover:bg-[#121215]"
+                className="group rounded-2xl border border-white/10 bg-surface p-5 transition-all duration-300 hover:border-[#39D353]/20 hover:bg-[#151619]"
               >
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#39D353]/10">
                   <Icon size={18} className="text-[#39D353]" />
                 </div>
-                <h4 className="font-bold text-white text-sm mb-1.5">
+                <h4 className="font-bold text-ink text-sm mb-1.5">
                   {item.title}
                 </h4>
                 <p className="text-neutral-500 text-[13px] leading-relaxed">

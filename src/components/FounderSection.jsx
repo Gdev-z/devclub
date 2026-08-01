@@ -47,7 +47,7 @@ const badges = [
 /* ---------- Componente ---------- */
 export default function FounderSection() {
   return (
-    <section className="relative bg-[#09090B] py-24 text-white">
+    <section className="relative bg-bg-base py-24 text-ink">
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-24">
 

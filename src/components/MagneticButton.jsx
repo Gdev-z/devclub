@@ -46,7 +46,7 @@ export default function MagneticButton({ label = 'COMEÇAR MINHA JORNADA', href 
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative inline-flex items-center gap-2 rounded-lg bg-devgreen px-8 py-4 font-mono text-sm font-bold tracking-widest text-zinc-950 shadow-neon-green transition-[box-shadow,transform] duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(57,211,83,0.5),0_0_50px_rgba(57,211,83,0.3)]"
+        className="group relative inline-flex items-center gap-2 rounded-lg bg-devgreen px-8 py-4 font-mono text-sm font-bold tracking-widest text-zinc-950 shadow-neon-green transition-[box-shadow,transform] duration-300 hover:scale-105 hover:shadow-[0_0_14px_rgba(57,211,83,0.25)]"
       >
         <span className="relative z-10">{label}</span>
         {/* brilho deslizante no hover */}

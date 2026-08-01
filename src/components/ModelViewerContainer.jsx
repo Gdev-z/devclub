@@ -12,8 +12,11 @@ function ModelFallback() {
 
 function ModelError({ error, resetErrorBoundary }) {
   return (
-    <div className="flex h-full w-full items-center justify-center">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-2">
       <p className="text-sm text-red-400">Erro ao carregar o modelo 3D.</p>
+      <p className="mt-1 max-w-xs text-center text-xs text-white/40">
+        {error?.message || 'Verifique o console de desenvolvedor (F12).'}
+      </p>
     </div>
   )
 }

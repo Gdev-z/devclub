@@ -42,13 +42,13 @@ export default function SettingsModal({
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
           transition={{ type: 'spring', duration: 0.4 }}
-          className="relative w-full max-w-md rounded-2xl bg-[#18181B] p-6 shadow-2xl"
+          className="relative w-full max-w-md rounded-2xl bg-surface p-6 shadow-2xl"
         >
           {/* Header com switch global */}
           <div className="mb-6 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Settings className="h-5 w-5 text-white/60" />
-              <h2 className="text-lg font-semibold text-white">Modelos 3D</h2>
+              <h2 className="text-lg font-semibold text-ink">Modelos 3D</h2>
             </div>
             {/* Toggle global */}
             <button

@@ -36,9 +36,9 @@ const fadeUp = {
 
 export default function EmpathySection() {
   return (
-    <section className="relative bg-[#09090B] py-24 text-white overflow-hidden">
+    <section className="relative bg-bg-base py-24 text-ink overflow-hidden">
       {/* Subtle gradient accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-[#39D353]/5 blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-accent-soft blur-[120px] pointer-events-none" />
 
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         <motion.div
@@ -73,7 +73,7 @@ export default function EmpathySection() {
                 <motion.div
                   key={i}
                   variants={fadeUp}
-                  className="flex items-start gap-4 rounded-2xl border border-white/10 bg-[#121215] p-6 text-left transition-colors duration-300 hover:border-[#39D353]/20"
+                  className="flex items-start gap-4 rounded-2xl border border-white/10 bg-surface p-6 text-left transition-colors duration-300 hover:border-[#39D353]/20"
                 >
                   <div className="shrink-0 mt-0.5 flex h-10 w-10 items-center justify-center rounded-xl bg-white/5">
                     <Icon size={18} className="text-neutral-400" />

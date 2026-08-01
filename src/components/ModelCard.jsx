@@ -8,9 +8,9 @@ export default function ModelCard({ model, selected, onSelect }) {
       onClick={() => onSelect(model.id)}
       className={`relative cursor-pointer overflow-hidden rounded-lg border-2 transition-all duration-200 ${
         selected
-          ? 'border-[#39D353] shadow-lg shadow-[#39D353]/20'
-          : 'border-white/10 hover:border-white/30'
-      } bg-[#09090B]`}
+          ? 'border-accent shadow-lg shadow-accent/20'
+          : 'border-white/10 hover:border-accent/30'
+      } bg-bg-surface`}
       role="button"
       tabIndex={0}
       aria-label={`Selecionar ${model.name}`}
@@ -23,7 +23,7 @@ export default function ModelCard({ model, selected, onSelect }) {
       }}
     >
       {/* Thumbnail */}
-      <div className="relative flex h-32 items-center justify-center bg-[#18181B] sm:h-40">
+      <div className="relative flex h-32 items-center justify-center bg-surface sm:h-40">
         {thumbnailSrc ? (
           <img
             src={thumbnailSrc}

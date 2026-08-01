@@ -41,7 +41,7 @@ export default function LoadingScreen({ onComplete }) {
       initial={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-[#09090B]"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-bg-base"
     >
       {/* brilhos de fundo sutis */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(57,211,83,0.08),transparent_55%)]" />
