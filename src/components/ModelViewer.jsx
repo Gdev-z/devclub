@@ -102,6 +102,7 @@ export default function ModelViewer() {
 
       {/* Canvas 3D — posicionado absolutamente para cobrir o container */}
       <Canvas
+        frameloop="demand"
         camera={{
           position: isDesktop ? [0, 0, 5.5] : [0, -0.2, 4],
           fov: isDesktop ? 45 : 65,
