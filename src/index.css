@@ -41,6 +41,7 @@ body.loading-active {
     height: 100vh;
     margin-left: 0;
     pointer-events: none;
+    z-index: 1;
 }
 
 /* A Hero cria seu próprio contexto de empilhamento e sobe ACIMA do

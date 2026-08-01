@@ -4,8 +4,6 @@ import LoadingScreen from './components/LoadingScreen.jsx'
 import BgVideo from './components/BgVideo.jsx'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
-import HeroScene from './components/HeroScene.jsx'
-import ModelViewer from './components/ModelViewer.jsx'
 import LogosCarousel from './components/LogosCarousel.jsx'
 import EmpathySection from './components/EmpathySection.jsx'
 import FounderSection from './components/FounderSection.jsx'
@@ -36,7 +34,6 @@ export default function App() {
       <BgVideo />
       <Header />
       {/* <HeroScene /> */}
-      <ModelViewer />
 
       <Hero loading={!revealHero} />
 
