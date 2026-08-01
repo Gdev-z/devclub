@@ -3,7 +3,7 @@ import MagneticButton from './MagneticButton.jsx'
 import ModelViewerContainer from './ModelViewerContainer.jsx'
 
 // ============================================================
-// CONTROLE DO REVEAL DA HERO
+// CONTROLE DO REVEAL DO HERO
 // STAGGER = intervalo entre cada elemento
 // DELAY   = tempo antes da animação começar
 // ============================================================
@@ -57,6 +57,7 @@ export default function Hero({
   loading = false,
   heroModelPath = '/logoForSpline2.glb',
   heroModelEnabled = false,
+  heroModelId = 'hero-model',
 }) {
   return (
     <section className="hero-section relative min-h-screen w-full overflow-hidden">
@@ -82,7 +83,8 @@ export default function Hero({
             variants={item}
             className="mt-4 max-w-full bg-gradient-to-r from-white to-neutral-400 bg-clip-text text-2xl font-semibold leading-[1.2] tracking-tight text-transparent sm:mt-6 sm:text-4xl md:text-5xl lg:text-6xl"
           >
-            Construa sua carreira em tecnologia com quem já trilhou esse caminho.
+            Construa sua carreira em tecnologia com quem já trilhou esse
+            caminho.
           </motion.h1>
 
           {/* Subtítulo */}
@@ -97,14 +99,21 @@ export default function Hero({
 
           {/* CTA */}
           <motion.div variants={item} className="mt-8 sm:mt-10">
-            <MagneticButton label="Matricule-se" href="https://wa.me/5516990482444" />
+            <MagneticButton
+              label="Matricule-se"
+              href="https://wa.me/5516990482444"
+            />
           </motion.div>
         </motion.div>
       </div>
 
       {/* 3D Model — responsive: full width on mobile, 40% of right side on desktop */}
       <div className="relative h-[60vh] w-full lg:absolute lg:inset-y-0 lg:right-0 lg:z-10 lg:block lg:h-screen lg:w-3/5">
-        <ModelViewerContainer modelPath={heroModelPath} enabled={heroModelEnabled} />
+        <ModelViewerContainer
+          modelPath={heroModelPath}
+          enabled={heroModelEnabled}
+          modelId={heroModelId}
+        />
       </div>
     </section>
   )

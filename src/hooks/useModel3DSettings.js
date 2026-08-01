@@ -6,55 +6,78 @@ const STORAGE_KEY = 'devclub-3d-settings'
 function loadFromStorage() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return {}
+    if (!raw) return null
     const parsed = JSON.parse(raw)
-    if (typeof parsed !== 'object' || Array.isArray(parsed)) return {}
-    const validated = {}
-    for (const [k, v] of Object.entries(parsed)) {
-      if (typeof v === 'boolean') validated[k] = v
+    if (typeof parsed !== 'object' || Array.isArray(parsed)) return null
+    return {
+      enabled: typeof parsed.enabled === 'boolean' ? parsed.enabled : false,
+      activeModelId:
+        typeof parsed.activeModelId === 'string'
+          ? parsed.activeModelId
+          : models3D[0]?.id ?? '',
     }
-    return validated
   } catch (e) {
     console.warn('[3D] localStorage unavailable:', e.message)
-    return {}
+    return null
   }
 }
 
-function saveToStorage(settings) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(settings))
-  } catch (e) {
-    console.warn('[3D] localStorage write failed:', e.message)
-  }
-}
-
-// Estado inicial: ler do localStorage ou usar defaultEnabled de cada modelo
-const initialStorage = loadFromStorage()
-const initialState = {}
-for (const model of models3D) {
-  initialState[model.id] = model.id in initialStorage ? initialStorage[model.id] : model.defaultEnabled
-}
+// Estado inicial: localStorage ou valores default
+const stored = loadFromStorage()
+const initialEnabled = stored?.enabled ?? false
+const initialActiveModelId = stored?.activeModelId ?? models3D[0]?.id ?? ''
 
 export default function useModel3DSettings() {
-  const [settings, setSettings] = useState(initialState)
+  const [enabled, setEnabled] = useState(initialEnabled)
+  const [activeModelId, setActiveModelId] = useState(initialActiveModelId)
 
-  const toggleModel = useCallback((modelId) => {
-    setSettings((prev) => {
-      const next = { ...prev, [modelId]: !prev[modelId] }
-      saveToStorage(next)
+  const toggleEnabled = useCallback(() => {
+    setEnabled((prev) => {
+      const next = !prev
+      try {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({ enabled: next, activeModelId })
+        )
+      } catch (e) {
+        console.warn('[3D] localStorage write failed:', e.message)
+      }
       return next
     })
-  }, [])
+  }, [activeModelId])
 
-  // Estado derivado: lista de modelos com o enabled resolvido
+  const selectModel = useCallback((id) => {
+    setActiveModelId((prev) => {
+      if (prev === id) return prev
+      try {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({ enabled, activeModelId: id })
+        )
+      } catch (e) {
+        console.warn('[3D] localStorage write failed:', e.message)
+      }
+      return id
+    })
+    // Se o modelo estava desativado, ativa ao selecionar um novo
+    if (!enabled) {
+      setEnabled(true)
+      try {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({ enabled: true, activeModelId: id })
+        )
+      } catch (e) {
+        // ignore
+      }
+    }
+  }, [enabled])
+
+  // Lista de modelos com estado derivado
   const models = models3D.map((model) => ({
     ...model,
-    enabled: settings[model.id] ?? model.defaultEnabled,
+    enabled: model.id === activeModelId,
   }))
 
-  function isEnabled(id) {
-    return settings[id] ?? false
-  }
-
-  return { models, toggleModel, isEnabled }
+  return { enabled, activeModelId, models, toggleEnabled, selectModel }
 }

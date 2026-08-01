@@ -49,6 +49,13 @@ function Model({ modelPath, mouseX, mouseY, isDesktop }) {
   const meshRef = useRef()
   const { scene } = useGLTF(modelPath)
 
+  // Cleanup do cache useGLTF ao desmontar — libera GLTF anterior da memória WebGL
+  useEffect(() => {
+    return () => {
+      useGLTF.clear(modelPath)
+    }
+  }, [modelPath])
+
   useFrame(() => {
     if (!meshRef.current) return
 
@@ -56,16 +63,22 @@ function Model({ modelPath, mouseX, mouseY, isDesktop }) {
     const targetX = mouseY * Math.PI * 0.04
 
     // lerp = interpolação suave — o objeto segue o mouse com atraso orgânico
-    meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetY, 0.05)
-    meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, targetX, 0.05)
+    meshRef.current.rotation.y = THREE.MathUtils.lerp(
+      meshRef.current.rotation.y,
+      targetY,
+      0.05
+    )
+    meshRef.current.rotation.x = THREE.MathUtils.lerp(
+      meshRef.current.rotation.x,
+      targetX,
+      0.05
+    )
   })
 
   // Posição do modelo no espaço 3D
   // Desktop: centro do container (0, 0, 0) — modelo parece centralizado
   // Mobile: levemente para baixo (-0.3) — compensação ótica de 3D
-  const modelPosition = isDesktop
-    ? [0, -1, 0]
-    : [0, -0.3, 0]
+  const modelPosition = isDesktop ? [0, -1, 0] : [0, -0.3, 0]
 
   return (
     <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.8}>
@@ -145,7 +158,12 @@ export default function ModelViewer({ modelPath = '/logoForSpline2.glb' }) {
 
         {/* ErrorBoundary para isolar falhas do useGLTF */}
         <ModelErrorBoundary>
-          <Model modelPath={modelPath} mouseX={mouseX} mouseY={mouseY} isDesktop={isDesktop} />
+          <Model
+            modelPath={modelPath}
+            mouseX={mouseX}
+            mouseY={mouseY}
+            isDesktop={isDesktop}
+          />
         </ModelErrorBoundary>
 
         <OrbitControls enableZoom={false} enablePan={false} />

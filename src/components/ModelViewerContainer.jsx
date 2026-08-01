@@ -18,14 +18,20 @@ function ModelError({ error, resetErrorBoundary }) {
   )
 }
 
-export default function ModelViewerContainer({ modelPath, enabled, isDesktop = false }) {
+export default function ModelViewerContainer({
+  modelPath,
+  enabled,
+  modelId,
+  isDesktop = false,
+}) {
   if (!enabled) return null
 
   return (
     <div className="h-full w-full">
       <Suspense fallback={<ModelFallback />}>
         <ErrorBoundary FallbackComponent={ModelError}>
-          <ModelViewer modelPath={modelPath} />
+          {/* key={modelId} força remount do Canvas ao trocar de modelo */}
+          <ModelViewer key={modelId} modelPath={modelPath} />
         </ErrorBoundary>
       </Suspense>
     </div>

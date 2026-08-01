@@ -28,12 +28,13 @@ export default function App() {
   const [revealHero, setRevealHero] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
 
-  const { models, toggleModel, isEnabled } = useModel3DSettings()
+  const { enabled, activeModelId, models, toggleEnabled, selectModel } =
+    useModel3DSettings()
 
   // Encontrar o modelo principal pelo registry
   const heroModel = models3D.find((m) => m.id === 'hero-model')
   const heroModelPath = heroModel?.path ?? '/logoForSpline2.glb'
-  const heroModelEnabled = isEnabled(heroModel?.id ?? 'hero-model')
+  const heroModelEnabled = enabled && activeModelId === heroModel?.id
 
   useSmoothScroll(loading)
 
@@ -51,6 +52,7 @@ export default function App() {
         loading={!revealHero}
         heroModelPath={heroModelPath}
         heroModelEnabled={heroModelEnabled}
+        heroModelId={heroModel?.id}
       />
 
       <LogosCarousel />
@@ -96,10 +98,10 @@ export default function App() {
         <SettingsModal
           onClose={() => setShowSettings(false)}
           models={models}
-          enabledModels={Object.fromEntries(
-            models.map((m) => [m.id, m.enabled])
-          )}
-          toggleModel={toggleModel}
+          enabled={enabled}
+          activeModelId={activeModelId}
+          toggleEnabled={toggleEnabled}
+          selectModel={selectModel}
         />
       )}
 

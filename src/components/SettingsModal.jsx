@@ -1,8 +1,16 @@
 import React, { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X } from 'lucide-react'
+import { X, Settings } from 'lucide-react'
+import ModelCard from './ModelCard'
 
-export default function SettingsModal({ onClose, models, enabledModels, toggleModel }) {
+export default function SettingsModal({
+  onClose,
+  models,
+  enabled,
+  activeModelId,
+  toggleEnabled,
+  selectModel,
+}) {
   // Fechar ao pressionar ESC
   useEffect(() => {
     const handleEsc = (e) => {
@@ -36,66 +44,59 @@ export default function SettingsModal({ onClose, models, enabledModels, toggleMo
           transition={{ type: 'spring', duration: 0.4 }}
           className="relative w-full max-w-md rounded-2xl bg-[#18181B] p-6 shadow-2xl"
         >
-          {/* Header */}
+          {/* Header com switch global */}
           <div className="mb-6 flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-white">Modelos 3D</h2>
+            <div className="flex items-center gap-2">
+              <Settings className="h-5 w-5 text-white/60" />
+              <h2 className="text-lg font-semibold text-white">Modelos 3D</h2>
+            </div>
+            {/* Toggle global */}
             <button
-              onClick={onClose}
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-white/60 transition-colors hover:bg-white/10 hover:text-white"
-              aria-label="Fechar"
+              onClick={toggleEnabled}
+              className={`relative h-7 w-12 rounded-full transition-colors duration-200 ${
+                enabled ? 'bg-[#39D353]' : 'bg-white/20'
+              }`}
+              role="switch"
+              aria-checked={enabled}
+              aria-label="Ativar/desativar modelos 3D"
             >
-              <X className="h-5 w-5" />
+              <motion.div
+                layout
+                transition={{ type: 'spring', duration: 0.3 }}
+                className={`absolute top-0.5 h-6 w-6 rounded-full bg-white shadow-md ${
+                  enabled ? 'left-6' : 'left-0.5'
+                }`}
+              />
             </button>
           </div>
 
-          {/* Lista de modelos */}
-          <div className="space-y-3">
+          {/* Seção: seleção de modelo */}
+          <div className="mb-4">
+            <p className="text-xs text-white/40">
+              {enabled
+                ? 'Escolha um modelo para exibir:'
+                : 'Ative o 3D acima para escolher um modelo.'}
+            </p>
+          </div>
+
+          {/* Grid de cards */}
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {models.map((model) => (
               <ModelCard
                 key={model.id}
                 model={model}
-                enabled={enabledModels[model.id]}
-                onToggle={() => toggleModel(model.id)}
+                selected={model.id === activeModelId}
+                onSelect={selectModel}
               />
             ))}
           </div>
 
           {/* Footer */}
           <div className="mt-6 text-xs text-white/40">
-            Ao desativar, o modelo 3D não será carregado na página.
+            Ao desativar, os modelos 3D não serão carregados na página.
           </div>
         </motion.div>
       </motion.div>
     </AnimatePresence>
-  )
-}
-
-function ModelCard({ model, enabled, onToggle }) {
-  return (
-    <div className="flex items-center justify-between rounded-xl bg-[#09090B] p-4">
-      <div>
-        <div className="font-medium text-white">{model.name}</div>
-        <div className="mt-0.5 text-xs text-white/40">{model.id}</div>
-      </div>
-
-      {/* Toggle switch */}
-      <button
-        onClick={onToggle}
-        className={`relative h-7 w-12 rounded-full transition-colors duration-200 ${
-          enabled ? 'bg-[#39D353]' : 'bg-white/20'
-        }`}
-        role="switch"
-        aria-checked={enabled}
-        aria-label={`Ativar ${model.name}`}
-      >
-        <motion.div
-          layout
-          transition={{ type: 'spring', duration: 0.3 }}
-          className={`absolute top-0.5 h-6 w-6 rounded-full bg-white shadow-md ${
-            enabled ? 'left-6' : 'left-0.5'
-          }`}
-        />
-      </button>
-    </div>
   )
 }

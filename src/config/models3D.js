@@ -8,6 +8,7 @@ const models3D = [
     id: 'hero-model',
     name: 'Modelo Principal',
     path: '/logoForSpline2.glb',
+    thumbnail: '/assets/icons/logo3D_icon.png',
     defaultEnabled: false,
   },
 ]
