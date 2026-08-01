@@ -26,11 +26,11 @@ export default function UrgencyCTASection() {
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: '-80px' }}
+          viewport={{ once: false, margin: '-80px' }}
         >
           {/* Urgency badge */}
           <motion.div variants={fadeUp} className="mb-8">
-            <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent-soft px-5 py-2 text-sm font-semibold text-accent shadow-[0_0_20px_rgba(57,211,83,0.15)]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent-soft px-5 py-2 text-sm font-semibold text-accent shadow-[0_0_20px_var(--color-accent)/0.15)]">
               <Zap size={16} className="fill-current" />
               Vagas limitadas para a próxima turma
             </span>
@@ -87,15 +87,15 @@ export default function UrgencyCTASection() {
             className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-neutral-500"
           >
             <span className="flex items-center gap-2">
-              <ShieldCheck size={16} className="text-[#39D353]" />
+              <ShieldCheck size={16} className="text-accent" />
               Pós-graduação reconhecida pelo MEC
             </span>
             <span className="flex items-center gap-2">
-              <ShieldCheck size={16} className="text-[#39D353]" />
+              <ShieldCheck size={16} className="text-accent" />
               +25.000 alunos formados
             </span>
             <span className="flex items-center gap-2">
-              <ShieldCheck size={16} className="text-[#39D353]" />
+              <ShieldCheck size={16} className="text-accent" />
               Comunidade ativa 24/7
             </span>
           </motion.div>

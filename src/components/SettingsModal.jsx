@@ -54,7 +54,7 @@ export default function SettingsModal({
             <button
               onClick={toggleEnabled}
               className={`relative h-7 w-12 rounded-full transition-colors duration-200 ${
-                enabled ? 'bg-[#39D353]' : 'bg-white/20'
+                enabled ? 'bg-accent' : 'bg-white/20'
               }`}
               role="switch"
               aria-checked={enabled}

@@ -22,7 +22,7 @@ function NavLink({ label, href }) {
       className="group relative px-1 py-2 text-sm font-medium text-white/70 transition-colors hover:text-white"
     >
       {label}
-      <span className="absolute bottom-1 left-1/2 h-px w-0 -translate-x-1/2 bg-[#39D353] transition-all duration-300 group-hover:w-full" />
+      <span className="absolute bottom-1 left-1/2 h-px w-0 -translate-x-1/2 bg-accent transition-all duration-300 group-hover:w-full" />
     </a>
   )
 }
@@ -36,7 +36,7 @@ export default function Header() {
         <a href="#" className="flex items-center gap-2">
           <img src={logo} alt="DevClub" className="h-7 w-auto" />
           <span className="text-lg font-extrabold tracking-tight text-white">
-            Dev<span className="text-[#39D353]">Club</span>
+            Dev<span className="text-accent">Club</span>
           </span>
         </a>
 
@@ -50,7 +50,7 @@ export default function Header() {
           href="https://wa.me/5516990482444"
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-full border border-[#39D353] px-5 py-2 text-sm font-semibold text-[#39D353] transition-all duration-300 hover:bg-[#39D353] hover:text-black"
+          className="rounded-full border border-[#39D353] px-5 py-2 text-sm font-semibold text-accent transition-all duration-300 hover:bg-accent hover:text-black"
         >
           Quero ser aluno
         </a>

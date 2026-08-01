@@ -5,11 +5,11 @@ export default function BrandShowcase() {
   return (
     <section className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px] lg:min-h-[600px] w-full relative overflow-hidden">
       {/* Metade Esquerda — fundo escuro + tipografia gigante */}
-      <div className="flex items-center justify-center lg:items-center lg:justify-center bg-[#09090B] p-8 lg:p-16 z-10">
+      <div className="flex items-center justify-center lg:items-center lg:justify-center bg-bg-base p-8 lg:p-16 z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-row items-center lg:items-center gap-6"
         >

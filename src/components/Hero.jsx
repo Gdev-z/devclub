@@ -61,7 +61,7 @@ export default function Hero({
 }) {
   return (
     <section className="hero-section relative min-h-screen w-full overflow-hidden">
-      <div className="relative z-10 flex w-full flex-col items-start justify-center bg-[#09090B] px-6 py-20 sm:px-8 sm:py-24 md:px-12 md:py-28 lg:px-24 lg:h-screen lg:w-2/3 lg:min-w-[40vw]">
+      <div className="relative z-10 flex w-full flex-col items-start justify-center bg-bg-base px-6 py-20 sm:px-8 sm:py-24 md:px-12 md:py-28 lg:px-24 lg:h-screen lg:w-2/3 lg:min-w-[40vw]">
         {/* Spacer — o Modelo é renderizado fora do fluxo pelo ModelViewerContainer */}
         <motion.div
           variants={container}
@@ -74,7 +74,7 @@ export default function Hero({
             variants={badge}
             className="flex w-fit shrink-0 items-center gap-2 rounded-full border border-white/10 bg-surface px-4 py-1.5 text-sm text-white/80"
           >
-            <span className="h-2 w-2 shrink-0 rounded-full bg-[#39D353]" />
+            <span className="h-2 w-2 shrink-0 rounded-full bg-accent" />
             +25 mil alunos formados
           </motion.span>
 

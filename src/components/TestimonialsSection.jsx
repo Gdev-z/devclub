@@ -8,7 +8,7 @@ const testimonials = [
     role: 'Front-end Developer na iFood',
     text: 'Eu trabalhava como atendente e nunca imaginei que poderia estar escrevendo código para uma das maiores empresas de tecnologia do Brasil. O DevClub me deu o caminho e a confiança que eu precisava.',
     avatar: 'F',
-    accent: '#39D353',
+    accent: 'var(--color-accent)',
   },
   {
     name: 'Lucas Mendes',
@@ -36,7 +36,7 @@ const testimonials = [
     role: 'Automação & IA — Freelancer',
     text: 'Comecei do zero absoluto. Hoje automatizo processos para empresas usando n8n e IA. Em 8 meses saí do zero para faturar mais do que meu emprego anterior.',
     avatar: 'R',
-    accent: '#39D353',
+    accent: 'var(--color-accent)',
   },
 ];
 
@@ -63,7 +63,7 @@ export default function TestimonialsSection() {
         <motion.div
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: '-80px' }}
+          viewport={{ once: false, margin: '-80px' }}
           variants={{
             hidden: {},
             show: { transition: { staggerChildren: 0.1 } },

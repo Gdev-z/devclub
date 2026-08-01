@@ -44,7 +44,7 @@ export default function LoadingScreen({ onComplete }) {
       className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-bg-base"
     >
       {/* brilhos de fundo sutis */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(57,211,83,0.08),transparent_55%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-accent)/0.08,transparent_55%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(133,50,242,0.10),transparent_50%)]" />
 
       {/* Logo real (assets/logo.png) */}
@@ -57,13 +57,13 @@ export default function LoadingScreen({ onComplete }) {
       {/* contador */}
       <div className="mb-4 font-mono text-5xl font-bold tabular-nums text-white">
         {Math.max(0, progress)}
-        <span className="text-[#39D353]">%</span>
+        <span className="text-accent">%</span>
       </div>
 
       {/* barra de progresso ultrafina com glow verde */}
       <div className="h-[2px] w-64 overflow-hidden rounded-full bg-white/10">
         <motion.div
-          className="h-full bg-[#39D353] shadow-[0_0_12px_rgba(57,211,83,0.8)]"
+          className="h-full bg-accent shadow-[0_0_12px_var(--color-accent)/0.8]"
           style={{ width: `${progress}%` }}
         />
       </div>

@@ -310,7 +310,7 @@ export default function EcosystemSection() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="relative z-10 text-left"
       >
@@ -334,7 +334,7 @@ export default function EcosystemSection() {
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: '-60px' }}
+        viewport={{ once: false, margin: '-60px' }}
         className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6"
         style={{ gridAutoRows: 'auto' }}
       >
@@ -497,7 +497,7 @@ export default function EcosystemSection() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-60px' }}
+        viewport={{ once: false, margin: '-60px' }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="relative z-10 mt-16"
       >

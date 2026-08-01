@@ -45,14 +45,14 @@ export default function EmpathySection() {
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: '-80px' }}
+          viewport={{ once: false, margin: '-80px' }}
         >
           {/* Tag */}
           <motion.span
             variants={fadeUp}
             className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-neutral-400 mb-8"
           >
-            <span className="text-[#39D353]">●</span>
+            <span className="text-accent">●</span>
             Se alguma dessas situações é a sua...
           </motion.span>
 
@@ -62,7 +62,7 @@ export default function EmpathySection() {
             className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-16"
           >
             Você não está sozinho nessa{' '}
-            <span className="text-[#39D353]">jornada.</span>
+            <span className="text-accent">jornada.</span>
           </motion.h2>
 
           {/* Pain cards */}
@@ -73,7 +73,7 @@ export default function EmpathySection() {
                 <motion.div
                   key={i}
                   variants={fadeUp}
-                  className="flex items-start gap-4 rounded-2xl border border-white/10 bg-surface p-6 text-left transition-colors duration-300 hover:border-[#39D353]/20"
+                  className="flex items-start gap-4 rounded-2xl border border-white/10 bg-surface p-6 text-left transition-colors duration-300 hover:border-accent/20"
                 >
                   <div className="shrink-0 mt-0.5 flex h-10 w-10 items-center justify-center rounded-xl bg-white/5">
                     <Icon size={18} className="text-neutral-400" />

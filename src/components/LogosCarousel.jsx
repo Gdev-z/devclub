@@ -25,7 +25,7 @@ export default function LogosCarousel() {
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: false, amount: 0.2 }}
         transition={{ duration: 0.6 }}
         className="ticker-title mx-auto mb-12 px-6 text-center text-xs uppercase tracking-[0.2em] text-white/40"
       >

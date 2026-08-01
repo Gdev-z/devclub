@@ -63,12 +63,12 @@ function JourneyCard({ card, index, reducedMotion }) {
     <motion.div
       initial={reducedMotion ? false : { opacity: 0, y: 30 }}
       whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
+      viewport={{ once: false, margin: '-40px' }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
       className="group relative flex-shrink-0 w-[85vw] sm:w-[75vw] md:w-[500px] min-h-[350px] h-auto rounded-3xl bg-surface-alt border border-white/10 p-8 md:p-10 transition-all duration-300 hover:-translate-y-2 hover:border-accent/30 snap-center"
     >
       {/* Hover glow */}
-      <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-[#39D353]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-sm" />
+      <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-sm" />
 
       {/* Icon circle */}
       <div className="bg-accent text-black w-14 h-14 rounded-full flex items-center justify-center mb-6 shadow-[0_0_10px_rgba(57,211,83,0.2)] group-hover:shadow-[0_0_16px_rgba(57,211,83,0.3)] transition-shadow duration-300">
@@ -100,7 +100,7 @@ function ProgressDots({ count, progress }) {
             key={i}
             animate={{
               width: isActive ? 28 : 8,
-              backgroundColor: isActive ? '#39D353' : '#27272A',
+              backgroundColor: isActive ? 'var(--color-accent)' : '#27272A',
             }}
             transition={{ type: 'spring', stiffness: 400, damping: 30 }}
             className="h-2 rounded-full"

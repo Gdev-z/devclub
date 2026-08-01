@@ -104,7 +104,7 @@ function Model({ modelPath, mouseX, mouseY, isDesktop }) {
 function LoadingSkeleton() {
   return (
     <motion.div
-      className="absolute inset-0 flex items-center justify-center bg-[#09090B]"
+      className="absolute inset-0 flex items-center justify-center bg-bg-base"
       initial={{ opacity: 0.6 }}
       animate={{ opacity: [0.6, 0.3, 0.6] }}
       transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
@@ -159,7 +159,7 @@ export default function ModelViewer({ modelPath = '/logoForSpline2.glb' }) {
           // Quando o Three.js estiver pronto, esconde o skeleton
           setLoaded(true)
           // Define fundo transparente para o renderer
-          gl.setClearColor(0x09090b, 0)
+          gl.setClearColor(0x000000, 0)
         }}
       >
         <ambientLight intensity={1.5} />

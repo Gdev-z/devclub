@@ -96,7 +96,7 @@ export default function TechStackSection() {
             scrollTrigger: {
               trigger: dockRef.current,
               start: 'top 85%',
-              toggleActions: 'play none none reverse',
+              toggleActions: 'play reverse play reverse',
             },
           },
         )
@@ -115,7 +115,7 @@ export default function TechStackSection() {
         className="pointer-events-none absolute inset-0 z-0"
         style={{
           clipPath: 'circle(0% at 50% 50%)',
-          background: '#09090B',
+          background: 'var(--bg-base)',
         }}
       />
       {/* Cabeçalho */}
@@ -123,7 +123,7 @@ export default function TechStackSection() {
         <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-center max-w-4xl mx-auto leading-tight">
           As ferramentas que o mercado pede.
           <br />
-          <span className="text-[#39D353]">Do jeito que você precisa aprender.</span>
+          <span className="text-accent">Do jeito que você precisa aprender.</span>
         </h2>
         <p className="text-neutral-400 text-lg md:text-xl text-center mt-4 mb-16 max-w-2xl mx-auto font-light">
           React, Node.js, TypeScript, PostgreSQL, Docker, n8n e IA — as 7
@@ -136,7 +136,7 @@ export default function TechStackSection() {
       <motion.div
         initial={{ clipPath: 'circle(0% at 50% 50%)', opacity: 0 }}
         whileInView={{ clipPath: 'circle(150% at 50% 50%)', opacity: 1 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         className="max-w-5xl mx-auto rounded-[32px] p-8 md:p-14 relative border  overflow-hidden"
       >
@@ -144,7 +144,7 @@ export default function TechStackSection() {
         <div className="absolute inset-0 pointer-events-none" />
 
         {/* Tag superior */}
-        <span className="bg-[#39D353]/10 text-[#39D353] border border-[#39D353]/30 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider mx-auto w-fit mb-8 flex items-center gap-2 shadow-[0_0_15px_rgba(57,211,83,0.2)] relative z-10">
+        <span className="bg-accent/10 text-accent border border-accent/30 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider mx-auto w-fit mb-8 flex items-center gap-2 shadow-[0_0_15px_57,211,83,0.2)] relative z-10">
           STACK COMPLETA &amp; ATUALIZADA
         </span>
 
@@ -158,7 +158,7 @@ export default function TechStackSection() {
           {DOCK.map((t) => (
             <div
               key={t.key}
-              className="group w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative cursor-pointer bg-surface/80 backdrop-blur-md border border-white/10 transition-all duration-300 hover:scale-110 hover:-translate-y-2 hover:border-[#39D353]/60 hover:shadow-[0_0_14px_rgba(57,211,83,0.2)]"
+              className="group w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center relative cursor-pointer bg-surface/80 backdrop-blur-md border border-white/10 transition-all duration-300 hover:scale-110 hover:-translate-y-2 hover:border-accent/60 hover:shadow-[0_0_14px_57,211,83,0.2)]"
             >
               <img
                 src={ICONS[t.key]}
@@ -185,7 +185,7 @@ export default function TechStackSection() {
           href="https://wa.me/5516990482444"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-[#39D353] hover:bg-[#32b848] text-black font-extrabold px-8 py-4 rounded-xl transition-all shadow-[0_0_16px_rgba(57,211,83,0.25)] hover:shadow-[0_0_24px_rgba(57,211,83,0.35)] mx-auto block w-fit scale-100 hover:scale-105 active:scale-95 relative z-10"
+          className="bg-accent hover:bg-[#32b848] text-black font-extrabold px-8 py-4 rounded-xl transition-all shadow-[0_0_16px_57,211,83,0.25)] hover:shadow-[0_0_24px_57,211,83,0.35)] mx-auto block w-fit scale-100 hover:scale-105 active:scale-95 relative z-10"
         >
           Quero Começar Agora
         </a>
@@ -197,9 +197,9 @@ export default function TechStackSection() {
           {[...PILLS, ...PILLS].map((p, i) => (
             <span
               key={`${p}-${i}`}
-              className="group cursor-default shrink-0 bg-[#141A16] border border-white/10 hover:border-[#39D353]/50 px-4 py-2 rounded-xl text-xs md:text-sm text-neutral-400 hover:text-white transition-all duration-200 flex items-center gap-2 font-mono"
+              className="group cursor-default shrink-0 bg-surface border border-white/10 hover:border-accent/50 px-4 py-2 rounded-xl text-xs md:text-sm text-neutral-400 hover:text-white transition-all duration-200 flex items-center gap-2 font-mono"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-neutral-600 group-hover:bg-[#39D353] transition-colors" />
+              <span className="w-1.5 h-1.5 rounded-full bg-neutral-600 group-hover:bg-accent transition-colors" />
               {p}
             </span>
           ))}

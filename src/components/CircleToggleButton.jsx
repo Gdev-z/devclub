@@ -17,10 +17,10 @@ export default function CircleToggleButton({ onOpen }) {
       exit="exit"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-[#39D353] shadow-lg shadow-[#39D353]/30 transition-colors duration-200 hover:bg-[#30B34D]"
+      className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full bg-accent shadow-lg shadow-accent/30 transition-colors duration-200 hover:bg-accent/90"
       aria-label="Configurações de modelos 3D"
     >
-      <Settings className="m-auto h-6 w-6 text-[#09090B]" />
+      <Settings className="m-auto h-6 w-6 text-bg-base" />
     </motion.button>
   )
 }

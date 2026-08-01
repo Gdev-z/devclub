@@ -157,7 +157,11 @@ export default function FormacoesSection() {
               y: 0,
               duration: 0.7,
               ease: 'power3.out',
-              scrollTrigger: { trigger: card, start: 'top 88%' },
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 88%',
+                toggleActions: 'play reverse play reverse',
+              },
             }
           )
         })
@@ -179,7 +183,7 @@ export default function FormacoesSection() {
     <section
       ref={sectionRef}
       id="formacoes"
-      className="relative w-full bg-[#09090B] py-28 md:py-40"
+      className="relative w-full bg-bg-base py-28 md:py-40"
     >
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         {/* Cabeçalho da seção */}
@@ -206,7 +210,7 @@ export default function FormacoesSection() {
             ref={addCard}
             className="stack-card relative"
           >
-            <article className="card-inner max-h-fit group relative flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-surface shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)] transition-colors duration-500 hover:border-[#39D353]/40 hover:shadow-[0_30px_90px_-30px_rgba(57,211,83,0.18)] lg:h-[72vh] lg:flex-row">
+            <article className="card-inner max-h-fit group relative flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-surface shadow-[0_30px_80px_-40px_rgba(0,0,0,0.8)] transition-colors duration-500 hover:border-accent/40 hover:shadow-[0_30px_90px_-30px_var(--color-accent)/0.18] lg:h-[72vh] lg:flex-row">
               {/* COLUNA ESQUERDA — imagem (52%, arte 100% visível, escala maior) */}
               <div className="relative w-full max-h-fit shrink-0 overflow-hidden lg:w-[65%]">
                 <img
@@ -240,7 +244,7 @@ export default function FormacoesSection() {
                       key={topic}
                       className="flex items-start gap-2.5 text-[13px] text-neutral-400"
                     >
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 rounded-[1px] bg-[#39D353]/80" />
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rotate-45 rounded-[1px] bg-accent/80" />
                       <span>{topic}</span>
                     </li>
                   ))}
@@ -261,7 +265,7 @@ export default function FormacoesSection() {
                 {/* CTA */}
                 <a
                   href="#"
-                  className="mt-7 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[#39D353] transition-colors hover:text-[#39D353]/80"
+                  className="mt-7 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-accent transition-colors hover:text-accent/80"
                 >
                   Ver ementa completa
                   <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />

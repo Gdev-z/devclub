@@ -82,7 +82,7 @@ export default function SalaryBenefitsSection() {
             variants={containerVariants}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: '-80px' }}
+            viewport={{ once: false, margin: '-80px' }}
           >
             <motion.div variants={fadeUp}>
               <span className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-sm font-medium text-accent">
@@ -126,7 +126,7 @@ export default function SalaryBenefitsSection() {
                       }}
                       initial={{ width: 0 }}
                       whileInView={{ width: s.width }}
-                      viewport={{ once: true }}
+                      viewport={{ once: false }}
                       transition={{
                         duration: 0.9,
                         delay: s.delay,
@@ -138,7 +138,7 @@ export default function SalaryBenefitsSection() {
                       className="absolute inset-y-0 flex items-center pl-4 text-sm font-bold text-ink"
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: false }}
                       transition={{
                         duration: 0.4,
                         delay: s.delay + 0.6,
@@ -158,7 +158,7 @@ export default function SalaryBenefitsSection() {
             variants={containerVariants}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: '-80px' }}
+            viewport={{ once: false, margin: '-80px' }}
           >
             {benefits.map((b) => {
               const Icon = b.icon

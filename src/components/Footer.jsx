@@ -49,7 +49,7 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="relative z-20 bg-[#050507] border-t border-zinc-800/60">
+    <footer className="relative z-20 bg-bg-base border-t border-zinc-800/60">
       <div className="flex flex-col sm:flex-row items-center justify-between py-12 px-6 lg:px-12 max-w-7xl mx-auto w-full gap-6">
         {/* Esquerda — Logo + Copyright */}
         <div className="flex items-center gap-3">

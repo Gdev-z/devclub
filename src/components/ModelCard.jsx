@@ -36,9 +36,9 @@ export default function ModelCard({ model, selected, onSelect }) {
 
         {/* Selecionado indicator */}
         {selected && (
-          <div className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-[#39D353]">
+          <div className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-accent">
             <svg
-              className="h-3.5 w-3.5 text-[#09090B]"
+              className="h-3.5 w-3.5 text-bg-base"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

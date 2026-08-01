@@ -39,7 +39,7 @@ function InteractiveShape() {
       </mesh>
       <mesh scale={2.21}>
         <icosahedronGeometry args={[1, 1]} />
-        <meshBasicMaterial color="#39D353" wireframe transparent opacity={0.45} />
+        <meshBasicMaterial color="var(--color-accent)" wireframe transparent opacity={0.45} />
       </mesh>
     </Float>
   );
@@ -55,7 +55,7 @@ function MetalScene() {
       <Environment preset="city" environmentIntensity={0.6} />
       <ambientLight intensity={1.5} color="#ffffff" />
       {/* <directionalLight position={[5, 5, 3]} intensity={5} color="#8532F2" /> */}
-      <pointLight position={[-4, -4, -2]} intensity={15} color="#39D353" distance={12} />
+      <pointLight position={[-4, -4, -2]} intensity={15} color="var(--color-accent)" distance={12} />
       <directionalLight position={[0, 0, 5]} intensity={1.5} color="#ffffff" />
       <InteractiveShape />
       {/* <ContactShadows
@@ -106,7 +106,7 @@ function ParticleHalo() {
     <group ref={group}>
       <mesh>
         <icosahedronGeometry args={[1.6, 1]} />
-        <meshBasicMaterial color="#39D353" wireframe transparent opacity={0.35} />
+        <meshBasicMaterial color="var(--color-accent)" wireframe transparent opacity={0.35} />
       </mesh>
       <mesh>
         <icosahedronGeometry args={[1.1, 1]} />
@@ -132,7 +132,7 @@ function ParticleHalo() {
         <pointsMaterial
           ref={haloMat}
           size={0.04}
-          color="#39D353"
+          color="var(--color-accent)"
           transparent
           opacity={0.6}
           sizeAttenuation
@@ -152,7 +152,7 @@ function ParticleScene() {
       dpr={[1, 2]}
     >
       <ambientLight intensity={0.5} />
-      <pointLight position={[5, 5, 5]} intensity={20} color="#39D353" />
+      <pointLight position={[5, 5, 5]} intensity={20} color="var(--color-accent)" />
       <directionalLight position={[-5, -3, 2]} intensity={16} color="#8532F2" />
       <ParticleHalo />
     </Canvas>

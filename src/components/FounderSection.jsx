@@ -56,7 +56,7 @@ export default function FounderSection() {
             variants={fadeLeft}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: '-80px' }}
+            viewport={{ once: false, margin: '-80px' }}
             className="relative"
           >
             <img
@@ -65,7 +65,7 @@ export default function FounderSection() {
               className="w-full rounded-3xl object-cover shadow-2xl"
             />
             {/* Gradiente de fusão com o fundo */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 rounded-b-3xl bg-gradient-to-t from-[#09090B] to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 rounded-b-3xl bg-gradient-to-t from-bg-base to-transparent" />
 
             {/* Badges flutuantes */}
             <div className="absolute bottom-6 left-6 flex gap-3">
@@ -76,7 +76,7 @@ export default function FounderSection() {
                     key={b.label}
                     className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold text-white backdrop-blur-md"
                   >
-                    <Icon size={14} className="text-[#39D353]" />
+                    <Icon size={14} className="text-accent" />
                     {b.label}
                   </span>
                 )
@@ -89,12 +89,12 @@ export default function FounderSection() {
             variants={fadeRight}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: '-80px' }}
+            viewport={{ once: false, margin: '-80px' }}
           >
-            <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}>
+            <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: false }}>
               {/* Tagline */}
               <motion.div variants={fadeUp} className="mb-4">
-                <span className="inline-flex items-center gap-2 text-sm font-medium text-[#39D353]">
+                <span className="inline-flex items-center gap-2 text-sm font-medium text-accent">
                   <Target size={16} />
                   Conheça quem guia a sua jornada
                 </span>
@@ -131,7 +131,7 @@ export default function FounderSection() {
               {/* Blockquote */}
               <motion.blockquote
                 variants={fadeUp}
-                className="mt-8 border-l-2 border-[#39D353] pl-6 text-base italic leading-relaxed text-white/90"
+                className="mt-8 border-l-2 border-accent pl-6 text-base italic leading-relaxed text-white/90"
               >
                 &ldquo;A diferença entre um curso e uma carreira é o que acontece
                 depois da aula. Aqui, você não estuda sozinho — tem recrutadora

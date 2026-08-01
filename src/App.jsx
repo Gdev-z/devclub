@@ -62,15 +62,15 @@ export default function App() {
       {/* EMPATIA — "Você se identifica?" */}
       <EmpathySection />
 
-      {/* SOLUÇÃO — Trilhas de formação */}
-      <FormacoesSection />
-
       {/* ECOSSISTEMA — Suporte + Plataforma (consolidado) */}
       <EcosystemSection />
 
       {/* STACK — Tecnologias do mercado */}
       <TechStackSection />
 
+      {/* SOLUÇÃO — Trilhas de formação */}
+      <FormacoesSection />
+      
       {/* RESULTADO — Salário e benefícios */}
       <SalaryBenefitsSection />
 
