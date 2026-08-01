@@ -11,6 +11,13 @@ const models3D = [
     thumbnail: '/assets/icons/logo3D_icon.png',
     defaultEnabled: false,
   },
+  {
+    id: 'light-model',
+    name: 'Light Logo',
+    path: '/light_devclub_logo.glb',
+    thumbnail: '/assets/icons/logo3D_icon.png',
+    defaultEnabled: false,
+  },
 ]
 
 export default models3D

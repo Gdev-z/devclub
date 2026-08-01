@@ -33,8 +33,7 @@ export default function App() {
 
   // Encontrar o modelo principal pelo registry
   const heroModel = models3D.find((m) => m.id === 'hero-model')
-  const heroModelPath = heroModel?.path ?? '/logoForSpline2.glb'
-  const heroModelEnabled = enabled && activeModelId === heroModel?.id
+  const activeModel = models3D.find((m) => m.id === activeModelId)
 
   useSmoothScroll(loading)
 
@@ -50,9 +49,9 @@ export default function App() {
 
       <Hero
         loading={!revealHero}
-        heroModelPath={heroModelPath}
-        heroModelEnabled={heroModelEnabled}
-        heroModelId={heroModel?.id}
+        heroModelPath={activeModel?.path ?? '/logoForSpline2.glb'}
+        heroModelEnabled={enabled}
+        heroModelId={activeModelId}
       />
 
       <LogosCarousel />

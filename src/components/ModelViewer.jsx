@@ -16,11 +16,19 @@ class ModelErrorBoundary extends React.Component {
     return { hasError: true }
   }
   componentDidCatch(error, info) {
-    console.error('[Model] GLTF load error:', error, info)
+    console.error('[Model] ERROR BOUNDARY TRIGGERED:', error, info)
+    this.setState({ errorDetails: error.toString() })
   }
   render() {
     if (this.state.hasError) {
-      return null // esconde o modelo, não quebra o resto da cena
+      return (
+        <div className="flex h-full w-full items-center justify-center">
+          <p className="text-sm text-red-400">Erro ao carregar o modelo 3D.</p>
+          {this.state.errorDetails && (
+            <p className="mt-1 text-xs text-white/40">{this.state.errorDetails.slice(0, 120)}</p>
+          )}
+        </div>
+      )
     }
     return this.props.children
   }
@@ -49,15 +57,11 @@ function Model({ modelPath, mouseX, mouseY, isDesktop }) {
   const meshRef = useRef()
   const { scene } = useGLTF(modelPath)
 
-  // Cleanup do cache useGLTF ao desmontar — libera GLTF anterior da memória WebGL
   useEffect(() => {
-    return () => {
-      useGLTF.clear(modelPath)
-    }
-  }, [modelPath])
+    console.log('[Model] Loaded:', modelPath, 'children:', scene.children?.length, 'uuid:', scene.uuid)
+  }, [scene, modelPath])
 
   useFrame(() => {
-    if (!meshRef.current) return
 
     const targetY = mouseX * Math.PI * 0.08
     const targetX = mouseY * Math.PI * 0.04
