@@ -1,8 +1,30 @@
-import { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF, Environment, OrbitControls, Float } from '@react-three/drei'
 import { motion } from 'framer-motion'
 import * as THREE from 'three'
+
+// ============================================================
+// ErrorBoundary — captura erros do useGLTF e renderiza fallback
+// ============================================================
+class ModelErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { hasError: false }
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true }
+  }
+  componentDidCatch(error, info) {
+    console.error('[Model] GLTF load error:', error, info)
+  }
+  render() {
+    if (this.state.hasError) {
+      return null // esconde o modelo, não quebra o resto da cena
+    }
+    return this.props.children
+  }
+}
 
 // ============================================================
 // useIsDesktop — detecta breakpoint >= 1024px
@@ -88,11 +110,10 @@ export default function ModelViewer() {
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
 
-  // Detecta quando o Three.js terminou de carregar (primeiro render)
+  // Timeout de segurança — garante que o loading sempre avança após 5s
   useEffect(() => {
-    // O Canvas do R3F emite 'started' no primeiro render
-    const timer = setTimeout(() => setLoaded(true), 1000) // fallback de 1s
-    return () => clearTimeout(timer)
+    const safetyTimer = setTimeout(() => setLoaded(true), 5000)
+    return () => clearTimeout(safetyTimer)
   }, [])
 
   return (
@@ -121,7 +142,12 @@ export default function ModelViewer() {
         <pointLight position={[5, 5, 5]} intensity={20} />
         <directionalLight position={[0, 5, 5]} intensity={10} />
         <Environment preset="city" environmentIntensity={0.6} />
-        <Model mouseX={mouseX} mouseY={mouseY} isDesktop={isDesktop} />
+
+        {/* ErrorBoundary para isolar falhas do useGLTF */}
+        <ModelErrorBoundary>
+          <Model mouseX={mouseX} mouseY={mouseY} isDesktop={isDesktop} />
+        </ModelErrorBoundary>
+
         <OrbitControls enableZoom={false} enablePan={false} />
       </Canvas>
     </div>
