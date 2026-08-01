@@ -61,7 +61,7 @@ export default function Hero({
 }) {
   return (
     <section className="hero-section relative min-h-screen w-full overflow-hidden">
-      <div className="relative z-10 flex w-full flex-col items-start justify-center bg-[#09090B] px-6 py-20 sm:px-8 sm:py-24 md:px-12 md:py-28 lg:px-24 lg:h-screen lg:w-2/5 lg:min-w-[40vw]">
+      <div className="relative z-10 flex w-full flex-col items-start justify-center bg-[#09090B] px-6 py-20 sm:px-8 sm:py-24 md:px-12 md:py-28 lg:px-24 lg:h-screen lg:w-2/3 lg:min-w-[40vw]">
         {/* Spacer — o Modelo é renderizado fora do fluxo pelo ModelViewerContainer */}
         <motion.div
           variants={container}
