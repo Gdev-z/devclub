@@ -70,15 +70,15 @@ export default function App() {
 
       {/* SOLUÇÃO — Trilhas de formação */}
       <FormacoesSection />
-      
+
+      {/* Jornada de Carreira (Timeline) */}
+      <CareerJourneySection />
+
       {/* RESULTADO — Salário e benefícios */}
       <SalaryBenefitsSection />
 
       {/* PROVA SOCIAL — Depoimentos reais */}
       <TestimonialsSection />
-
-      {/* Jornada de Carreira (Timeline) */}
-      <CareerJourneySection />
 
       {/* Plataforma e Ecossistema (Feature Showcase) */}
       <PlatformFeatures />

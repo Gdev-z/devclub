@@ -126,9 +126,8 @@ export default function TechStackSection() {
           <span className="text-accent">Do jeito que você precisa aprender.</span>
         </h2>
         <p className="text-neutral-400 text-lg md:text-xl text-center mt-4 mb-16 max-w-2xl mx-auto font-light">
-          React, Node.js, TypeScript, PostgreSQL, Docker, n8n e IA — as 7
+          React, Node.js, TypeScript, PostgreSQL, Docker, n8n e IA. Às
           tecnologias que aparecem em 78% das vagas Júnior no Brasil
-          <span className="text-neutral-600 text-sm"> (Glassdoor 2025)</span>.
         </p>
       </div>
 

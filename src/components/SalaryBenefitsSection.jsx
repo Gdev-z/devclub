@@ -166,7 +166,7 @@ export default function SalaryBenefitsSection() {
                 <motion.div
                   key={b.title}
                   variants={fadeUp}
-                  className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-all duration-300 hover:border-[#39D353]/30 hover:bg-white/[0.07]"
+                  className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-all duration-300 hover:border-accent/30 hover:bg-white/[0.07]"
                 >
                   <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft">
                     <Icon size={20} className="text-accent" />

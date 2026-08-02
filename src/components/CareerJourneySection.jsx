@@ -152,7 +152,15 @@ function DesktopLayout({ reducedMotion }) {
 
   return (
     <section ref={wrapperRef} className="relative h-[400vh] bg-bg-base">
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+      {/* Shared header — outside sticky, outside scroll */}
+      <div className="w-full text-center px-6 pt-20 pb-10 md:pt-24 md:pb-14 bg-[#09090B]">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-ink leading-tight">
+          Uma jornada completa para sua{' '}
+          <span className="text-accent">carreira em tecnologia</span>
+        </h2>
+      </div>
+
+      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden bg-[#09090B]">
         {/* Card track */}
         <motion.div
           ref={trackRef}
@@ -247,15 +255,7 @@ export default function CareerJourneySection() {
   }, []);
 
   return (
-    <div className="bg-bg-base">
-      {/* Shared header — outside sticky, outside scroll */}
-      <div className="w-full text-center px-6 pt-20 pb-10 md:pt-24 md:pb-14">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-ink leading-tight">
-          Uma jornada completa para sua{' '}
-          <span className="text-accent">carreira em tecnologia</span>
-        </h2>
-      </div>
-
+    <div className="bg-[#09090B]">
       {/* Layout switches at md breakpoint */}
       {isMobile ? (
         <MobileLayout reducedMotion={prefersReduced} />
