@@ -149,7 +149,7 @@ export default function TechStackSection() {
 
         {/* Título interno */}
         <h3 className="text-2xl md:text-4xl font-bold text-center max-w-2xl mx-auto mb-12 text-white relative z-10">
-          Você vai dominar cada uma dessas ferramentas — do zero ao deploy
+          Você vai dominar cada uma dessas ferramentas do zero ao deploy
         </h3>
 
         {/* Dock de tecnologias */}

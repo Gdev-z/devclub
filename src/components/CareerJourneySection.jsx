@@ -114,11 +114,12 @@ function ProgressDots({ count, progress }) {
 /* ===================================================================
    DESKTOP: Sticky vertical-to-horizontal scroll
    =================================================================== */
-function DesktopLayout({ reducedMotion }) {
+function DesktopLayout({ reducedMotion, showTitle, headingRef, titleText, accentText }) {
   const wrapperRef = useRef(null);
   const trackRef = useRef(null);
   const [trackWidth, setTrackWidth] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [revealed, setRevealed] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: wrapperRef,
@@ -126,6 +127,23 @@ function DesktopLayout({ reducedMotion }) {
   });
 
   const hintOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
+
+  /* Typing reveal — trigger on view */
+  useEffect(() => {
+    const el = headingRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setRevealed(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   // Measure horizontal overflow
   useEffect(() => {
@@ -152,15 +170,39 @@ function DesktopLayout({ reducedMotion }) {
 
   return (
     <section ref={wrapperRef} className="relative h-[400vh] bg-bg-base">
-      {/* Shared header — outside sticky, outside scroll */}
-      <div className="w-full text-center px-6 pt-20 pb-10 md:pt-24 md:pb-14 bg-[#09090B]">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-ink leading-tight">
-          Uma jornada completa para sua{' '}
-          <span className="text-accent">carreira em tecnologia</span>
-        </h2>
-      </div>
-
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden bg-[#09090B]">
+        {/* Header com z-index sobre os cards */}
+        <div ref={headingRef} className="absolute top-8 left-0 right-0 text-center px-6 pt-4 md:pt-8 pointer-events-none">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#FAFAFA] leading-tight whitespace-pre">
+            {titleText.split('').map((char, i) => (
+              <span
+                key={i}
+                style={{
+                  display: 'inline-block',
+                  opacity: revealed ? 1 : 0,
+                  transition: `opacity 0.03s ease ${i * 0.03}s`,
+                }}
+              >
+                {char}
+              </span>
+            ))}
+            <span className="text-[#39D353]">
+              {accentText.split('').map((char, i) => (
+                <span
+                  key={`a-${i}`}
+                  style={{
+                    display: 'inline-block',
+                    opacity: revealed ? 1 : 0,
+                    transition: `opacity 0.03s ease ${(titleText.length + i) * 0.03}s`,
+                  }}
+                >
+                  {char}
+                </span>
+              ))}
+            </span>
+          </h2>
+        </div>
+
         {/* Card track */}
         <motion.div
           ref={trackRef}
@@ -245,6 +287,7 @@ function MobileLayout({ reducedMotion }) {
 export default function CareerJourneySection() {
   const prefersReduced = useReducedMotion();
   const [isMobile, setIsMobile] = useState(false);
+  const headingRef = useRef(null);
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 767px)');
@@ -254,13 +297,16 @@ export default function CareerJourneySection() {
     return () => mq.removeEventListener('change', handler);
   }, []);
 
+  const titleText = 'Uma jornada completa para sua ';
+  const accentText = 'carreira em tecnologia';
+
   return (
     <div className="bg-[#09090B]">
       {/* Layout switches at md breakpoint */}
       {isMobile ? (
         <MobileLayout reducedMotion={prefersReduced} />
       ) : (
-        <DesktopLayout reducedMotion={prefersReduced} />
+        <DesktopLayout reducedMotion={prefersReduced} headingRef={headingRef} titleText={titleText} accentText={accentText} />
       )}
     </div>
   );

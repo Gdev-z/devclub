@@ -19,14 +19,6 @@ const TRILHAS = [
     img: imgIA,
   },
   {
-    title: 'Automação & Integrações com n8n',
-    desc: 'Você vai criar fluxos que rodem sozinhos: automatizar processos, integrar APIs e construir sistemas autônomos — a habilidade mais requisitada de 2025.',
-    techs: ['n8n', 'Webhooks', 'APIs', 'Python'],
-    topics: ['Lógica de fluxos e webhooks', 'Integração de APIs externas', 'Automação com Python', 'Sistemas autônomos de ponta a ponta'],
-    badge: 'Em Alta',
-    img: imgAutomacao,
-  },
-  {
     title: 'Front-End de Alta Performance',
     desc: 'Você vai construir interfaces que impressionam: componentes reutilizáveis, animações fluidas e otimação que faz o Google rankear seu site.',
     techs: ['React', 'Next.js', 'Tailwind', 'GSAP'],
@@ -41,6 +33,14 @@ const TRILHAS = [
     topics: ['APIs REST e GraphQL', 'Modelagem SQL e NoSQL', 'Padrões de arquitetura limpa', 'Containers e deploy com Docker'],
     badge: 'Escalável',
     img: imgBack,
+  },
+  {
+    title: 'Automação & Integrações com n8n',
+    desc: 'Você vai criar fluxos que rodem sozinhos: automatizar processos, integrar APIs e construir sistemas autônomos — a habilidade mais requisitada de 2025.',
+    techs: ['n8n', 'Webhooks', 'APIs', 'Python'],
+    topics: ['Lógica de fluxos e webhooks', 'Integração de APIs externas', 'Automação com Python', 'Sistemas autônomos de ponta a ponta'],
+    badge: 'Em Alta',
+    img: imgAutomacao,
   },
 ]
 

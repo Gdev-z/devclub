@@ -2,9 +2,9 @@ import { useState } from 'react'
 import logo from '../assets/logo.png'
 
 const NAV_LINKS = [
-  { label: 'Formações', href: '#formacoes' },
   { label: 'Ecossistema', href: '#ecossistema' },
   { label: 'Tecnologias', href: '#stack' },
+  { label: 'Formações', href: '#formacoes' },
   { label: 'Salário', href: '#salario' },
 ]
 

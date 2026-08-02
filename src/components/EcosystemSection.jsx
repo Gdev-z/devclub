@@ -324,7 +324,7 @@ export default function EcosystemSection() {
         </h2>
         <p className="text-neutral-400 text-lg max-w-2xl mt-4 mb-16">
           Plataforma própria, recrutadora dedicada, mentoria ao vivo, apoio
-          psicológico e IA 24/7 — tudo para você chegar à sua vaga.
+          psicológico e IA 24/7 tudo para você chegar à sua vaga.
         </p>
       </motion.div>
 
@@ -445,7 +445,7 @@ export default function EcosystemSection() {
               </div>
               <div>
                 <Badge accent="orange" icon={<CheckIcon />}>
-                  Incluso na assinatura
+                  Inclusa no compra
                 </Badge>
               </div>
             </div>
