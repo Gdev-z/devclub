@@ -501,7 +501,7 @@ export default function EcosystemSection() {
         className="relative z-10 mt-16"
       >
         <h3 className="text-xl font-bold text-white mb-8 text-center">
-          E mais — tudo o que você precisa em um só lugar
+          E mais! tudo o que você precisa em um só lugar
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {platformItems.map((item) => {

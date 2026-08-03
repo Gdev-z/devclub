@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import LoadingScreen from './components/LoadingScreen.jsx'
-import BgVideo from './components/BgVideo.jsx'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import LogosCarousel from './components/LogosCarousel.jsx'
@@ -21,105 +20,79 @@ import FaqAccordion from './components/FaqAccordion.jsx'
 import { faqData } from './config/faqData.js'
 import CircleToggleButton from './components/CircleToggleButton.jsx'
 import SettingsModal from './components/SettingsModal.jsx'
+import PageBackground from './components/PageBackground.jsx'
 import useModel3DSettings from './hooks/useModel3DSettings'
+import usePageSettings from './hooks/usePageSettings'
 import models3D from './config/models3D.js'
 import useSmoothScroll from './hooks/useSmoothScroll'
 
 export default function App() {
   const [loading, setLoading] = useState(true)
-  const [revealHero, setRevealHero] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
 
   const { enabled, activeModelId, models, toggleEnabled, selectModel } =
     useModel3DSettings()
 
+  const { activeBackgroundId, selectBackground } = usePageSettings()
+
   const defaultHeroModel = models3D.find((m) => m.id === 'hero-model')
-  const activeModel = models3D.find((m) => m.id === activeModelId) ?? defaultHeroModel
+  const activeModel = models.find((m) => m.id === activeModelId) || defaultHeroModel
 
-  useSmoothScroll(loading)
-
-  if (typeof document !== 'undefined') {
-    document.body.classList.toggle('loading-active', loading)
+  const handleToggleModels = () => {
+    setShowSettings((prev) => !prev)
   }
 
+  useSmoothScroll()
+
   return (
-    <div className="relative min-h-screen w-full text-white">
-      <BgVideo />
-      <Header />
-      {/* <HeroScene /> */}
-
-      <Hero
-        loading={!revealHero}
-        heroModel={activeModel}
-        heroModelEnabled={enabled}
-      />
-
-      <LogosCarousel />
-
-      {/* AUTORIDADE — Quem guia sua jornada */}
-      <FounderSection />
-
-      {/* EMPATIA — "Você se identifica?" */}
-      <EmpathySection />
-
-      {/* ECOSSISTEMA — Suporte + Plataforma (consolidado) */}
-      <EcosystemSection />
-
-      {/* STACK — Tecnologias do mercado */}
-      <TechStackSection />
-
-      {/* SOLUÇÃO — Trilhas de formação */}
-      <FormacoesSection />
-
-      {/* Jornada de Carreira (Timeline) */}
-      <CareerJourneySection />
-
-      {/* RESULTADO — Salário e benefícios */}
-      <SalaryBenefitsSection />
-
-      {/* PROVA SOCIAL — Depoimentos reais */}
-      <TestimonialsSection />
-
-      <FaqAccordion faqData={faqData} />
-
-      {/* Plataforma e Ecossistema (Feature Showcase) */}
-      <PlatformFeatures />
-
-      {/* URGÊNCIA + AÇÃO — CTA final */}
-      <UrgencyCTASection />
-
-      {/* Dobra 6 — Marca gigante em destaque (overlay com canvas 3D) */}
-      <BrandShowcase />
-
-      <Footer />
-
-      {/* Controles 3D */}
-      <CircleToggleButton onOpen={() => setShowSettings(true)} />
-      <AnimatePresence>
-        {showSettings && (
-          <SettingsModal
-            onClose={() => setShowSettings(false)}
-            models={models}
-            enabled={enabled}
-            activeModelId={activeModelId}
-            toggleEnabled={toggleEnabled}
-            selectModel={selectModel}
-          />
-        )}
-      </AnimatePresence>
-
+    <>
       <AnimatePresence>
         {loading && (
-          <LoadingScreen
-            onComplete={() => {
-              setLoading(false)
-              document.body.classList.remove('loading-active')
-              window.dispatchEvent(new Event('devclub:loaded'))
-              setTimeout(() => setRevealHero(true), 850)
-            }}
-          />
+          <LoadingScreen onComplete={(p) => setLoading(p >= 100)} />
         )}
       </AnimatePresence>
-    </div>
+
+      {!loading && (
+        <div className="relative min-h-screen w-screen overflow-hidden bg-base">
+          <PageBackground activeId={activeBackgroundId} />
+          <div className="relative z-[1]">
+            <Header revealHero />
+            <Hero heroModel={activeModel} heroModelEnabled={enabled} />
+            <LogosCarousel />
+            <EmpathySection />
+            <FounderSection />
+            <FormacoesSection />
+            <EcosystemSection />
+            <TechStackSection models={models} />
+            <SalaryBenefitsSection />
+            <TestimonialsSection />
+            <CareerJourneySection />
+            <FaqAccordion faqData={faqData} />
+            <PlatformFeatures />
+            <UrgencyCTASection />
+            <BrandShowcase />
+            <Footer />
+          </div>
+
+          <CircleToggleButton
+            isOpen={enabled}
+            onToggle={handleToggleModels}
+          />
+
+          {showSettings && (
+            <SettingsModal
+              onClose={() => setShowSettings(false)}
+              models={models}
+              enabled={enabled}
+              activeModelId={activeModelId}
+              toggleEnabled={toggleEnabled}
+              selectModel={selectModel}
+              activeBackgroundId={activeBackgroundId}
+              selectBackground={selectBackground}
+            />
+          )}
+        </div>
+      )}
+    </>
   )
 }

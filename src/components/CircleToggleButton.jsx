@@ -7,10 +7,10 @@ const variants = {
   exit: { scale: 0, opacity: 0, rotate: 90 },
 }
 
-export default function CircleToggleButton({ onOpen }) {
+export default function CircleToggleButton({ onToggle }) {
   return (
     <motion.button
-      onClick={onOpen}
+      onClick={onToggle}
       variants={variants}
       initial="hidden"
       animate="visible"
