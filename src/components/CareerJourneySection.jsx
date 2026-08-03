@@ -65,23 +65,22 @@ function JourneyCard({ card, index, reducedMotion }) {
       whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }}
       viewport={{ once: false, margin: '-40px' }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="group relative flex-shrink-0 w-[85vw] sm:w-[75vw] md:w-[500px] min-h-[350px] h-auto rounded-3xl bg-surface-alt border border-white/10 p-8 md:p-10 transition-all duration-300 hover:-translate-y-2 hover:border-accent/30 snap-center"
+      className="group relative flex-shrink-0 flex items-center gap-5 w-[85vw] sm:w-[75vw] md:w-[460px] rounded-[28px] bg-[#121215] border border-white/10 px-6 py-8 md:px-7 md:py-9 transition-all duration-300 hover:-translate-y-1 hover:border-[#39D353]/30 snap-center"
     >
-      {/* Hover glow */}
-      <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-accent/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-sm" />
-
-      {/* Icon circle */}
-      <div className="bg-accent text-black w-14 h-14 rounded-full flex items-center justify-center mb-6 shadow-[0_0_10px_rgba(57,211,83,0.2)] group-hover:shadow-[0_0_16px_rgba(57,211,83,0.3)] transition-shadow duration-300">
-        <Icon size={24} strokeWidth={2.2} />
+      {/* Ícone — preenche a div, sem fundo, branco */}
+      <div className="shrink-0 w-14 h-14 flex items-center justify-center">
+        <Icon size={56} strokeWidth={1.8} className="text-white" />
       </div>
 
-      {/* Title */}
-      <h3 className="text-2xl font-bold text-ink mb-4">{card.title}</h3>
-
-      {/* Description */}
-      <p className="text-neutral-400 text-lg leading-relaxed">
-        {card.description}
-      </p>
+      {/* Texto */}
+      <div className="min-w-0">
+        <h3 className="text-lg md:text-xl font-bold text-white leading-snug">
+          {card.title}
+        </h3>
+        <p className="mt-1.5 text-neutral-400 text-sm md:text-base leading-relaxed">
+          {card.description}
+        </p>
+      </div>
     </motion.div>
   );
 }
@@ -169,7 +168,7 @@ function DesktopLayout({ reducedMotion, showTitle, headingRef, titleText, accent
     : useTransform(scrollYProgress, [0, 1], [0, -trackWidth]);
 
   return (
-    <section ref={wrapperRef} className="relative h-[400vh] bg-bg-base">
+    <section ref={wrapperRef} className="relative h-[300vh] bg-bg-base">
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden bg-[#09090B]">
         {/* Header com z-index sobre os cards */}
         <div ref={headingRef} className="absolute top-8 left-0 right-0 text-center px-6 pt-4 md:pt-8 pointer-events-none">
