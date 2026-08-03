@@ -17,6 +17,8 @@ import CareerJourneySection from './components/CareerJourneySection.jsx'
 import PlatformFeatures from './components/PlatformFeatures.jsx'
 import BrandShowcase from './components/BrandShowcase.jsx'
 import Footer from './components/Footer.jsx'
+import FaqAccordion from './components/FaqAccordion.jsx'
+import { faqData } from './config/faqData.js'
 import CircleToggleButton from './components/CircleToggleButton.jsx'
 import SettingsModal from './components/SettingsModal.jsx'
 import useModel3DSettings from './hooks/useModel3DSettings'
@@ -77,6 +79,8 @@ export default function App() {
 
       {/* PROVA SOCIAL — Depoimentos reais */}
       <TestimonialsSection />
+
+      <FaqAccordion faqData={faqData} />
 
       {/* Plataforma e Ecossistema (Feature Showcase) */}
       <PlatformFeatures />
