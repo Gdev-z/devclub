@@ -53,7 +53,7 @@ export default function App() {
       </AnimatePresence>
 
       {!loading && (
-        <div className="relative min-h-screen w-screen overflow-hidden bg-base">
+        <div className="relative min-h-screen bg-base">
           <PageBackground activeId={activeBackgroundId} />
           <div className="relative z-[1]">
             <Header revealHero />
