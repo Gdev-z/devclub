@@ -10,13 +10,29 @@ const models3D = [
     path: '/logoForSpline2.glb',
     thumbnail: '/assets/icons/logo3D_icon.png',
     defaultEnabled: false,
+    type: 'glb',
   },
   {
     id: 'light-model',
-    name: 'Light Logo',
+    name: 'Logo 2',
     path: '/light_devclub_logo.glb',
     thumbnail: '/assets/icons/logo3D_icon.png',
     defaultEnabled: false,
+    type: 'glb',
+  },
+  {
+    id: 'scene-metal',
+    name: 'Metal Escovado',
+    type: 'procedural',
+    scene: 'metal',
+    thumbnail: '/assets/icons/logo3D_icon.png',
+  },
+  {
+    id: 'scene-particles',
+    name: 'Partículas',
+    type: 'procedural',
+    scene: 'particles',
+    thumbnail: '/assets/icons/logo3D_icon.png',
   },
 ]
 

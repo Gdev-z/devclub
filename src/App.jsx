@@ -31,9 +31,8 @@ export default function App() {
   const { enabled, activeModelId, models, toggleEnabled, selectModel } =
     useModel3DSettings()
 
-  // Encontrar o modelo principal pelo registry
-  const heroModel = models3D.find((m) => m.id === 'hero-model')
-  const activeModel = models3D.find((m) => m.id === activeModelId)
+  const defaultHeroModel = models3D.find((m) => m.id === 'hero-model')
+  const activeModel = models3D.find((m) => m.id === activeModelId) ?? defaultHeroModel
 
   useSmoothScroll(loading)
 
@@ -49,9 +48,8 @@ export default function App() {
 
       <Hero
         loading={!revealHero}
-        heroModelPath={activeModel?.path ?? '/logoForSpline2.glb'}
+        heroModel={activeModel}
         heroModelEnabled={enabled}
-        heroModelId={activeModelId}
       />
 
       <LogosCarousel />
@@ -93,16 +91,18 @@ export default function App() {
 
       {/* Controles 3D */}
       <CircleToggleButton onOpen={() => setShowSettings(true)} />
-      {showSettings && (
-        <SettingsModal
-          onClose={() => setShowSettings(false)}
-          models={models}
-          enabled={enabled}
-          activeModelId={activeModelId}
-          toggleEnabled={toggleEnabled}
-          selectModel={selectModel}
-        />
-      )}
+      <AnimatePresence>
+        {showSettings && (
+          <SettingsModal
+            onClose={() => setShowSettings(false)}
+            models={models}
+            enabled={enabled}
+            activeModelId={activeModelId}
+            toggleEnabled={toggleEnabled}
+            selectModel={selectModel}
+          />
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {loading && (

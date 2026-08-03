@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import MagneticButton from './MagneticButton.jsx'
 import ModelViewerContainer from './ModelViewerContainer.jsx'
+import models3D from '../config/models3D'
 
 // ============================================================
 // CONTROLE DO REVEAL DO HERO
@@ -55,9 +56,8 @@ const badge = {
 
 export default function Hero({
   loading = false,
-  heroModelPath = '/logoForSpline2.glb',
   heroModelEnabled = false,
-  heroModelId = 'hero-model',
+  heroModel = null,
 }) {
   return (
     <section className="hero-section relative min-h-screen w-full overflow-hidden">
@@ -109,11 +109,7 @@ export default function Hero({
 
       {/* 3D Model — responsive: full width on mobile, 40% of right side on desktop */}
       <div className="relative h-[60vh] w-full lg:absolute lg:inset-y-0 lg:right-0 lg:z-10 lg:block lg:h-screen lg:w-3/5">
-        <ModelViewerContainer
-          modelPath={heroModelPath}
-          enabled={heroModelEnabled}
-          modelId={heroModelId}
-        />
+        <ModelViewerContainer model={heroModel} enabled={heroModelEnabled} />
       </div>
     </section>
   )
