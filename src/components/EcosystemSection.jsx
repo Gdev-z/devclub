@@ -245,7 +245,6 @@ const platformItems = [
     description:
       'Ambiente de aprendizado moderno, livre de distrações, com player otimizado, trilhas de estudo visuais e marcação de progresso intuitiva.',
   },
- 
 ]
 
 /* =========================================================================
@@ -501,7 +500,7 @@ export default function EcosystemSection() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="relative z-10 mt-16"
       >
-        <h3 className="text-xl font-bold text-ink mb-8 text-center">
+        <h3 className="text-xl font-bold text-white mb-8 text-center">
           E mais — tudo o que você precisa em um só lugar
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -510,17 +509,20 @@ export default function EcosystemSection() {
             return (
               <div
                 key={item.title}
-                className="group rounded-2xl border border-white/10 bg-surface p-5 transition-all duration-300 hover:border-[#39D353]/20 hover:bg-[#151619]"
+                className="group flex items-center gap-4 sm:gap-[18px] rounded-2xl border border-white/10 bg-[#121215]/80 p-5 sm:p-6 transition-all duration-300 hover:border-[#39D353]/20 hover:bg-[#121215]"
               >
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-[#39D353]/10">
-                  <Icon size={18} className="text-[#39D353]" />
+                <div className="flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-2xl bg-[#39D353]/10">
+                  <Icon size={22} className="sm:hidden text-[#39D353]" />
+                  <Icon size={24} className="hidden sm:block text-[#39D353]" />
                 </div>
-                <h4 className="font-bold text-ink text-sm mb-1.5">
-                  {item.title}
-                </h4>
-                <p className="text-neutral-500 text-[13px] leading-relaxed">
-                  {item.description}
-                </p>
+                <div className="min-w-0 flex-1">
+                  <h4 className="font-bold text-white text-[15px] sm:text-[17px] mb-1 break-words">
+                    {item.title}
+                  </h4>
+                  <p className="text-neutral-500 text-[13px] leading-relaxed break-words">
+                    {item.description}
+                  </p>
+                </div>
               </div>
             )
           })}
