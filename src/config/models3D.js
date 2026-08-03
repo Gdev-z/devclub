@@ -6,7 +6,7 @@
 const models3D = [
   {
     id: 'hero-model',
-    name: 'Modelo Principal',
+    name: 'Modelo Detalhado',
     path: '/logoForSpline2.glb',
     thumbnail: '/assets/icons/logo3D_icon.png',
     defaultEnabled: false,
@@ -14,8 +14,8 @@ const models3D = [
   },
   {
     id: 'light-model',
-    name: 'Logo 2',
-    path: '/light_devclub_logo.glb',
+    name: 'Modelo Padrão',
+    path: '/devclub_base.glb',
     thumbnail: '/assets/icons/logo3D_icon.png',
     defaultEnabled: false,
     type: 'glb',
