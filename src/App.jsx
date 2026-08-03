@@ -59,11 +59,11 @@ export default function App() {
             <Header revealHero />
             <Hero heroModel={activeModel} heroModelEnabled={enabled} />
             <LogosCarousel />
-            <EmpathySection />
             <FounderSection />
-            <FormacoesSection />
+            <EmpathySection />
             <EcosystemSection />
             <TechStackSection models={models} />
+            <FormacoesSection />
             <SalaryBenefitsSection />
             <TestimonialsSection />
             <CareerJourneySection />

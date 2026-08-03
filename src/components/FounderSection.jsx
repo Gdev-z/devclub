@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Target, Users, Code } from 'lucide-react'
-import rodolfoImg from '../assets/mentoria-rodolfo.png'
+import rodolfoImg from '../assets/mentoria-rodolfo.webp'
 
 /* =========================================================================
    FOUNDER SECTION — Conheça Rodolfo Mori

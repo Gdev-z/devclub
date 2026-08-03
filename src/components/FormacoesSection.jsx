@@ -2,10 +2,10 @@ import { useRef, useLayoutEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-import imgIA from '../assets/cards_imgs/Inteligencia_artificial.png'
-import imgAutomacao from '../assets/cards_imgs/Automação.png'
-import imgFront from '../assets/cards_imgs/Front_end.png'
-import imgBack from '../assets/cards_imgs/Back_end.png'
+import imgIA from '../assets/cards_imgs/Inteligencia_artificial.webp'
+import imgAutomacao from '../assets/cards_imgs/Automação.webp'
+import imgFront from '../assets/cards_imgs/Front_end.webp'
+import imgBack from '../assets/cards_imgs/Back_end.webp'
 
 gsap.registerPlugin(ScrollTrigger)
 

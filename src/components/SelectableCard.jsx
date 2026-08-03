@@ -32,23 +32,7 @@ export default function SelectableCard({
         <Box className="h-6 w-6 text-white/20" />
       )}
 
-      {isSelected && (
-        <div className="absolute right-1.5 top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#39D353]">
-          <svg
-            className="h-2.5 w-2.5 text-bg-base"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={3}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-        </div>
-      )}
+      
     </button>
   )
 }
