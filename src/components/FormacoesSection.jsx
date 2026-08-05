@@ -160,7 +160,7 @@ export default function FormacoesSection() {
               scrollTrigger: {
                 trigger: card,
                 start: 'top 88%',
-                toggleActions: 'play reverse play reverse',
+                toggleActions: 'play none none reverse',
               },
             }
           )
