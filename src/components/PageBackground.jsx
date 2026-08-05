@@ -5,7 +5,11 @@ export default function PageBackground({ activeId }) {
 
   useEffect(() => {
     let cancelled = false
-    if (activeId === 'tech-bg') {
+    if (activeId === 'hex-bg') {
+      import('./HexBackground.jsx').then((mod) => {
+        if (!cancelled) setComponent(() => mod.default)
+      })
+    } else if (activeId === 'tech-bg') {
       import('./TechBackground.jsx').then((mod) => {
         if (!cancelled) setComponent(() => mod.default)
       })
