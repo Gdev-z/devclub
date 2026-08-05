@@ -1,8 +1,8 @@
 import { useRef, useEffect } from 'react'
 
 const BLUE_TONES = ['#1e40af', '#0ea5e9', '#38bdf8']
-const GLOW_RADIUS = 160
-const GLOW_ADD = 0.15
+const GLOW_RADIUS = 80
+const GLOW_ADD = 0.04
 
 function HexBackground() {
   const canvasRef = useRef(null)
@@ -11,7 +11,9 @@ function HexBackground() {
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
     const animationFrameRef = { current: null }
-    let hexagons = []
+    let cells = []
+    let hexSize = 28
+    let hexW, hexH, cols, rows
     let mouse = { x: -9999, y: -9999 }
     let prefersReducedMotion = false
 
@@ -22,27 +24,36 @@ function HexBackground() {
       canvas.style.width = `${window.innerWidth}px`
       canvas.style.height = `${window.innerHeight}px`
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+
+      hexW = 1.5 * hexSize
+      hexH = Math.sqrt(3) * hexSize
+      cols = Math.ceil(window.innerWidth / hexW) + 2
+      rows = Math.ceil(window.innerHeight / hexH) + 2
+
+      buildCells()
     }
 
-    function initHexagons() {
-      const area = window.innerWidth * window.innerHeight
-      const count = Math.min(Math.floor(area / 2500), 80)
+    function buildCells() {
+      const margin = hexSize * 2
+      cells = []
 
-      hexagons = []
-
-      for (let i = 0; i < count; i++) {
-        const size = Math.random() < 0.7
-          ? Math.random() * 30 + 20
-          : Math.random() * 30 + 60
-        const opacity = Math.random() * 0.22 + 0.13
-        const speed = size > 50
-          ? Math.random() * 0.02 + 0.04
-          : Math.random() * 0.01 + 0.02
-        const color = BLUE_TONES[Math.floor(Math.random() * BLUE_TONES.length)]
-        const x = Math.random() * window.innerWidth
-        const y = Math.random() * window.innerHeight
-
-        hexagons.push({ x, y, size, opacity, speed, color })
+      for (let row = -1; row < rows; row++) {
+        const oddCol = row % 2 === 1
+        const offsetX = oddCol ? hexW / 2 : 0
+        for (let col = -1; col < cols; col++) {
+          const x = margin + col * hexW + offsetX
+          const y = margin + row * hexH + (oddCol ? hexH / 2 : 0)
+          if (x > window.innerWidth + margin || y > window.innerHeight + margin) continue
+          cells.push({
+            x,
+            y,
+            size: hexSize,
+            peakOpacity: Math.random() * 0.17 + 0.08,
+            period: Math.random() * 7000 + 5000,
+            phaseOffset: Math.random() * Math.PI * 2,
+            color: BLUE_TONES[Math.floor(Math.random() * BLUE_TONES.length)]
+          })
+        }
       }
     }
 
@@ -65,41 +76,35 @@ function HexBackground() {
 
       ctx.clearRect(0, 0, w, h)
 
-      for (let i = 0; i < hexagons.length; i++) {
-        const hex = hexagons[i]
+      const t = performance.now()
 
-        if (!prefersReducedMotion) {
-          hex.y += hex.speed
-          if (hex.y - hex.size > h) {
-            hex.y = -hex.size
-            hex.x = Math.random() * w
-            hex.opacity = Math.random() * 0.22 + 0.13
-            hex.speed = hex.size > 50
-              ? Math.random() * 0.02 + 0.04
-              : Math.random() * 0.01 + 0.02
+      for (let i = 0; i < cells.length; i++) {
+        const cell = cells[i]
+
+        let opacity
+        if (prefersReducedMotion) {
+          opacity = cell.peakOpacity * 0.5
+        } else {
+          const visibility = Math.max(0, Math.sin((2 * Math.PI * t) / cell.period + cell.phaseOffset))
+          opacity = cell.peakOpacity * visibility
+        }
+
+        if (!prefersReducedMotion && mouse.x > -9999) {
+          const dx = cell.x - mouse.x
+          const dy = cell.y - mouse.y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+          if (dist < GLOW_RADIUS) {
+            opacity += GLOW_ADD * (1 - dist / GLOW_RADIUS)
           }
         }
 
-        const currentOpacity = prefersReducedMotion
-          ? hex.opacity
-          : hex.opacity + mouseAt(hex) * GLOW_ADD
-
-        drawHexagon(ctx, hex.x, hex.y, hex.size)
-        ctx.fillStyle = hex.color
-        ctx.globalAlpha = currentOpacity
+        drawHexagon(ctx, cell.x, cell.y, cell.size)
+        ctx.fillStyle = cell.color
+        ctx.globalAlpha = opacity
         ctx.fill()
       }
 
       ctx.globalAlpha = 1
-    }
-
-    function mouseAt(hex) {
-      if (mouse.x < -9999) return 0
-      const dx = hex.x - mouse.x
-      const dy = hex.y - mouse.y
-      const dist = Math.sqrt(dx * dx + dy * dy)
-      if (dist > GLOW_RADIUS) return 0
-      return 1 - dist / GLOW_RADIUS
     }
 
     function loop() {
@@ -116,7 +121,6 @@ function HexBackground() {
     })
 
     resizeCanvas()
-    initHexagons()
     loop()
 
     function onMouseMove(e) {
