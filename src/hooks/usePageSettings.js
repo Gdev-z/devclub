@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
+import { backgroundVariants } from '../config/backgrounds'
 
 const STORAGE_KEY = 'page-settings'
 
 const DEFAULT_SETTINGS = {
   models3D: { enabled: false, activeModelId: 'hero-model' },
   background: { activeId: 'video-bg' },
+  backgroundVariant: 'dark',
 }
 
 export default function usePageSettings() {
@@ -45,6 +47,17 @@ export default function usePageSettings() {
     }))
   }
 
+  const selectBackgroundVariant = (variantId) => {
+    setSettings((prev) => ({
+      ...prev,
+      backgroundVariant: variantId,
+    }))
+  }
+
+  const variant = backgroundVariants.find(
+    (v) => v.id === settings.backgroundVariant,
+  ) || backgroundVariants[0]
+
   return {
     enabled: settings.models3D.enabled,
     activeModelId: settings.models3D.activeModelId,
@@ -52,5 +65,7 @@ export default function usePageSettings() {
     selectModel,
     activeBackgroundId: settings.background.activeId,
     selectBackground,
+    backgroundVariant: variant,
+    selectBackgroundVariant,
   }
 }
